@@ -116,7 +116,7 @@ public class ParameterController {
 	}
 	
 	
-	/* 3. RequestParam - 여러 개(복수, 다수) 파라미터  */
+	/* 3. @RequestParam - 여러 개(복수, 다수) 파라미터  */
 	
 	// String[]
 	// List<자료형> 	
