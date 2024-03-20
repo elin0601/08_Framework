@@ -120,7 +120,7 @@ public class ParameterController {
 	
 	// String[]
 	// List<자료형> 	
-	// Map(String, object>
+	// Map<String, object>
 	
 	// defaultValue 속성은 사용 불가
 	
