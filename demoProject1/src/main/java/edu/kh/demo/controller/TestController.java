@@ -18,7 +18,7 @@ public class TestController {
 	
 	// Spring : 메서드 단위로 요청 처리 가능
 	
-	// @RequestMapping("요청 주소)
+	// @RequestMapping("요청 주소")
 	// - 요청 주소를 처리할 메서드를 매핑하는 어노테이션
 	
 	// 1) 메서드에 작성 : 
