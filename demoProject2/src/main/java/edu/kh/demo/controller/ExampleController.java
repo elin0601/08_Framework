@@ -6,8 +6,10 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import edu.kh.demo.model.dto.Student;
 import jakarta.servlet.http.HttpServletRequest;
@@ -98,4 +100,46 @@ public class ExampleController {
 		return "example/ex2";
 	}
 	
+	
+	
+	@GetMapping("ex3")
+	public String ex3(Model model) {
+		
+		model.addAttribute("boardNo", 10);
+		
+		model.addAttribute("key", "제목");
+		model.addAttribute("query", "검색어");
+		
+		return "example/ex3";
+	}
+	
+	
+	/* @Pathvariable
+	 * - 주소 중 일부분을 변수 값 처럼 사용 
+	 *  + 해당 어노테이션으로 얻어온 값은 request scope에 세팅 
+	 * */
+	
+	@GetMapping("ex2/{number}")
+	public String pathVariableTest(
+			@PathVariable("number") int number
+			// 주소 중 {number} 부분의 값을 가져와 매개변수에 저장
+			// number + request scope에 세팅
+			) {
+			
+		log.debug("number : " + number);
+				
+		return "example/testResult";
+	}
+	
+	
+	@GetMapping("ex4")
+	public String ex4(Model model) {
+		
+		Student std = new Student("60707", "잠만보", 25);
+		
+		model.addAttribute("std", std);
+		model.addAttribute("num", 123);
+		
+		return "example/ex4";
+	}
 }
