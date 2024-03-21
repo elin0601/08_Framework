@@ -12,14 +12,14 @@
 
     <pre>
         ${param.key} 
-        - request에 존재하는 parameter값 얻어와 출력
+        - request에 존재하는 parameter 값 얻어와 출력
     </pre>
 
     <ul>
         <li th:text="${param.inputName}">제출된 이름</li>
         <li th:text="${param.inputAge}">제출된 나이</li>
 
-        <!-- 같은 name 속성 값을 가진 파마리터는 배열로 전달 -->
+        <!-- 같은 name 속성 값을 가진 파라미터는 배열로 전달 -->
         <li th:text="${param.color}">체크된 색상</li>
 
         <!-- 전달된 파라미터가 없으면 null == 빈칸 -->
@@ -37,7 +37,7 @@
         - 해당 태그에  "속성값"을 내용으로 출력
         - 단, html 태그, 특수문자 해석 X (innerText)
 
-        th:utext
+        th:utext="속성값"
         - 해당 태그에  "속성값"을 내용으로 출력
         - 단, html 태그, 특수문자 해석 O (innerHTML)
     </pre>
