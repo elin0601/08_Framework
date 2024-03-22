@@ -118,5 +118,8 @@
     <!-- Student(studentNo=60707, name=잠만보, age=25) -->
     <p th:text="${std} ?: _">학생 데이터 없음</p>
 
+    <!-- html 파일 전체를 하나의 조각으로 취급 -->
+    <th:block th:replace="~{fragments/footer}"></th:block>
+
 </body>
 </html>
