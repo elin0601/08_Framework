@@ -74,15 +74,4 @@ public class TodoServiceImple implements TodoService {
 		return mapper.addTodo(todo);
 	}
 	
-	
-	
-	
-	
-	
-	
-
-
-	
-	
-	
 }
