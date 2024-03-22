@@ -86,16 +86,18 @@ public class DBConfig {
 	///////////// MyBatis 설정 /////////////
 	
 	@Bean
-	public SqlSessionFactory sessionFactory(DataSource datasource) throws Exception {
+	public SqlSessionFactory sessionFactory(DataSource dataSource) throws Exception {
 		
 		SqlSessionFactoryBean sessionFatoryBean = new SqlSessionFactoryBean();
+		
+		sessionFatoryBean.setDataSource(dataSource);
 		
 		// mapper.xml(SQL) 파일이 모이는 경로 지정
 		// -> MyBatis 코드 수행 시 mapper.xml 파일을 읽을 수 있음
 		
 		// sessionFactoryBean.setMapperLocations("현재프로젝트.자원.어떤파일");
 
-		sessionFatoryBean.setMapperLocations(applicationContext.getResources("class:/mapper/**.xml"));
+		sessionFatoryBean.setMapperLocations(applicationContext.getResources("classpath:/mappers/**.xml"));
 		
 		
 		// 해당 패키지 내 모든 클래스의 별칭을 등록
@@ -117,6 +119,8 @@ public class DBConfig {
 	}
 	
 	
+	// DBCP (DataBase Connection Pool)
+	// SqlSessionTemplate : Connection + DBCP + MyBatis + 트랜잭션 제어 처리
 	@Bean
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory factory) {
 		
@@ -124,13 +128,11 @@ public class DBConfig {
 	}
 	
 	
+	// DataSourceTransactionManager : 트랜잭션 매니저(제어 처리)
 	@Bean
 	public DataSourceTransactionManager dataSourceTransactionManager(DataSource dataSource) {
+		
 		return new DataSourceTransactionManager(dataSource);
 	}
-	
-	
-	
-	
 
 }
