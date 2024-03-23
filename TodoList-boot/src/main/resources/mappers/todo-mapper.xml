@@ -89,32 +89,4 @@
   	VALUES (SEQ_TODO_NO.NEXTVAL, #{todoTitle} , #{todoContent} , DEFAULT, DEFAULT)
   </insert>
   
-  
-  
-  
-  
-  
-  
-  
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

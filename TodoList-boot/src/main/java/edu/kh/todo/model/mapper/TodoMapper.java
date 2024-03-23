@@ -38,7 +38,5 @@ public interface TodoMapper {
 	 * @param todo
 	 * @return result
 	 */
-	int addTodo(Todo todo);
-
-	
+	int addTodo(Todo todo);	
 }
