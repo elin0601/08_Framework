@@ -32,7 +32,7 @@ import com.zaxxer.hikari.HikariDataSource;
  * 
  * @ConfigurationProperties(prefix="spring.datasource.hikari")
  *  - @PropertySource 로 읽어온 properties 파일의 내용 중
- *    접두사(앞부분, prefix)이 일치하는 값만 읽어옴
+ *    접두사(앞부분, prefix)가 일치하는 값만 읽어옴
  *    
  * - 읽어온 내용을 생성하려는 Bean에 자동으로 세팅
  * 
@@ -57,6 +57,13 @@ public class DBConfig {
 	@Autowired // (DI, 의존성 주입)
 	private ApplicationContext applicationContext; // 현재 프로젝트
 	
+	// -> ApplicationContext 타입릐 필드를 선언한 것으로 필드가 ApplicationContext를 참조한다는 것을 의미
+	// @Autowired 어노테이션을 사용하면 Spring은 자동으로 ApplicationContext 인스턴스를 필드에 주입함
+	// 필드를 초기화 하지 않아도 Spring이 적절한 객체(Bean)를 찾아서 주입함
+	
+	// 즉, 해당 코드를 작성하므로써 Spring이 ApplicationContext를 자동으로 주입하도록 지정함
+	//  ApplicationContext에 정의된 Bean을 사용할 수 있게 됨
+	
 	
 	///////////// HikariCP 설정 /////////////
 	
@@ -79,6 +86,12 @@ public class DBConfig {
 		
 		DataSource dataSource = new HikariDataSource(config);	
 		return dataSource;
+		
+		
+		// ----------	
+		// HikariDataSource은 HikariCP(High-performance JDBC connection pool)라는 
+		// DB connection pool 라이브러리를 사용하여 DB와의 연결을 관리
+		// 해당 메서드를 호출할 때 Spring은 등록된 HikariConfig 타입의 Bean을 찾아 메서드의 매개변수로 주입함
 	}
 	
 	
@@ -116,6 +129,10 @@ public class DBConfig {
 		
 		// 설정 내용이 모두 적용된 객체 반환
 		return sessionFatoryBean.getObject();
+		
+		// ----------
+		// SqlSessionFactory는 MyBatis의 핵심 인터페이스로, 데이터베이스와의 세션을 관리하고 SQL 쿼리를 실행할 수 있도록 해준다
+		// SqlSessionFactory Bean는 Spring IOC Container 에 의해 관리되며 다른 Bean에서 주입하여 사용할 수 있다
 	}
 	
 	
