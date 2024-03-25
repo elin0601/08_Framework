@@ -74,4 +74,39 @@ public class TodoServiceImple implements TodoService {
 		return mapper.addTodo(todo);
 	}
 	
+	
+	// 할 일 상세 조회
+	@Override
+	public Todo todoDetail(int todoNo) {
+				
+		return mapper.todoDetail(todoNo);
+	}
+	
+	
+	// 할 일 삭제
+	@Override
+	public int todoDelete(int todoNo) {
+		
+		return mapper.todoDelete(todoNo);
+	}
+	
+	
+	// 할 일 수정
+	@Override
+	public int todoUpdate(Todo todo) {
+		
+		// 마이바티스를 객체를 이용할 때
+		// SQL에 전달 할 수 있는 파라미터는 오직 1개!!
+		// -> 여러 데이터를 던달하고 싶으면 Map, DTO, List로 묶어서 전달
+		return mapper.todoUpdate(todo);
+	}
+	
+	
+	// 완료 여부 변경
+	@Override
+	public int todoChange(Todo todo) {
+		
+		return mapper.todoChange(todo);
+	}
+
 }

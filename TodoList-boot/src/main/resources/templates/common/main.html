@@ -55,14 +55,11 @@
     </table>
     
 
-    <!-- 타임리프 값을 JS 자료형에 맞게 변환 -->
-    <script th:inline="javascript">
-        const message=/*[[${message}]]*/ "전달 받은 message";
-                      // 전달 받은 message 가 없으면 null
-        if(message != null) {
-            alert(message);
-        }
-    </script>
+    <!-- 
+        footer.html 조각을 해당 위치에 추가 
+        (조각의 경로는 forward 하듯이 작성(접두사, 접미사 생략))
+    -->
+    <th:block th:replace="~{/common/footer}"></th:block>
     
 </body>
 </html>
