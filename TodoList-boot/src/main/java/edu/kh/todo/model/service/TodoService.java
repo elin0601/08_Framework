@@ -6,6 +6,7 @@ import edu.kh.todo.model.dto.Todo;
 
 public interface TodoService {
 
+
 	/** 할 일 목록 + 완료된 할 일 개수 조회
 	 * @return map
 	 */
@@ -42,6 +43,15 @@ public interface TodoService {
 	 */
 	int todoChange(Todo todo);
 
+	/** 전체 할 일 개수 조회
+	 * @return totalCount
+	 */
+	int getTotalCount();
+
+	/** 완료된 할 일 개수 조회
+	 * @return completeCount
+	 */
+	int getCompleteCount();
 
 }
 
