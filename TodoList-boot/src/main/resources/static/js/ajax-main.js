@@ -24,6 +24,13 @@ const popupClose = document.querySelector("#popupClose");
 
 // 상세 조회 버튼
 const deleteBtn = document.querySelector("#deleteBtn");
+const changeCompleteBtn = document.querySelector("#changeCompleteBtn"); // 완료 여부 변경
+const udpateView = document.querySelector("#udpateView"); // 수정
+
+// 수정 레이어 버튼
+const updateLayer = document.querySelector("#updateLayer");
+const updateTitle = document.querySelector("#updateTitle");
+const updateContent = document.querySelector("#updateContent");
 
 //-------------------------------------------------------------------------------
 
@@ -288,8 +295,8 @@ deleteBtn.addEventListener("click", ()=>{
 
         // 데이터 하나를 전달해도 application/json 작성
         headers : {"Content-type" : "application/json"},
-        
-        body : todoNo // todoNo 값을 bodydp ekadktj wjsekf
+
+        body : todoNo // todoNo 값을 body에 담아서 전달
                       // -> @RequestBody 로 꺼냄  
     })
 
@@ -313,6 +320,73 @@ deleteBtn.addEventListener("click", ()=>{
         }
     })
 });
+
+
+changeCompleteBtn.addEventListener("click", ()=> {
+
+    // 변경할 할 일 번호, 완료 여부 (Y <-> N)
+    const todoNo = popupTodoNo.innerText;
+    const complete = popupComplete.innerText === 'Y' ? 'N' : 'Y';
+
+    // SQL 수행에 필요한 값을 객체로 묶음
+    const obj = {"todoNo" : todoNo, "complete": complete};
+
+    // 비동기로 완료 여부 변경
+    fetch("/ajax/changeComplete", {
+        method : "PUT",
+        headers : {"Content-type" : "application/json"},
+        body : JSON.stringify(obj) // obj를 JSON으로 변경
+    })
+
+    .then(response => response.text())
+    .then(result => {
+
+        if(result > 0) {        
+
+            // update 된 DB 데이터를 다시 조회해서 화면에 출력
+            // -> 서버 부하가 큼
+
+            //selectTodo();
+            // 서버 부하를 줄이기 위해 상세 조회에서 Y/N만 바꾸기
+            popupComplete.innerText = complete;
+           
+            // getCompleteCount();
+            // 서버 부하를 줄이기 위해 완료된 Todo 개수 +-1
+            const count =  Number( completeCount.innerText);
+
+            if(complete==='Y') completeCount.innerText = count+1;
+            else completeCount.innerText = count-1;
+            
+            selectTodoList();
+            // 서버 부하 줄이기 가능!! -> 코드가 조금 복잡
+            
+        } else {
+            alert("변경 실패");
+        }
+
+    })
+})
+
+
+//------------------------------------------------------------------------
+
+// 상세 조회해서 수정버튼(#updateView) 클릭 시
+udpateView.addEventListener("click", ()=> {
+
+    // 기존 팝업 레이어는 숨기고
+    popupLayer.classList.add("popup-hidden");
+
+    // 수정 레이어 보이게
+    updateLayer.classList.remove("popup-hidden");
+
+    // 수정 레이어 보일 때 
+    // 팝업 레이어에 작성된 제목, 내용 얻어와 세팅
+    updateTitle.value=popupTodoTitle.innerText;
+    updateContent.value=popupTodoContent.innerHTML.replaceAll("<br>", "\n");
+    // HTML 화면에서 줄 바꿈이 <br>로 인식되고 있는데
+    // textarea에서는 \n으로 바꿔야 줄 바꿈이 인식된다!!!
+})
+
 
 
 //------------------------------------------------------------------------
