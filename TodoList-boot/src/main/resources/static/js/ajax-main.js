@@ -180,6 +180,9 @@ const selectTodo = (url) => {
         // popup layer 보이게 하기
         popupLayer.classList.remove("popup-hidden");
 
+        // update layer가 혹시라도 열려있으면 숨기기
+        updateLayer.classList.add("popup-hidden");
+
         /* 요소.classList.toggle("클래스명")
          - 요소에 해당 클래스가 있으면 제거
          - 요소에 해당 클래스가 없으면 추가 
