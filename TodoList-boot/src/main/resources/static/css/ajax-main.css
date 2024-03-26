@@ -27,6 +27,8 @@
 
     /* 위치의 상대적 기준점 */
     position: relative;
+
+    width: 90%;
 }
 
 /* pop layer 숨기기/보이기 */
@@ -83,4 +85,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#updateTitle {
+    width: 300px;
 }

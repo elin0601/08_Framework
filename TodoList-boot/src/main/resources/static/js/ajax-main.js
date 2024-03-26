@@ -31,6 +31,8 @@ const udpateView = document.querySelector("#udpateView"); // 수정
 const updateLayer = document.querySelector("#updateLayer");
 const updateTitle = document.querySelector("#updateTitle");
 const updateContent = document.querySelector("#updateContent");
+const updateCancle = document.querySelector("#updateCancle"); // 취소
+const updateBtn = document.querySelector("#updateBtn"); // 수정
 
 //-------------------------------------------------------------------------------
 
@@ -385,9 +387,70 @@ udpateView.addEventListener("click", ()=> {
     updateContent.value=popupTodoContent.innerHTML.replaceAll("<br>", "\n");
     // HTML 화면에서 줄 바꿈이 <br>로 인식되고 있는데
     // textarea에서는 \n으로 바꿔야 줄 바꿈이 인식된다!!!
+
+    // 수정 레이어 -> 수정 버튼에 data-todo-no 속성 추가
+    updateBtn.setAttribute("data-todo-no", popupTodoNo.innerText);
+});
+
+// 수정 레이어에서 취소 버튼(#updateCancle이 클릭 되었을 때)
+updateCancle.addEventListener("click", ()=>{
+
+    // 수정 레이어 숨기기
+    updateLayer.classList.add("popup-hidden");
+
+    // 팝업 레이어 보이기
+    popupLayer.classList.remove("popup-hidden");
 })
 
 
+//------------------------------------------------------------------------
+
+/* 수정 레이어 -> 수정 버튼 (#updateLayer) 클릭 시 */
+
+updateBtn.addEventListener("click", e=> {
+
+    // 서버로 전달해야 하는 값을 객체로 묶어둠
+    const obj = {
+        "todoNo" : e.target.dataset.todoNo, 
+        "todoTitle" : updateTitle.value,
+        "todoContent" : updateContent.value
+    };
+
+   
+    // 비동기 요청
+    fetch("/ajax/update", {
+        method:"PUT",
+        headers : {"Content-type" : "application/json"},
+        body : JSON.stringify(obj)
+    })
+
+    .then(response=>response.text())
+    .then(result => {
+
+        if(result > 0 ) { // 성공
+            alert("수정 성공");
+
+            //  수정 레이어 숨기기
+            updateLayer.classList.add("popup-hidden");
+            
+            // selectTodo(); // 다시 상세 조회
+            // -> 성능 개선
+            popupTodoTitle.innerText = updateTitle.value;
+            popupTodoContent.innerHTML = updateContent.value.replaceAll("\n", "<br>");
+
+            popupLayer.classList.remove("popup-hidden")
+
+            selectTodoList(); // 목록 다시 조회
+            
+            updateTitle.value="";  // 남은 흔적 제거
+            updateContent.value="";  // 남은 흔적 제거
+            updateBtn.removeAttribute("data-todo-no"); // 속성 제거
+
+        } else {
+            alert("수정 실패");
+        }
+    })
+})
 
 //------------------------------------------------------------------------
 
