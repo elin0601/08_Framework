@@ -42,6 +42,37 @@ CREATE TABLE "MEMBER" (
 
 -- DROP TABLE "MEMBER";
 
+-- 회원 번호 시퀀스 만들기
+CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE;
+
+-- 샘플 회원 데이터 삽입
+INSERT INTO "MEMBER" 
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 
+			'member01@kh.or.kr',
+			'$2a$10$JGgzAR/Yz/bUSAjpByGuveXMmTgfFgeHn3kljYRVb56nZ2CSmsqc6',
+			'샘플1',
+			'01012341234',
+			NULL,
+			NULL,
+			DEFAULT,
+			DEFAULT,
+			DEFAULT);
+		
+COMMIT;
+
+SELECT * FROM "MEMBER";
+
+-- 로그인
+-- -> BCrypt 암호화 사용중
+-- -> DB에서 비밀번호 비교 불가능!!
+-- -> 그래서 비밀번호(MEMBER_PW)를 조회
+
+-- > 이메일이 일치 + 탈퇴여부(N일 때)??
+SELECT MEMBER_NO , MEMBER_EMAIL , MEMBER_NICKNAME , MEMBER_PW , MEMBER_TEL , MEMBER_ADDRESS , PROFILE_IMG , AUTHORITY , 
+			TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') ENROLL_DATE
+FROM "MEMBER"
+WHERE MEMBER_EMAIL =?
+AND MEMBER_DEL_FL ='N'
 
 
 

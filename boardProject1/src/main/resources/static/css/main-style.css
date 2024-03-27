@@ -211,3 +211,34 @@ input[name="memberEmail"]{
     color: white;
     background-color: var(--main-color);
 }
+
+
+/* ******* footer ******* */
+footer {
+    width: 100%;
+    height: 200px;
+    background-color: #a3add342;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+  
+ footer>p {
+    font-weight: bold;
+    margin: 16px 0;
+}
+  
+footer>article>* {
+    font-size: 14px;
+}
+  
+footer a {
+    color: black;
+    text-decoration: none;
+}
+  
+footer span {
+    padding: 0 10px;
+}
+  

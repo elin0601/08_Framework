@@ -20,6 +20,11 @@
             <section class="content-1">
                 <!-- 확인, 보충 등등 그때 그때 사용 -->
                 
+                <!-- session에 loginMember 있으면 출력 -->
+                <th:block th:text="${session.loginMember}"></th:block>
+                <th:block th:text="${message}"></th:block>
+
+
             </section>
 
 
@@ -27,7 +32,7 @@
                 <!-- 로그인, 회원가입 버튼 -->
 
                 <!-- 로그인 박스 -->
-                <form action="#" method="POST" id="loginForm">
+                <form action="/member/login" method="POST" id="loginForm">
                     <fieldset class="id-pw-area">
 
                         <!-- 아이디, 비밀번호 입력 -->
@@ -55,13 +60,13 @@
                     </article>
 
                 </form>
-
             </section>
 
         </section>
-
-
     </main>
+
+    <!-- common/footer.html 추가 -->
+    <th:block th:replace="~{common/footer}"></th:block>
 
 </body>
 </html>
