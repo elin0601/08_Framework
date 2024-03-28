@@ -48,7 +48,7 @@ if(loginEmail != null) { // 로그인창의 이메일 입력 부분이 있을 �
 /* 이메일, 비밀번호 미작성 시 로그인 막기 */
 const loginForm = document.querySelector("#loginForm");
 
-const loginPw = document.querySelector("#loginform input[name='memberPw']");
+const loginPw = document.querySelector("#loginForm input[name='memberPw']");
 
 // #loginFrom이 화면에 존재할 때 (== 로그인 상태 아닐때)
 if (loginForm != null) {
@@ -60,7 +60,7 @@ if (loginForm != null) {
         // loginPw    : 비밀번호 input 요소
 
         // 이메일 미작성
-        if(loginEmail.value.trim().length === 0){
+        if(loginEmail.value.trim().length === 0) {
             alert("이메일을 작성해 주세요!");
             e.preventDefault(); // 기본 이벤트(제출) 막기
             loginEmail.focus(); // 초점 이동
@@ -71,7 +71,7 @@ if (loginForm != null) {
         if (loginPw.value.trim().length === 0) {
             alert("비밀번호를 작성 해주세요!");
             e.preventDefault();  // 기본 이벤트(제출) 막기
-            loginPw.focus();
+            loginPw.focus();  // 초점 이동
             return;
         }
 

@@ -96,7 +96,7 @@ public class MemberController {
 			// 쿠키 객체 생성(K:V)
 			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
 			
-			// 클라이언ㅌ가 어떤 요청을 할 때 쿠키가 첨부될지 지정
+			// 클라이언트가 어떤 요청을 할 때 쿠키가 첨부될지 지정
 			
 			// ex) "/" : IP 또는 도메인 또는 localhost
 			// 			 뒤에 "/" -> 메인페이지 + 그 하위 주소들
@@ -134,6 +134,17 @@ public class MemberController {
 	public String logout(SessionStatus status) {
 		status.setComplete(); // session을 완료 시킨(없앰)		
 		return "redirect:/";
+	}
+	
+	
+	
+	/** 로그인 페이지 이동
+	 * @return "member/login"
+	 */
+	@GetMapping("login")
+	public String loginPage() {
+		
+		return "member/login";
 	}
 	
 	
