@@ -7,6 +7,8 @@
 const getCookie = key => {
     const cookies = document.cookie; // "K=V; k=V;"
 
+    // document.cookie : cookie는 브라우저에 저장되어 있기 때문에 document.cookie 프로퍼티를 이용한다..?? 
+
     // cookies 문자열을 배열 형태로 변환
     const cookieList = cookies.split("; ") // ["K=V", "K=V"]
                         .map( el => el.split("=") ); // ["K", "V"]
