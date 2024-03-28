@@ -11,7 +11,7 @@ const getCookie = key => {
 
     // cookies 문자열을 배열 형태로 변환
     const cookieList = cookies.split("; ") // ["K=V", "K=V"]
-                        .map( el => el.split("=") ); // ["K", "V"]
+                        .map( el => el.split("=") ); // [["K", "V"], ["K", "V"]]
 
     // 배열 -> 객체로 변환(그래야 다루기 쉽다)
     const obj = {}; // 비어있는 객체 선언
