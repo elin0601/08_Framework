@@ -217,19 +217,6 @@ public class MemberController {
 		
 		return service.checkNickname(memberNickname);
 	}
-	
-	
-	/** 전화번호 삽입
-	 * @param memberTel
-	 * @return 
-	 */
-	@ResponseBody
-	@GetMapping("insertTel")
-	public String insertTel(
-			@RequestParam("memberTel") String memberTel) {
-		
-		return service.insertTel(memberTel);
-	}
 }
 
 

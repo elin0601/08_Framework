@@ -29,10 +29,5 @@ public interface MemberService {
 	 */
 	int checkNickname(String memberNickname);
 
-	/** 전화번호 삽입
-	 * @param memberTel
-	 * @return
-	 */
-	String insertTel(String memberTel);
 
 }

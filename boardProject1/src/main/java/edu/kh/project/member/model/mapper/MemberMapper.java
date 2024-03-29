@@ -31,10 +31,5 @@ public interface MemberMapper {
 	 */
 	public int checkNickname(String memberNickname);
 
-	/** 전화번호 삽입
-	 * @param memberTel
-	 * @return
-	 */
-	public String insertTel(String memberTel);
 		
 }

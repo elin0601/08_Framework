@@ -232,9 +232,9 @@ memberNickname.addEventListener("input", e => {
 
     fetch("/member/checkNickname?memberNickname=" + inputNickname)
     .then(response => response.text())
-    .then(result => {
+    .then(count => {
 
-        if(result == 1 ){
+        if(count == 1 ){
             nickMessage.innerText = "이미 사용중인 닉네임 입니다.";
             nickMessage.classList.add('error');
             nickMessage.classList.remove('confirm');
@@ -264,7 +264,7 @@ memberTel.addEventListener("input" , e => {
 
     const inputTel = e.target.value;
 
-    if(memberTel.trim().length === 0){
+    if(inputTel.trim().length === 0){
         telMessage.innerText = "전화번호를 입력해주세요.(- 제외)";
         telMessage.classList.remove('confirm', 'error');
         checkObj.memberTel = false;
@@ -279,8 +279,11 @@ memberTel.addEventListener("input" , e => {
         telMessage.classList.add('error');
         telMessage.classList.remove('confirm');
         checkObj.memberTel = false;
+        return;
     }
 
-    fetch("/member/insertTel?memberTel=" + inputTel)
-
-})
+    telMessage.innerText = "사용 가능한 전화번호 입니다.";
+    telMessage.classList.remove('error');
+    telMessage.classList.add('confirm');
+    checkObj.memberTel = true;
+});

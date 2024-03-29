@@ -112,12 +112,7 @@ public class MemberServiceImpl implements MemberService {
 	public int checkNickname(String memberNickname) {
 		return mapper.checkNickname(memberNickname);
 	}
-	
-	
-	@Override
-	public String insertTel(String memberTel) {
-		return mapper.insertTel(memberTel);
-	}
+
 	
 }
 
