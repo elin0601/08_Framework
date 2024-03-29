@@ -40,7 +40,8 @@ const checkObj = {
     "memberPw" : false,
     "memberPwConfirm" : false,
     "memberNickname" : false,
-    "memberTel" : false
+    "memberTel" : false,
+    "authKey" : false
 };
 
 // ------------------------------------------------------------------------------------------
@@ -287,3 +288,149 @@ memberTel.addEventListener("input" , e => {
     telMessage.classList.add('confirm');
     checkObj.memberTel = true;
 });
+
+
+
+
+
+
+
+
+
+
+// ---------------------------------------------------------------------------
+/* 이메일 인증 */
+
+// 인증 번호 받기 버튼
+const sendAuthKeyBtn = document.querySelector("#sendAuthKeyBtn"); 
+
+ // 인증 번호 입력 input
+const authKey = document.querySelector("#authKey");
+
+// 인증 번호 관련 메시지 출력 span
+const authKeyMessage = document.querySelector("#authKeyMessage"); 
+
+let authTimer; // 타이머 역할을 할 serInterval을 저장할 변수
+
+const initMin = 4; // 타이머 초기 값(분)
+const initSec = 59; // 타이머 초기 값(초)
+const initTime = "05:00"; // 
+
+// 실제 줄어드는 시간을 저장할 변수
+let min = initMin;
+let sec = initSec;
+
+
+// 인증 번호 받기 버튼 클릭 시
+sendAuthKeyBtn.addEventListener("click", () => {
+
+    // 중복되지 않은 유효한 이메일을 입력한 경우가 아니면
+    if( !checkObj.memberEmail){
+        alert("유효한 이메일 작성 후 클릭해 주세요.");
+        return;
+    }
+
+    // 클릭 시 타이머 숫자 초기화
+    min = initMin;
+    sec = initSec;
+
+    // 이전 동작중인 인터벌 클리어
+    clearInterval(authTimer);
+
+    checkObj.authKey = false; // 인증 유효성 검사 여부 false
+
+    // **************************************************************
+    // 비동기로 서버에서 메일 보내기
+
+    fetch("/email/signup", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : memberEmail.value
+    })
+
+
+    // **************************************************************
+
+    // 메일은 비동기로 서버에서 보내라고 하고
+    // 화면에서는 타이머로 시작하기
+
+    authKeyMessage.innerText = initTime; // 05:00 세팅
+    authKeyMessage.classList.remove('confirm', 'error');  // 검정 글씨
+
+    // setInterval(함수, 지연시간(ms))
+    // - 지연시간(ms)만큼 시간이 지날 때 마다 함수 수행
+
+    // clearInterval(Interval이 저장된 변수)
+    // - 매개변수로 전달 받은 Interval을 멈춤
+
+    // 인증 시간 출력(1초마다 동작)
+    authTimer = setInterval( () => {
+
+        authKeyMessage.innerText = `${addZero(min)} : ${addZero(sec)}`;
+
+        // 0분 0초인 경우("00:00"초 출력 후)
+        if(min == 0 && sec == 0){
+            checkObj.authKey=false; // 인증 못함
+            clearInterval(authTimer); // interval 멈춤
+            authKeyMessage.classList.add('error'); 
+            authKeyMessage.classList.remove('confirm');
+            return; 
+        }
+
+        // 0초인 경우(0초를 출력한 후)
+        if(sec == 0){
+            sec=60;
+            min--;
+        }
+
+        sec--; // 1초 감소
+
+
+    } ,1000);
+
+});
+
+// 전달 받은 숫가가 10 미만인 경우(한자리) 앞에 0을 붙여서 반환
+function addZero(number){
+    if(number < 10) return "0" + number;
+    else return number;
+} 
+
+
+// ---------------------------------------------------------------------------
+/* 회원 가입 버튼 클릭 시 전체 유효성 검사 여부 확인 */
+
+const signUpForm = document.querySelector("#signUpForm");
+
+// 회원 가입 폼 제출 시
+signUpForm.addEventListener("submit", e => {
+
+    // checkObj의 저장된 값(value)중 
+    // 하나라도 false가 있으면 제출 X
+    
+    // for ~ in ( 객체 전용 향상된 for문)
+    for(let key in checkObj) { // checkObj 요소의 key값을 순서대로 꺼내옴
+
+        if(!checkObj[key]) { // false인 경우(유효하지 않음)
+
+            let str; // 출력할 메시지 저장할 변수
+
+            switch(key) {
+                case "memberEmail" : str = "이메일이 유효하지 않습니다."; break;
+                case "memberPw" : str = "비밀번호가 유효하지 않습니다."; break;
+                case "memberPwConfirm" : str = "비밀번호가 일치하지 않습니다."; break;
+                case "memberNickname" : str = "닉네임이 유효하지 않습니다."; break;
+                case "memberTel" : str = "전화 번호가 유효하지 않습니다."; break;
+            }
+
+            alert(str); // 경고창 출력
+
+            document.getElementById(key).focus(); // 초점 이동
+
+            e.preventDefault(); // form 태그 기본 이벤트(제출) 막기
+            return;
+        }
+    }
+
+});
+
