@@ -79,3 +79,33 @@ WHERE MEMBER_NICKNAME  = '샘플3';
 
 COMMIT;
 
+-- 유효한 이메일 형식인 경우 중복 검사 수행(탈퇴 안한 멤버 중)
+SELECT COUNT(*) 
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL = 'N'
+AND MEMBER_EMAIL  = 'member01@kh.or.kr';
+
+-- 닉네임
+SELECT COUNT(*)
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL = 'N'
+AND MEMBER_NICKNAME = '샘플1';
+
+-- 전화번호 입력
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
