@@ -348,6 +348,16 @@ sendAuthKeyBtn.addEventListener("click", () => {
         body : memberEmail.value
     })
 
+    .then(response => response.text())
+    .then(result => {
+
+        if(result == 1) { // 인증번호 발송 O
+            console.log("인증 번호 발송 성공");
+        } else {
+            console.log("인증 번호 발송 실패");
+        }
+    })
+
 
     // **************************************************************
 

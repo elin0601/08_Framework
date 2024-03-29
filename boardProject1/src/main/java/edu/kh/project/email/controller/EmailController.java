@@ -2,15 +2,19 @@ package edu.kh.project.email.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.kh.project.email.model.service.EmailService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+
+@SessionAttributes({"authKey"}) // model 값 session으로 변경
 @Controller
 @RequestMapping("email")
 @Slf4j
@@ -24,12 +28,17 @@ public class EmailController {
 	
 	@ResponseBody
 	@PostMapping("signup")
-	public int signup(@RequestBody String email) {
+	public int signup(@RequestBody String email, Model model) {
 		
 		String authKey = service.sendEmail("signup", email);
 		
 		if(authKey != null) { // 인증 번호가 반환되서 돌아옴
 							  //  == 이메일 보내기 성공
+			
+			
+			// 이메일로 전달한 인증번호를 Session에 올려둠
+			model.addAttribute("authKey", authKey);
+			
 			return 1;
 		}
 		
