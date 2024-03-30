@@ -34,8 +34,7 @@ public class EmailController {
 		
 		if(authKey != null) { // 인증 번호가 반환되서 돌아옴
 							  //  == 이메일 보내기 성공
-			
-			
+						
 			// 이메일로 전달한 인증번호를 Session에 올려둠
 			model.addAttribute("authKey", authKey);
 			
@@ -44,7 +43,6 @@ public class EmailController {
 		
 		return 0; // 이메일 보내기 실패
 	}
-
 }
 
 
@@ -70,6 +68,7 @@ public class EmailController {
 
 // @Autowired // 의존성 주입(DI)
 // private EmailService service;
+
 
 // setter 이용
 // @Autowired
