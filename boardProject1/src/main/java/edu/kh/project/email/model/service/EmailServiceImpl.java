@@ -21,7 +21,6 @@ public class EmailServiceImpl implements EmailService{
 	private final SpringTemplateEngine templateEngine;
 	
 	
-	
 	// 이메일 보내기
 	@Override
 	public String sendEmail(String htmlName, String email) {
@@ -90,8 +89,7 @@ public class EmailServiceImpl implements EmailService{
 	}
 	
 	
-	
-	
+	// ------------
 	
 	 /** 인증번호 생성 (영어 대문자 + 소문자 + 숫자 6자리)
      * @return authKey
