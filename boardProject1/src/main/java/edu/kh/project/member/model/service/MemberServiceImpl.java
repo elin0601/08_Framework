@@ -112,7 +112,6 @@ public class MemberServiceImpl implements MemberService {
 	public int checkNickname(String memberNickname) {
 		return mapper.checkNickname(memberNickname);
 	}
-
 	
 }
 
