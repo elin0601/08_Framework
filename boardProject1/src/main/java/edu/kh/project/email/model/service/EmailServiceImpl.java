@@ -22,6 +22,12 @@ public class EmailServiceImpl implements EmailService{
 	// 타임리프(템플릿 엔진)을 이용해서 html 코드 -> java로 변환
 	private final SpringTemplateEngine templateEngine;
 	
+	/* SpringTemplateEngine
+	 * Spring의 뷰 리졸버(View Resolver)와 함께 사용되어 
+	 * 웹 애플리케이션의 컨트롤러에서 리턴한 뷰 이름을 해당 템플릿 엔진으로 전달하고, 
+	 * 엔진은 해당 템플릿을 렌더링하여 최종적인 뷰를 생성
+	 * */
+	
 	
 	// 이메일 보내기
 	@Override
