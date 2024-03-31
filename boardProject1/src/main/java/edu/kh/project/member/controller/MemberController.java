@@ -25,7 +25,6 @@ import lombok.extern.slf4j.Slf4j;
  * - Model에 추가된 속성(Attribute) 중 
  * 	 key 값이 일치하는 속성(Attribute)을 session scope로 변경
  * */
-
 @SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("member")

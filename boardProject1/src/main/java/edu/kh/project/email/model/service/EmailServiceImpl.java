@@ -10,8 +10,10 @@ import org.thymeleaf.spring6.SpringTemplateEngine;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor // Lombok은 아래 final 필드를 가지고 생성자를 생성함 
+						 // 생성자는 이 필드들을 매개 변수로 받아 초기화 함
+						 // -> 생성자를 명시적으로 작성하는 것 보다 더 간단해지고, 필드의 추가 및 변경이 있을 때 코드 유지 보수가 용이함
 @Service
-@RequiredArgsConstructor
 public class EmailServiceImpl implements EmailService{
 	
 	// EmailConfig 설정이 적용된 객체(메일 보내기 기능)
@@ -25,7 +27,7 @@ public class EmailServiceImpl implements EmailService{
 	@Override
 	public String sendEmail(String htmlName, String email) {
 		
-		String authKey = createAuthKey();
+		String authKey = createAuthKey(); // 아래 만들어둔 코드 재사용
 		
 		try {
 			

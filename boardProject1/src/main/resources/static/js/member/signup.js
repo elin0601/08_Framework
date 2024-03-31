@@ -293,11 +293,6 @@ memberTel.addEventListener("input" , e => {
 
 
 
-
-
-
-
-
 // ---------------------------------------------------------------------------
 /* 이메일 인증 */
 
@@ -314,7 +309,7 @@ let authTimer; // 타이머 역할을 할 serInterval을 저장할 변수
 
 const initMin = 4; // 타이머 초기 값(분)
 const initSec = 59; // 타이머 초기 값(초)
-const initTime = "05:00"; // 
+const initTime = "05:00"; // 가장 처음 화면에 보이는 숫자를 05:00로 설정
 
 // 실제 줄어드는 시간을 저장할 변수
 let min = initMin;
@@ -335,7 +330,7 @@ sendAuthKeyBtn.addEventListener("click", () => {
     sec = initSec;
 
     // 이전 동작중인 인터벌 클리어
-    clearInterval(authTimer);
+    clearInterval(authTimer); // 인증하기 버튼 연속으로 클릭 시 시간이 빠르게 줄어드는 걸 막음 + 시간 초기화
 
     checkObj.authKey = false; // 인증 유효성 검사 여부 false
 

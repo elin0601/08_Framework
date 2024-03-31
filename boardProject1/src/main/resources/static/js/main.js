@@ -7,7 +7,8 @@
 const getCookie = key => {
     const cookies = document.cookie; // "K=V; k=V;"
 
-    // document.cookie : cookie는 브라우저에 저장되어 있기 때문에 document.cookie 프로퍼티를 이용한다..?? 
+    // document.cookie :
+    // cookie는 브라우저에 저장되어 있기 때문에 document.cookie 프로퍼티를 이용한다..?? 
 
     // cookies 문자열을 배열 형태로 변환
     const cookieList = cookies.split("; ") // ["K=V", "K=V"]
@@ -20,6 +21,7 @@ const getCookie = key => {
         const k =  cookieList[i][0]; // key 값
         const v = cookieList[i][1]; // V 값
         obj[k]=v; // 객체에 추가
+        // obj 객체에는 쿠키의 이름을 key로 하고 값으로 해당 쿠키의 value를 갖는 속성들이 있게됨
         
     }
 
