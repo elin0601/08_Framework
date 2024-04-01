@@ -122,7 +122,7 @@ memberEmail.addEventListener("input", e => {
 
 // ---------------------------------------------------------------------------
 
-/* 비밀번호 / 비밀번호 확인 유효성 검사 */
+/* 비밀번호 / 비밀번호 확인 유효성 검사 */  // 순서 잘 보기 
 
 // 1) 비밀번호 관련 요소 얻어오기
 const memberPw = document.querySelector("#memberPw");
@@ -390,7 +390,6 @@ sendAuthKeyBtn.addEventListener("click", () => {
 
         sec--; // 1초 감소
 
-
     } ,1000);
 
 });
@@ -403,6 +402,7 @@ function addZero(number){
 
 
 // ---------------------------------------------------------------------------
+
 /* 회원 가입 버튼 클릭 시 전체 유효성 검사 여부 확인 */
 
 const signUpForm = document.querySelector("#signUpForm");
