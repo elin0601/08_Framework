@@ -243,6 +243,10 @@ public class MemberController {
 	}
 	
 	
+	
+	/** 조회 버튼 클릭 시 회원 조회
+	 * @return memberList
+	 */
 	@ResponseBody
 	@GetMapping("selectMemberList")
 	public List<Member> selectMemberList(){
