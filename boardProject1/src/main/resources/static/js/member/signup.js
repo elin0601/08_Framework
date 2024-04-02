@@ -463,7 +463,7 @@ signUpForm.addEventListener("submit", e => {
 // 단, 타이머가 00:00가 아닐 경우에만 수행(제한 시간안에 수행)
 checkAuthKeyBtn.addEventListener("click", () => {
 
-    if(min === 0 && sec === 0){ // 타아머가 00:00인 경우
+    if(min === 0 && sec === 0){ // 타이머가 00:00인 경우
         alert("인증번호 입력 제한 시간을 초과 하였습니다.");
         return;
     }

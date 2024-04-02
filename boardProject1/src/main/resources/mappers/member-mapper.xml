@@ -57,6 +57,12 @@
 		AND MEMBER_NICKNAME = #{memberNickname}
 	</select>
 	
+	<select id="selectMemberAll" resultType="_int">
+		SELECT MEMBER_NO , MEMBER_EMAIL , MEMBER_NICKNAME, MEMBER_DEL_FL
+		FROM "MEMBER"
+		WHERE MEMBER_EMAIL = #{memberEmail}
+	</select>
+	
 </mapper>
 
 
