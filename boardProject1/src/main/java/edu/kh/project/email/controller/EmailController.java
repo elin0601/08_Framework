@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 
-@SessionAttributes({"authKey"}) // model 값 session으로 변경
+@SessionAttributes({"authKey"}) // model 세팅된 값 중에 같은 key 값을 session으로 변경
 @Controller
 @RequestMapping("email")
 @Slf4j
