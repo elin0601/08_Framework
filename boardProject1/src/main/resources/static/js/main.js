@@ -146,11 +146,7 @@ selectMemberList.addEventListener("click", e => {
                 tr.append(td);
             }
             
-            
             memberList.append(tr);
-        }
-
-        
+        }   
     })
-
-})
+});
