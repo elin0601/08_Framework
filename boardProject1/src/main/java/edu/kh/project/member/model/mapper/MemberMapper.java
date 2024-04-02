@@ -33,7 +33,9 @@ public interface MemberMapper {
 	 */
 	public int checkNickname(String memberNickname);
 
-	public List<Member> selectMemberAll();
+
+	public List<Member> selectMemberList();
+
 
 		
 }

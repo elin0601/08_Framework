@@ -248,8 +248,11 @@ public class MemberController {
 	public List<Member> selectMemberList(){
 		
 		List<Member> memberList = service.selectMemberList();
-		return memberList;
+		
+		return memberList ;
+		
 	}
+	
 
 
 }

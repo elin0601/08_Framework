@@ -132,13 +132,12 @@ public class MemberServiceImpl implements MemberService {
 		return loginMember;
 	}
 	
+	 
 	@Override
 	public List<Member> selectMemberList() {
 		
-		
-		return mapper.selectMemberAll();
+		return mapper.selectMemberList();
 	}
-	
 }
 
 
