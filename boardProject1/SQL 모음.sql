@@ -119,7 +119,8 @@ WHERE EMAIL = #{가입하려는 이메일 입력 값}
 AND AUTH_KEY = #{위 이메일로 보낸 인증 번호}
 
 
-
+UPDATE "MEMBER" SET MEMBER_ADDRESS = NULL 
+WHERE MEMBER_ADDRESS = '서울시^^^^^^';
 
 
 

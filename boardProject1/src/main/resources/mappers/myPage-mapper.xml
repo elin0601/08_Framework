@@ -4,4 +4,12 @@
 <!-- 연결할 Mapper Interface 작성 -->
 <mapper namespace="edu.kh.project.myPage.model.mapper.MyPageMapper">
 
+	<update id="updateInfo">
+		UPDATE "MEMBER" SET 
+			MEMBER_NICKNAME = #{memberNickname},
+			MEMBER_TEL = #{memberTel},
+			MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+
 </mapper>
