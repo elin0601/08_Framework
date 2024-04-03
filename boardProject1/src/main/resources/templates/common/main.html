@@ -104,7 +104,7 @@
                 <!-- 닉네임, 이메일, 로그아웃 버튼 영역 -->
                 <div class="my-info" th:object="${session.loginMember}">
                     <div>
-                        <a href="#" id="nickName" th:text="*{memberNickname}">닉네임</a>
+                        <a href="/myPage/info" id="nickName" th:text="*{memberNickname}">닉네임</a>
                         <a href="/member/logout" id="logoutBtn">로그아웃</a>
                     </div>
 
