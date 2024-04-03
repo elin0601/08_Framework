@@ -162,11 +162,11 @@ public class MyPageController {
 		
 		if(result > 0 ) {
 			message = "비밀번호가 변경 되었습니다.";
-			path = "info";
+			path = "/myPage/info";
 			
 		} else {
 			message = "현재 비밀번호가 일치하지 않습니다.";
-			path = "changePw";
+			path = "/myPage/changePw";
 			
 		}
 		
