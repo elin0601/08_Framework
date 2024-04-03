@@ -6,9 +6,21 @@
 
 	<update id="updateInfo">
 		UPDATE "MEMBER" SET 
-			MEMBER_NICKNAME = #{memberNickname},
-			MEMBER_TEL = #{memberTel},
-			MEMBER_ADDRESS = #{memberAddress}
+		MEMBER_NICKNAME = #{memberNickname},
+		MEMBER_TEL = #{memberTel},
+		MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<select id="selectPw">
+		SELECT MEMBER_PW
+		FROM "MEMBER"
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<update id="changePw">
+		UPDATE "MEMBER" SET
+		MEMBER_PW = #{newPw}
 		WHERE MEMBER_NO = #{memberNo}
 	</update>
 

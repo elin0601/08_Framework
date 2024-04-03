@@ -11,4 +11,6 @@ public interface MyPageService {
 	 */
 	int updateInfo(Member inputMember, String[] memberAddress);
 
+	int changePw(String currentPw, String newPw, int memberNo);
+
 }

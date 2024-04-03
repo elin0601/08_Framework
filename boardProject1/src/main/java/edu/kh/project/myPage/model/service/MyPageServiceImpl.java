@@ -1,5 +1,9 @@
 package edu.kh.project.myPage.model.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 public class MyPageServiceImpl implements MyPageService {
 
 	private final MyPageMapper mapper;
+	
+	private final BCryptPasswordEncoder bcrypt;
 	
 	// @RequiredArgsConstructor 를 이용했을 때 자동 완성 되는 구문
 //	@Autowired
@@ -45,5 +51,22 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		// SQL 수행 후 결과 반환
 		return mapper.updateInfo(inputMember);
+	}
+	
+	
+	@Override
+	public int changePw(String currentPw, String newPw, int memberNo) {
+		
+		String bcryptPassword = mapper.selectPw(memberNo);
+		if( !bcrypt.matches(currentPw, bcryptPassword ) ) {
+			
+			return 0;
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("memberNo", memberNo);
+		map.put("newPw", bcrypt.encode(newPw));
+		
+		return mapper.changePw(map);		
 	}
 }

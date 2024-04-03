@@ -139,6 +139,37 @@ public class MyPageController {
 	}
 	
 	
+	@PostMapping("changePw")
+	public String changePw(
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("currentPw") String  currentPw,
+			@RequestParam("newPw") String newPw,
+			RedirectAttributes ra) {
+		
+		int memberNo = loginMember.getMemberNo();	
+		
+		int result = service.changePw(currentPw, newPw, memberNo);
+		
+		String message;
+		String path;
+		
+		if(result > 0 ) {
+			message = "비밀번호가 변경 되었습니다.";
+			path = "info";
+			
+		} else {
+			message = "현재 비밀번호가 일치하지 않습니다.";
+			path = "changePw";
+			
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+		
+	}
+	
+	
 }
 
 
