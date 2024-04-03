@@ -54,6 +54,7 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	
+	// 비밀번호 수정
 	@Override
 	public int changePw(String currentPw, String newPw, int memberNo) {
 		

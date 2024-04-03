@@ -139,6 +139,13 @@ public class MyPageController {
 	}
 	
 	
+	/**
+	 * @param loginMember : 세션 로그인 한 회원 정보
+	 * @param currentPw
+	 * @param newPw
+	 * @param ra
+	 * @return
+	 */
 	@PostMapping("changePw")
 	public String changePw(
 			@SessionAttribute("loginMember") Member loginMember,
