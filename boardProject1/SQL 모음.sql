@@ -126,7 +126,7 @@ SELECT * FROM "MEMBER";
 COMMIT;
 
 DELETE FROM "MEMBER" 
-WHERE MEMBER_EMAIL = '03dreams@naver.com';
+WHERE MEMBER_EMAIL = 'ijisu8022@gmail.com';
 
 
 
