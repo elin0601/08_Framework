@@ -132,7 +132,8 @@ public class MemberServiceImpl implements MemberService {
 		return loginMember;
 	}
 	
-	 
+	
+	// 조회버튼 클릭 시 회원 조회
 	@Override
 	public List<Member> selectMemberList() {
 		

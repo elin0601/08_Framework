@@ -110,6 +110,13 @@ const selectMemberList = document.querySelector("#selectMemberList");
 const memberList = document.querySelector("#memberList");
 
 
+// td 요소를 만들고 text 추가 후 반환
+const createTd = (text) => {
+    const td = document.createElement("td");
+    td.innerText = text;
+    return td;
+}
+
 
 // 조회 버튼 클릭 시
 selectMemberList.addEventListener("click", e => {
@@ -133,20 +140,46 @@ selectMemberList.addEventListener("click", e => {
         console.log(selectList);
         memberList.innerHTML="";
 
-        for(let member of selectList) {
+        /* 강사님 풀이 */
+        selectList.forEach( (member, index) => {
+            // member : 반복 접근한 요소(순서대로 하나씩 꺼낸 요소)
+            // index : 현재 접근 중인 index
+
+            // tr 만들어서 그 안에 td 만들어서 append 후
+            // tr 을 tbody에 append
+
+            const keyList = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl'];
+            
             const tr = document.createElement("tr");
 
-            const arr = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl']
-
-            for(let key of arr) {
-                const td = document.createElement("td");
-
-                tr.append(td);
-                td.innerText = member[key];
-                tr.append(td);
-            }
+            // keyList에서 key를 하나씩 얻어온 후
+            // 해당 key에 맞는 member 객체 값을 얻어와
+            // 생성되는 td 요소에 innerText로 추가 후 
+            // tr 요소의 자식으로 추가
+            keyList.forEach( key => tr.append(createTd(member[key] ) ) );
             
+            // tbody 자식으로 tr 추가
             memberList.append(tr);
-        }   
-    })
-});
+
+            })
+
+        });
+
+
+        /* 내 풀이 */
+        // for(let member of selectList) {
+        //     const tr = document.createElement("tr");
+
+        //     const arr = ['memberNo', 'memberEmail', 'memberNickname', 'memberDelFl'];
+
+        //     for(let key of arr) {
+        //         const td = document.createElement("td");
+
+        //         td.innerText = member[key];
+        //         tr.append(td);
+        //     }
+            
+        //     memberList.append(tr);
+        // }   
+
+    });

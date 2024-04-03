@@ -251,14 +251,11 @@ public class MemberController {
 	@GetMapping("selectMemberList")
 	public List<Member> selectMemberList(){
 		
-		List<Member> memberList = service.selectMemberList();
-		
-		return memberList ;
-		
+		// (java) List -> (Spring)HttpMessageConverter 가 JSON Array(문자열)로 변경
+		// -> (JS)response.json() -> [{}, {}, {}] JS 객체 배열
+		return service.selectMemberList();
 	}
 	
-
-
 }
 
 
