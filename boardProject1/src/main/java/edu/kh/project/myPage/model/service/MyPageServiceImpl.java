@@ -70,4 +70,40 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		return mapper.changePw(map);		
 	}
+	
+	
+	// 회원 탈퇴
+	@Override
+	public int secession(String memberPw, int memberNo) {
+
+		String bcryptPassword = mapper.selectPw(memberNo);
+		
+		if( !bcrypt.matches(memberPw, bcryptPassword)) {
+			
+			return 0;
+		}
+
+		return mapper.secession(memberNo);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

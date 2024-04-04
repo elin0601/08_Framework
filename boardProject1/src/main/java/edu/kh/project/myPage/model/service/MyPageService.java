@@ -15,8 +15,15 @@ public interface MyPageService {
 	 * @param currentPw
 	 * @param newPw
 	 * @param memberNo
-	 * @return
+	 * @return result
 	 */
 	int changePw(String currentPw, String newPw, int memberNo);
+
+	/** 회원 탈퇴
+	 * @param memberPw
+	 * @param memberNo
+	 * @return result
+	 */
+	int secession(String memberPw, int memberNo);
 
 }

@@ -8,12 +8,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 
+@SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("myPage")
 @RequiredArgsConstructor
@@ -139,7 +142,7 @@ public class MyPageController {
 	}
 	
 	
-	/**
+	/** 비밀번호 수정
 	 * @param loginMember : 세션 로그인 한 회원 정보
 	 * @param currentPw
 	 * @param newPw
@@ -147,35 +150,78 @@ public class MyPageController {
 	 * @return
 	 */
 	@PostMapping("changePw")
-	public String changePw(
-			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam("currentPw") String  currentPw,
-			@RequestParam("newPw") String newPw,
-			RedirectAttributes ra) {
-		
-		int memberNo = loginMember.getMemberNo();	
-		
+	public String changePw(@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("currentPw") String currentPw, @RequestParam("newPw") String newPw, RedirectAttributes ra) {
+
+		int memberNo = loginMember.getMemberNo();
+
 		int result = service.changePw(currentPw, newPw, memberNo);
+
+		String message;
+		String path;
+
+		if (result > 0) {
+			message = "비밀번호가 변경 되었습니다.";
+			path = "/myPage/info";
+
+		} else {
+			message = "현재 비밀번호가 일치하지 않습니다.";
+			path = "/myPage/changePw";
+
+		}
+
+		ra.addFlashAttribute("message", message);
+
+		return "redirect:" + path;
+
+	}
+	
+	
+	// @SessionAttribute : 
+	// - Model에 세팅된 값 중 key가 일치하는 값을
+	// 	 request -> session으로 변경
+	
+	// SessionStatus 
+	// - @SessionAttributes를 이용해서 올라간 데이터의 상태를 관리하는 객체
+	
+	// -> 해당 컨트롤러의 @SessionAttributes({"key1", "key2"})가 작성되어 있는 경우
+	//	 () 내 key1, key2의 상태를 관리
+	
+	/** 회원 탈퇴
+	 * @param loginMember : 로그인 한 회원 정보(세션)
+	 * @param memberPw : 입력 받은 비밀번호
+	 * @param ra
+	 * @param status : 세션 완료(없애기) 용도의 객체
+	 * 				  -> @SessionAtrributes로 등록된 세션에 완료
+	 * @return
+	 */
+	@PostMapping("secession")
+	public String secession(
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("memberPw") String memberPw,
+			RedirectAttributes ra,
+			SessionStatus status) {
+		
+		int memberNo = loginMember.getMemberNo();
+		int result = service.secession(memberPw, memberNo);
 		
 		String message;
 		String path;
 		
-		if(result > 0 ) {
-			message = "비밀번호가 변경 되었습니다.";
-			path = "/myPage/info";
+		if(result > 0) {
+			message = "탈퇴 되었습니다.";
+			status.setComplete();
+			path =  "/";
 			
 		} else {
-			message = "현재 비밀번호가 일치하지 않습니다.";
-			path = "/myPage/changePw";
-			
+			message = "비밀번호가 일치하지 않습니다";
+			path = "/myPage/secession";
 		}
 		
 		ra.addFlashAttribute("message", message);
 		
 		return "redirect:" + path;
-		
 	}
-	
 	
 }
 
