@@ -183,3 +183,94 @@ selectMemberList.addEventListener("click", e => {
         // }   
 
     });
+
+
+    // ---------------------------------------------------------------------------------
+
+    /* 특정 회원 비밀번호 초기화(Ajax) */
+    const resetMemberNo = document.querySelector("#resetMemberNo");
+    const resetPw = document.querySelector("#resetPw");
+
+    resetPw.addEventListener("click", () => {
+
+        // 입력 받은 회원 번호 얻어오기
+        const inputNo = resetMemberNo.value;
+
+        if(inputNo.trim().length == 0){
+            alert("회원 번호를 입력해 주세요.");
+            return;
+        }
+
+        fetch("/resetPw", {
+            method : "PUT", // PUT : 수정 요청 방식
+            headers : {"Content-Type" : "application/json"},
+            body : inputNo
+        })
+
+        .then(resp => resp.text())
+        .then(result => {
+            // result == 컨트롤러로 부터 반환 받아 TEXT로 파싱한 값
+
+            if(result > 0) alert("초기화 성공");
+            else alert("해당 회원이 존재하지 않습니다.");
+        });
+
+    });
+    
+
+    const restorationMemberNo = document.querySelector("#restorationMemberNo");
+    const restorationBtn = document.querySelector("#restorationBtn");
+
+    restorationBtn.addEventListener("click", () => {
+
+        const inputNo = restorationMemberNo.value;
+
+        if( inputNo.trim().length == 0 ) {
+            alert("회원 번호를 입력해 주세요.");
+            return;
+        }
+
+        fetch("/restorationNo", {
+            method : "PUT",
+            headers : {"Content-Type" : "application/json"},
+            body : inputNo
+        })
+
+        .then(resp => resp.text())
+        .then(result => {
+
+            if(result > 0) alert("해당 번호의 탈퇴 회원이 복구 되었습니다.");
+            else alert("해당 탈퇴한 회원이 존재하지 않습니다.");
+        });
+    });
+
+
+    const deleteMemberNo = document.querySelector("#deleteMemberNo");
+    const deleteBtn = document.querySelector("#deleteBtn");
+
+    deleteBtn.addEventListener("click", () => {
+
+        const inputNo = deleteMemberNo.value;
+
+        if( inputNo.trim().length == 0 ) {
+            alert("회원 번호를 입력해 주세요.");
+            return;
+        }
+
+        fetch("/deleteNo", {
+            method : "DELETE",
+            headers :  {"Content-Type" : "application/json"},
+            body : inputNo
+        })
+
+        .then(resp => resp.text())
+        .then(result => {
+
+            if(result > 0) alert("회원이 삭제 되었습니다.");
+            else alert("해당 회원이 존재하지 않습니다.");
+        });
+
+    });
+
+
+    

@@ -48,7 +48,7 @@ CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE;
 -- 샘플 회원 데이터 삽입
 INSERT INTO "MEMBER" 
 VALUES(SEQ_MEMBER_NO.NEXTVAL, 
-			'member01@kh.or.kr',
+			'member08@kh.or.kr',
 			'$2a$10$JGgzAR/Yz/bUSAjpByGuveXMmTgfFgeHn3kljYRVb56nZ2CSmsqc6',
 			'샘플1',
 			'01012341234',
