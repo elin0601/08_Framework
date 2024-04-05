@@ -367,6 +367,39 @@ public class MyPageController {
 	}
 
 	
+	/** 프로필 이미지 변경
+	 * @param profileImg
+	 * @param loginMember
+	 * @param ra
+	 * @return
+	 * @throws IOException 
+	 * @throws IllegalStateException 
+	 */
+	@PostMapping("profile")
+	public String profile(
+			@RequestParam("profileImg") MultipartFile profileImg,
+			@SessionAttribute("loginMember") Member loginMember,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		// 로그인한 회원 정보
+		int memberNo = loginMember.getMemberNo();
+		
+		// 서비스 호출
+		// -> /myPage/profile/변경된 파일명 형태의 문자열을
+		// 	현재 로그인한 회원의 PROFILE_IMG 컬럼 값으로 수정
+		
+		int result = service.profile(profileImg, memberNo);
+		
+		String message = null;
+		
+		if(result > 0) message = "변경 성공";
+		else message = "변경 실패";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:profile";
+	}
+	
 }
 
 

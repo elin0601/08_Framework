@@ -6,6 +6,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,13 +22,21 @@ import lombok.RequiredArgsConstructor;
 @Transactional(rollbackFor = Exception.class) // 모든 예외 발생 시 롤백
 @Service
 @RequiredArgsConstructor
+@PropertySource("classpath:/config.properties")
 public class MyPageServiceImpl implements MyPageService {
 
 	private final MyPageMapper mapper;
 	
 	private final BCryptPasswordEncoder bcrypt;
 	
-	// @RequiredArgsConstructor 를 이용했을 때 자동 완성 되는 구문
+	@Value("${my.profile.web-path}")
+	private String profileWebPath; // /myPage/profile/
+	
+	@Value("${my.profile.folder-path}")
+	private String profileFolderPath; // C:/uploadFiles/profile/
+
+	
+//  @RequiredArgsConstructor 를 이용했을 때 자동 완성 되는 구문
 //	@Autowired
 //	public MyPageServiceImpl(MyPageMapper mapper) {
 //		this.mapper = mapper;
@@ -241,11 +251,48 @@ public class MyPageServiceImpl implements MyPageService {
 			result2 += fileUpload2(file, memberNo);
 		}
 		
-		
-		
 		return result1 + result2;
 	}
 	
+	
+	// 프로필 이미지 변경
+	@Override
+	public int profile(MultipartFile profileImg, int memberNo) throws IllegalStateException, IOException {
+		
+		// 수정할 경로
+		String updatePath = null;
+		
+		String rename = null;
+		
+		
+		// 업로드한 이미지가 있을 경우
+		if(!profileImg.isEmpty()) {
+			
+			// updatePath 조합
+			
+			// 파일명 변경
+			 rename = Utility.fileRename(profileImg.getOriginalFilename());
+			
+			// /myPage/profile/변경된 파일명.jpg
+			updatePath = profileWebPath + rename;
+			
+		} 
+		
+		
+		// 수정된 프로필 이미지 경로 + 회원 번호를 저장할 STO 객체
+		Member mem = Member.builder()
+				.memberNo(memberNo).profileImg(updatePath).build();
+		
+		int result = mapper.profile(mem);
+		
+		if(result > 0) { // 수정 성공 시
+			
+			// 파일을 서버 지정된 폴더에 저장
+			profileImg.transferTo( new File( profileFolderPath + rename ));
+		}
+		
+		return result;
+	}
 }
 
 
