@@ -41,7 +41,8 @@
                         <tr th:each="file : ${list}" th:object="${file}">
                             <td th:text="*{fileNo}">파일 번호</td>
                             <td>
-                                <a href="#" th:text="*{fileOriginalName}">파일명</a>
+                                <!-- download="다운되는 파일의 이름 지정" -->
+                                <a th:href="|*{filePath}*{fileRename}|" th:text="*{fileOriginalName}" th:download="*{fileOriginalName}">파일명</a>
                             </td>
                             <td th:text="*{memberNickname}">업로드 회원</td>
                             <td th:text="*{fileUploadDate}">업로드 날짜</td>

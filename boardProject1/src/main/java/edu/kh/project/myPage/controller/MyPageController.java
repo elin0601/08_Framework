@@ -328,6 +328,43 @@ public class MyPageController {
 		
 		return "myPage/myPage-fileList";
 	}
+	
+	
+	
+	/** 여러 파일 업로드
+	 * @param aaaList
+	 * @param bbbList
+	 * @return
+	 * @throws IOException 
+	 * @throws IllegalStateException 
+	 */
+	@PostMapping("/file/test3")
+	public String fileTest3(
+			@RequestParam("aaa") List<MultipartFile> aaaList,
+			@RequestParam("bbb") List<MultipartFile> bbbList,
+			@SessionAttribute("loginMember") Member loginMember,
+			RedirectAttributes ra) throws IllegalStateException, IOException{
+		
+		// aaa 파일 미제출 시
+		// -> 0번, 1번 인덱스 파일이 모두 비어있음
+		
+		// bbb(multiple) 파일 미제출 시
+		// -> 0번 인덱스 파일이 비어있음 (List가 비어있는건 아니다!!)
+		
+		int memberNo = loginMember.getMemberNo();
+		
+		// result == 업로드된 파일 개수
+		int result = service.fileUpload3(aaaList, bbbList, memberNo);
+		
+		String message = null;
+		
+		if(result == 0) message = "업로드된 파일이 없습니다.";
+		 else message = result + "개 파일이 업로드 되었습니다.";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/myPage/fileTest";
+	}
 
 	
 }

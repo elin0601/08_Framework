@@ -50,4 +50,12 @@ public interface MyPageService {
 	 */
 	List<UploadFile> fileList();
 
+	/** 여러 파일 업로드
+	 * @param aaaList
+	 * @param bbbList
+	 * @param memberNo
+	 * @return
+	 */
+	int fileUpload3(List<MultipartFile> aaaList, List<MultipartFile> bbbList, int memberNo) throws IllegalStateException, IOException;
+
 }

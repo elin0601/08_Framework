@@ -201,6 +201,51 @@ public class MyPageServiceImpl implements MyPageService {
 		return mapper.fileList();
 	}
 	
+	
+	// 여러 파일 업로드
+	@Override
+	public int fileUpload3(List<MultipartFile> aaaList, List<MultipartFile> bbbList, int memberNo)
+			throws IllegalStateException, IOException {
+		
+		
+		// 1. aaaList 처리
+		
+		int result1 = 0;
+		
+		
+		// 업로드된 파일이 없을 경우를 제외하고 업로드
+		for( MultipartFile file : aaaList ) {
+			if(file.isEmpty()) { // 파일 없으면 다음 파일
+				continue;
+			}
+			
+			// fileUpload2() 메서드 호출
+			// -> 파일 하나 업로드 + DB INSERT
+			result1 += fileUpload2(file, memberNo);
+		}
+		
+		
+		// 2. bbbList 처리
+		
+		int result2 = 0;
+		
+		
+		// 업로드된 파일이 없을 경우를 제외하고 업로드
+		for( MultipartFile file : bbbList ) {
+			if(file.isEmpty()) { // 파일 없으면 다음 파일
+				continue;
+			}
+			
+			// fileUpload2() 메서드 호출
+			// -> 파일 하나 업로드 + DB INSERT
+			result2 += fileUpload2(file, memberNo);
+		}
+		
+		
+		
+		return result1 + result2;
+	}
+	
 }
 
 
