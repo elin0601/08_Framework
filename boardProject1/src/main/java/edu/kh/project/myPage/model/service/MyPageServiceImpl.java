@@ -10,11 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.kh.project.common.util.Utility;
 import edu.kh.project.member.model.dto.Member;
+import edu.kh.project.myPage.model.dto.UploadFile;
 import edu.kh.project.myPage.model.mapper.MyPageMapper;
 import lombok.RequiredArgsConstructor;
 
-@Transactional
+@Transactional(rollbackFor = Exception.class) // 모든 예외 발생 시 롤백
 @Service
 @RequiredArgsConstructor
 public class MyPageServiceImpl implements MyPageService {
@@ -115,6 +117,80 @@ public class MyPageServiceImpl implements MyPageService {
 		// 서버에 : C:\\uploadFiles\\test\\a.jpg
 		// 웹 접근할 수 있는 주소 : /myPage/file/a.jpg
 		return "/myPage/file/" + uploadFile.getOriginalFilename();
+	}
+	
+	
+	// 파일 업로드 테스트2 (+ DB)
+	@Override
+	public int fileUpload2(MultipartFile uploadFile, int memberNo) throws IllegalStateException, IOException {
+		
+		// 업로드된 파일이 없다면
+		// == 선택된 파일이 없을 경우
+		if(uploadFile.isEmpty()) {
+			return 0;
+		}
+		
+		
+		/* DB에 파일 저장이 가능은 하지만
+		 * DB 부하를 줄이기 위해서 
+		 * 
+		 * 1) DB에는 서버에 저장할 파일 경로를 저장
+		 * 
+		 * 2) DB 삽입/수정 성공 후 서버에 파일을 저장
+		 * 
+		 * 3) 파일 저장 실패 시
+		 * 	  -> 예외 발생
+		 *    -> @Transactional을 이용해 rollback 수행
+		 * */ 
+		
+		
+		// 1. 서버에 저장할 파일 경로 만들기
+		
+		// 파일이 저장된 서버 폴더 경로
+		String folderPath = "C:\\uploadFiles\\test\\";
+		
+		// 클라이언트가 파일이 저장된 폴더에 접근할 수 있는 주소
+		String webPath = "/myPage/file/";
+		
+		
+		// 2. DB에 전달할 데이터를 Map으로 묶어서 INSERT 호출하기
+		// webPath, memberNo, 원본 파일명, 변경된 파일명
+		
+		// 변경된 파일명
+		String fileRename = Utility.fileRename(uploadFile.getOriginalFilename());
+		
+		// Builder 패턴을 이용해서 UploadFile 객체 생성
+		// 장점 1) 반복되는 참조변수명, set 구문 생략
+		// 장점 2) method chainig을 이용해서 한 줄로 작성 가능
+		UploadFile uf = UploadFile.builder()
+				.memberNo(memberNo)
+				.filePath(webPath)
+				.fileOriginalName(uploadFile.getOriginalFilename())
+				.fileRename(fileRename)
+				.build();
+	
+		int result = mapper.insertUploadFile(uf);
+		
+		
+		// 3. 삽입(INSERT) 성공 시 파일을 지정된 서버 폴더에 저장
+		
+		// 삽입 실패 시
+		if( result == 0 ) return 0;
+		
+		
+		// 삽입 성공시 
+		
+		// "C:\\uploadFiles\\test\\변경된 파일명 으로 
+		// 파일을 서버에 저장
+		
+		uploadFile.transferTo(new File(folderPath + fileRename));
+		// -> CheckedException 발생 -> 예외 처리 필수
+		
+		// @Transactional은 UnCheckedException만 처리
+		// -> rollbackFor 속성을 이용해서 예외 범위 수정
+		//	  롤백할 예외 범위를 수정
+		
+		return result; // 1
 	}
 	
 }

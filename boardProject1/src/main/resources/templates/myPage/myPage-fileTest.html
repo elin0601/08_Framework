@@ -26,9 +26,9 @@
                 <h1 class="myPage-title">파일 테스트</h1>
 
                 <pre>
-                    [form 태그의 encType 속성]
+                    [form 태그의 enctype 속성]
 
-                    encType 이란??
+                    enctype 이란??
                     - 데이터를 서버로 전송할 때 데이터의 형태(인코딩)를 지정하는 속성
 
                     * application/x-www-form-urlencoded (기본값)
@@ -69,6 +69,17 @@
                    download
                    >업로드한 파일</a>
             
+                <hr>
+
+                <form action="/myPage/file/test2" method="POST" enctype="multipart/form-data">
+                    <h3>파일 업로드 + DB 저장 + 조회</h3>
+
+                    <input type="file" name="uploadFile">
+
+                    <button class="myPage-submit">제출하기</button>
+
+                </form>
+
             </section>
 
         </section>

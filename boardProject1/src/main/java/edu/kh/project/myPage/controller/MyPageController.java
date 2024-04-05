@@ -22,6 +22,15 @@ import edu.kh.project.member.model.dto.Member;
 import edu.kh.project.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * 
+ */
+/**
+ * 
+ */
+/**
+ * 
+ */
 @SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("myPage")
@@ -273,6 +282,34 @@ public class MyPageController {
 		return "redirect:/myPage/fileTest";
 	}
 	
+	
+	/** 파일 업로드 테스트2 (+ DB)
+	 * @return
+	 */
+	@PostMapping("/file/test2")
+	public String fileUpload2(
+			@RequestParam("uploadFile") MultipartFile uploadFile,
+			@SessionAttribute("loginMember") Member loginMember,
+			RedirectAttributes ra) throws IllegalStateException, IOException {
+		
+		// 로그인한 회원의 번호 (누가 업로드 했는가)
+		int memberNo = loginMember.getMemberNo();
+		
+		// 업로드된 파일 정보를 INSERT 후 결과 행의 개수 반환
+		int result = service.fileUpload2(uploadFile, memberNo);
+		
+		String message = null;
+		
+		if(result>0) {
+			message = "파일 업로드 성공";
+		} else {
+			message = "파일 업로드 실패";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:/myPage/fileTest"; // 변경 예정
+	}
 
 	
 }

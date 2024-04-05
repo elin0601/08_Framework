@@ -36,4 +36,11 @@ public interface MyPageService {
 	 */
 	String fileUpload1(MultipartFile uploadFile) throws IllegalStateException, IOException ;
 
+	/** 파일 업로드 테스트2 (+ DB)
+	 * @param uploadFile
+	 * @param memberNo
+	 * @return
+	 */
+	int fileUpload2(MultipartFile uploadFile, int memberNo) throws IllegalStateException, IOException;
+
 }
