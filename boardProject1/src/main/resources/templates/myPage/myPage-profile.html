@@ -29,7 +29,7 @@
                 <form action="profile" method="POST" name="myPageFrm" id="profile" enctype="multipart/form-data">
 
                     <div class="profile-image-area">
-                        <img th:with="user=#{user.default.image}" th:src="${loginMember.profileImg ?: user }" id="profileImg">
+                        <img th:with="user=#{user.default.image}" th:src="${session.loginMember.profileImg ?: user }" id="profileImg">
                     </div>
                     <span id="deleteImage">x</span>
                 
@@ -59,6 +59,12 @@
 
     <!-- 푸터 추가 -->
     <th:block th:replace="~{common/footer}"></th:block>
+
+    <script th:inline="javascript">
+        const loginMemberProfileImg = /*[[${session.loginMember.profileImg}]]*/  "회원 프로필 이미지";
+    </script>
+
+    <script src="/js/myPage/myPage.js"></script>
     
 
 </body>

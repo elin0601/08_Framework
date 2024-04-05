@@ -388,11 +388,18 @@ public class MyPageController {
 		// -> /myPage/profile/변경된 파일명 형태의 문자열을
 		// 	현재 로그인한 회원의 PROFILE_IMG 컬럼 값으로 수정
 		
-		int result = service.profile(profileImg, memberNo);
+		int result = service.profile(profileImg, loginMember);
 		
 		String message = null;
 		
-		if(result > 0) message = "변경 성공";
+		if(result > 0) {
+			message = "변경 성공";
+			
+			// 세션에 저장된 회원 정보에서 프로필 이미지 업데이트
+			// 프로필 이미지 수정
+			
+			
+		}
 		else message = "변경 실패";
 		
 		ra.addFlashAttribute("message", message);

@@ -60,9 +60,9 @@ public interface MyPageService {
 
 	/** 프로필 이미지 변경
 	 * @param profileImg
-	 * @param memberNo
+	 * @param loginMember
 	 * @return
 	 */
-	int profile(MultipartFile profileImg, int memberNo) throws IllegalStateException, IOException;
+	int profile(MultipartFile profileImg, Member loginMember) throws IllegalStateException, IOException;
 
 }

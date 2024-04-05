@@ -257,7 +257,7 @@ public class MyPageServiceImpl implements MyPageService {
 	
 	// 프로필 이미지 변경
 	@Override
-	public int profile(MultipartFile profileImg, int memberNo) throws IllegalStateException, IOException {
+	public int profile(MultipartFile profileImg, Member loginMember) throws IllegalStateException, IOException {
 		
 		// 수정할 경로
 		String updatePath = null;
@@ -279,16 +279,25 @@ public class MyPageServiceImpl implements MyPageService {
 		} 
 		
 		
-		// 수정된 프로필 이미지 경로 + 회원 번호를 저장할 STO 객체
+		// 수정된 프로필 이미지 경로 + 회원 번호를 저장할 DTO 객체
 		Member mem = Member.builder()
-				.memberNo(memberNo).profileImg(updatePath).build();
+				.memberNo(loginMember.getMemberNo()).profileImg(updatePath).build();
 		
 		int result = mapper.profile(mem);
 		
 		if(result > 0) { // 수정 성공 시
 			
-			// 파일을 서버 지정된 폴더에 저장
-			profileImg.transferTo( new File( profileFolderPath + rename ));
+			// 프로필 이미지를 없앤 경우(NULL로 수정한 경우)를 제외
+			// -> 업로드한 이미지가 있을 경우
+			if(!profileImg.isEmpty()) {
+				// 파일을 서버 지정된 폴더에 저장
+				profileImg.transferTo( new File( profileFolderPath + rename ));
+			}
+			
+			// 세션 회원 정보에서 프로필 이미지 경로를 
+			// 업데이트한 경로로 변경
+			loginMember.setProfileImg(updatePath);
+			
 		}
 		
 		return result;
