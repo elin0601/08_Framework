@@ -1,10 +1,12 @@
 package edu.kh.project.myPage.model.service;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.web.multipart.MultipartFile;
 
 import edu.kh.project.member.model.dto.Member;
+import edu.kh.project.myPage.model.dto.UploadFile;
 
 public interface MyPageService {
 
@@ -42,5 +44,10 @@ public interface MyPageService {
 	 * @return
 	 */
 	int fileUpload2(MultipartFile uploadFile, int memberNo) throws IllegalStateException, IOException;
+
+	/** 업로드한 파일 목록
+	 * @return
+	 */
+	List<UploadFile> fileList();
 
 }

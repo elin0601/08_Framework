@@ -3,6 +3,7 @@ package edu.kh.project.myPage.model.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -191,6 +192,13 @@ public class MyPageServiceImpl implements MyPageService {
 		//	  롤백할 예외 범위를 수정
 		
 		return result; // 1
+	}
+	
+	
+	// 업로드한 파일 목록
+	@Override
+	public List<UploadFile> fileList() {
+		return mapper.fileList();
 	}
 	
 }

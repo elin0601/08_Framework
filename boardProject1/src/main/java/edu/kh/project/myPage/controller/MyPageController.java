@@ -1,6 +1,7 @@
 package edu.kh.project.myPage.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
+import edu.kh.project.myPage.model.dto.UploadFile;
 import edu.kh.project.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 
@@ -309,6 +311,22 @@ public class MyPageController {
 		ra.addFlashAttribute("message", message);
 		
 		return "redirect:/myPage/fileTest"; // 변경 예정
+	}
+	
+	
+	/** 업로드한 파일 목록
+	 * @param model
+	 * @return
+	 */
+	@GetMapping("fileList")
+	public String fileList(Model model) {
+		
+		// 파일 목록 조회 서비스 호출
+		List<UploadFile> list = service.fileList();
+		
+		model.addAttribute("list", list);
+		
+		return "myPage/myPage-fileList";
 	}
 
 	
