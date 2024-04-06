@@ -24,15 +24,6 @@ import edu.kh.project.myPage.model.dto.UploadFile;
 import edu.kh.project.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 
-/**
- * 
- */
-/**
- * 
- */
-/**
- * 
- */
 @SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("myPage")
@@ -397,7 +388,6 @@ public class MyPageController {
 			
 			// 세션에 저장된 회원 정보에서 프로필 이미지 업데이트
 			// 프로필 이미지 수정
-			
 			
 		}
 		else message = "변경 실패";

@@ -130,42 +130,42 @@ if (changePw != null) {
 
 const secession = document.querySelector("#secession");
 
-if(secession != null) {
+if (secession != null) {
 
     secession.addEventListener("submit", e => {
 
         const memberPw = document.querySelector("#memberPw");
         const agree = document.querySelector("#agree");
 
-    // - 비밀번호 입력 되었는지 확인
-    if( memberPw.value.trim().length == 0) {
-        alert("비밀번호를 입력해 주세요.");
-        e.preventDefault();
-        return;
-    }
+        // - 비밀번호 입력 되었는지 확인
+        if (memberPw.value.trim().length == 0) {
+            alert("비밀번호를 입력해 주세요.");
+            e.preventDefault();
+            return;
+        }
 
 
-    // - 약관 동의 체크 확인
-    
-    // checkbox 또는 radio checked 속성
-    // - checked -> 체크시 true, 미체크시 false 반환
-    // - checked = true -> 체크하기
-    // - checked = false -> 체크 해제하기
+        // - 약관 동의 체크 확인
 
-    if(!agree.checked) { // 체크 안됐을 때
-        alert("약관에 동의해 주세요.");
-        e.preventDefault();
-        return;
-    }
+        // checkbox 또는 radio checked 속성
+        // - checked -> 체크시 true, 미체크시 false 반환
+        // - checked = true -> 체크하기
+        // - checked = false -> 체크 해제하기
 
-    
-    // - 정말 탈퇴? 물어보기
+        if (!agree.checked) { // 체크 안됐을 때
+            alert("약관에 동의해 주세요.");
+            e.preventDefault();
+            return;
+        }
 
-    if( !confirm("정말 탈퇴 하시겠습니까?")) { // 취소 선택 시
-        alert("취소 되었습니다.");
-        e.preventDefault();
-        return;
-    }
+
+        // - 정말 탈퇴? 물어보기
+
+        if (!confirm("정말 탈퇴 하시겠습니까?")) { // 취소 선택 시
+            alert("취소 되었습니다.");
+            e.preventDefault();
+            return;
+        }
 
     });
 
