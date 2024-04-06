@@ -194,7 +194,7 @@ let statusCheck = -1;
 // -> 파일이 선택/취소된 input을 복제해서 저장
 
 // 요소.cloneNode(true/false) : 요소 복제(true 작성 시 하위 요소도 복제)
-let backUpInput;
+let backupInput;
 
 
 if(profile != null) {
@@ -244,16 +244,16 @@ if(profile != null) {
             //    이전 이미지가 남아 있는 것 처럼 보이게 함
 
             // 백업의 백업본
-            const temp = backUpInput.cloneNode(true);
+            const temp = backupInput.cloneNode(true);
 
             // input 요소 다음에 백업 요소 추가
-            imageInput.after(backUpInput);
+            imageInput.after(backupInput);
 
             // 화면에 존재하는 기존 input 제거
             imageInput.remove();
 
             // imageInput 변수에 백업을 대입해서 대신 하도록 함
-            imageInput = backUpInput;
+            imageInput = backupInput;
 
             // 화면에 추가된 백업본에는 
             // 이벤트 리스너가 존재하지 않기 때문에 추가
@@ -261,7 +261,7 @@ if(profile != null) {
 
             // 한 번 화면에 추가된 요소(bacUpInput)는 재사용 불가
             // backUpInput의 백업본이 temp를 backUpInpuy으로 변경
-            backUpInput = temp;
+            backupInput = temp;
 
             return;
         }
@@ -281,16 +281,16 @@ if(profile != null) {
                      // 다음 선택한 이미지가 최대 크기를 초과한 경우
                 
                 // 백업의 백업본
-                const temp = backUpInput.cloneNode(true);
+                const temp = backupInput.cloneNode(true);
 
                 // input 요소 다음에 백업 요소 추가
-                imageInput.after(backUpInput);
+                imageInput.after(backupInput);
 
                 // 화면에 존재하는 기존 input 제거
                 imageInput.remove();
 
                 // imageInput 변수에 백업을 대입해서 대신 하도록 함
-                imageInput = backUpInput;
+                imageInput = backupInput;
 
                 // 화면에 추가된 백업본에는 
                 // 이벤트 리스너가 존재하지 않기 때문에 추가
@@ -298,7 +298,7 @@ if(profile != null) {
 
                 // 한 번 화면에 추가된 요소(bacUpInput)는 재사용 불가
                 // backUpInput의 백업본이 temp를 backUpInpuy으로 변경
-                backUpInput = temp;
+                backupInput = temp;
 
             }
 
@@ -332,7 +332,7 @@ if(profile != null) {
             statusCheck = 1;
 
             // 파일이 선택된 input 복제해서 백업
-            backUpInput = imageInput.cloneNode(true);
+            backupInput = imageInput.cloneNode(true);
 
         });
 
@@ -352,7 +352,7 @@ if(profile != null) {
         // -> input에 저장된 파일 정보가 모두 사라짐 == 데이터 삭제
         imageInput.value=''; 
 
-        backUpInput = undefined; // 백업본도 삭제
+        backupInput = undefined; // 백업본도 삭제
 
         // 삭제 상태임을 기록
         statusCheck = 0;
