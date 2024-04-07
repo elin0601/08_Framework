@@ -103,6 +103,8 @@ public class MyPageServiceImpl implements MyPageService {
 	}
 	
 	
+	// -------------- 프로필 파일 업로드 관련 ---------------
+	
 	// 파일 업로드 테스트 1
 	@Override
 	public String fileUpload1(MultipartFile uploadFile) throws IllegalStateException, IOException {

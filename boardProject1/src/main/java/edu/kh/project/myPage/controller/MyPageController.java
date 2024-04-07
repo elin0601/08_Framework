@@ -232,7 +232,9 @@ public class MyPageController {
 	}
 	
 	
-	/*파일 업로드 테스트*/
+	// ----------------------------------------
+	
+	/* 파일 업로드 테스트 */
 	@GetMapping("fileTest")
 	public String fileTest() {
 		
@@ -290,6 +292,8 @@ public class MyPageController {
 		
 		// 업로드된 파일 정보를 INSERT 후 결과 행의 개수 반환
 		int result = service.fileUpload2(uploadFile, memberNo);
+		// int result = service.fileUpload2(uploadFile, loginMember.getMemberNo);
+		// -> 이런식으로 mrmberNo를 따로 분리한 후 적지 않아도 되지만 코드 가독성때문에 분리해서 적는게 좋음
 		
 		String message = null;
 		
