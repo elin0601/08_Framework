@@ -260,7 +260,7 @@ if(profile != null) {
             imageInput.addEventListener("change", changeImgFn);
 
             // 한 번 화면에 추가된 요소(bacUpInput)는 재사용 불가
-            // backUpInput의 백업본이 temp를 backUpInpuy으로 변경
+            // backUpInput의 백업본이 temp를 backupInput 변경
             backupInput = temp;
 
             return;
@@ -282,6 +282,7 @@ if(profile != null) {
                 
                 // 백업의 백업본
                 const temp = backupInput.cloneNode(true);
+                                        // 깊은 복사(자식 노드도 복사함)
 
                 // input 요소 다음에 백업 요소 추가
                 imageInput.after(backupInput);
@@ -297,11 +298,10 @@ if(profile != null) {
                 imageInput.addEventListener("change", changeImgFn);
 
                 // 한 번 화면에 추가된 요소(bacUpInput)는 재사용 불가
-                // backUpInput의 백업본이 temp를 backUpInpuy으로 변경
+                // backUpInput의 백업본이 temp를 backupInput 변경
                 backupInput = temp;
 
             }
-
 
             return;
         }
@@ -377,7 +377,6 @@ if(profile != null) {
             e.preventDefault();
             alert("이미지 변경 후 클릭하세요.");
         }
-
 
     });
 
