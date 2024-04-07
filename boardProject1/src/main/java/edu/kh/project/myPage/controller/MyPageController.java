@@ -293,15 +293,12 @@ public class MyPageController {
 		// 업로드된 파일 정보를 INSERT 후 결과 행의 개수 반환
 		int result = service.fileUpload2(uploadFile, memberNo);
 		// int result = service.fileUpload2(uploadFile, loginMember.getMemberNo);
-		// -> 이런식으로 mrmberNo를 따로 분리한 후 적지 않아도 되지만 코드 가독성때문에 분리해서 적는게 좋음
+		// -> 이런식으로 memberNo를 따로 분리한 후 적지 않아도 되지만 코드 가독성 때문에 분리해서 적는게 좋음
 		
 		String message = null;
 		
-		if(result>0) {
-			message = "파일 업로드 성공";
-		} else {
-			message = "파일 업로드 실패";
-		}
+		if(result > 0) message = "파일 업로드 성공";
+		else message = "파일 업로드 실패";
 		
 		ra.addFlashAttribute("message", message);
 		

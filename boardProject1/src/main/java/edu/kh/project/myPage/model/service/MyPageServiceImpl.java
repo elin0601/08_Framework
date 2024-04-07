@@ -166,11 +166,12 @@ public class MyPageServiceImpl implements MyPageService {
 		String webPath = "/myPage/file/";
 		
 		
-		// 2. DB에 전달할 데이터를 Map으로 묶어서 INSERT 호출하기
+		// 2. DB에 전달할 데이터를 DTO로 묶어서 INSERT 호출하기
 		// webPath, memberNo, 원본 파일명, 변경된 파일명
 		
 		// 변경된 파일명
 		String fileRename = Utility.fileRename(uploadFile.getOriginalFilename());
+							// Utility DTO를 이용
 		
 		// Builder 패턴을 이용해서 UploadFile 객체 생성
 		// 장점 1) 반복되는 참조변수명, set 구문 생략
@@ -189,7 +190,6 @@ public class MyPageServiceImpl implements MyPageService {
 		
 		// 삽입 실패 시
 		if( result == 0 ) return 0;
-		
 		
 		// 삽입 성공시 
 		

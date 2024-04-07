@@ -38,6 +38,7 @@
                     </thead>
 
                     <tbody>
+                        <!-- ${list} : Spring에서 Model 객체에 담아 전달,,?? -->
                         <tr th:each="file : ${list}" th:object="${file}">
                             <td th:text="*{fileNo}">파일 번호</td>
                             <td>
