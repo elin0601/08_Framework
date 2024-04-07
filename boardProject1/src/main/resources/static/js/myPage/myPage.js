@@ -373,7 +373,7 @@ if(profile != null) {
         // 기존 프로필 이미지가 있다가 새 이미지가 선택된 경우
         if(loginMemberProfileImg != null && statusCheck == 1) flag = false;
 
-        if(flag) { // flag 값이 true 인 경우
+        if(flag) { // flag 값이 true 인 경우 // 이전 if문에 해당되는 게 없는 경우 제출을 막고 경고 메세지를 띄움
             e.preventDefault();
             alert("이미지 변경 후 클릭하세요.");
         }
