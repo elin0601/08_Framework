@@ -12,19 +12,19 @@
 
        <div class="content">
             <label for="bookTitle">
-                제목 : <input type="text" name="bookTitle"  placeholder="책 제목을 입력해 주세요">
+                제목 : <input type="text" name="bookTitle" id="bookTitle" placeholder="책 제목을 입력해 주세요">
             </label>
        </div>
 
        <div class="content">
-            <label for="bookTitle">
-                글쓴이 : <input type="text" name="bookWriter" placeholder="작가를 입력해 주세요">
+            <label for="bookWriter">
+                글쓴이 : <input type="text" name="bookWriter" id="bookWriter" placeholder="작가를 입력해 주세요">
             </label>
        </div>
 
        <div class="content">
-            <label for="bookTitle">
-                가격 : <input type="number" name="bookPrice" placeholder="책 가격을 입력해 주세요.">
+            <label for="bookPrice">
+                가격 : <input type="number" name="bookPrice" id="bookPrice" placeholder="책 가격을 입력해 주세요.">
             </label>
        </div>
 
@@ -32,8 +32,10 @@
 
 
     </form>
-
+    
     <th:block th:replace="~{common/message}"></th:block>
-
+    
+    <script src="/js/Main.js"></script>
+    
 </body>
 </html>

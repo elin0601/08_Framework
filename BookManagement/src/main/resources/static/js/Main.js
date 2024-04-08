@@ -28,11 +28,45 @@ selectBook.addEventListener("click", () => {
 
 });
 
+// --------------------- 삽입 실패 시 --------------------------
+const bookTitle = document.querySelector("#bookTitle");
+const bookWriter = document.querySelector("#bookWriter");
+const bookPrice = document.querySelector("#bookPrice");
+const insertBook = document.querySelector("#insertBook"); // 등록하기 버튼
+
+insertBook.addEventListener("click", e => {
+
+    if(bookTitle.value.trim() == 0) {
+        alert("책 제목을 입력해 주세요.");
+        e.preventDefault();
+        focus();
+        return;
+    }
+
+    if(bookWriter.value.trim() == 0) {
+        alert("글쓴이를 입력해 주세요.");
+        e.preventDefault();
+        focus();
+        return;
+    }
+
+    if(bookPrice.value ==  null) {
+        alert("책 가격을 입력해 주세요.");
+        e.preventDefault();
+        focus();
+        return;
+    }
+
+
+});
+
+
+
 
  // -------------------- 책 검색, 수정, 삭제 --------------------
 
- const bookTitle = document.querySelector("#bookTitle");
- const searchBook = document.querySelector("#searchBook");
+// const bookTitle = document.querySelector("#bookTitle");
+const searchBook = document.querySelector("#searchBook");
 
 searchBook.addEventListener("click", e => {
 
