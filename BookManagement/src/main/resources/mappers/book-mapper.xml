@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ljs.book.main.book.model.mapper.BookMapper">
+
+	<insert id="insertBook">
+		INSERT INTO "BOOK" 
+		VALUES(SEQ_BOOK_NO.NEXTVAL, #{bookTitle}, #{bookWriter}, #{bookPrice}, SYSDATE)
+	</insert>
+	
+	<!-- 책 조회 -->
+	<select id="selectList">
+		SELECT BOOK_NO , BOOK_TITLE , BOOK_WRITER , BOOK_PRICE, TO_CHAR(REG_DATE, 'YYYY-MM-DD') REG_DATE 
+		FROM "BOOK"
+	</select>
+	
+	 <select id="searchBook">
+	 	SELECT BOOK_NO , BOOK_TITLE , BOOK_WRITER , BOOK_PRICE, TO_CHAR(REG_DATE, 'YYYY-MM-DD') REG_DATE 
+		FROM "BOOK"
+		WEHRE BOOK_TITLE LIKE '%'|| #{bookTitle} ||'%'
+	 </select>
+
+</mapper>

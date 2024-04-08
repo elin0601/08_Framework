@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>책 등록</title>
+</head>
+<body>
+    <h1>책 등록</h1>
+
+    <form action="/book/insertBook"  method="POST" id="insert">
+
+       <div class="content">
+            <label for="bookTitle">
+                제목 : <input type="text" name="bookTitle"  placeholder="책 제목을 입력해 주세요">
+            </label>
+       </div>
+
+       <div class="content">
+            <label for="bookTitle">
+                글쓴이 : <input type="text" name="bookWriter" placeholder="작가를 입력해 주세요">
+            </label>
+       </div>
+
+       <div class="content">
+            <label for="bookTitle">
+                가격 : <input type="number" name="bookPrice" placeholder="책 가격을 입력해 주세요.">
+            </label>
+       </div>
+
+        <button id="insertBook">등록하기</button>
+
+
+    </form>
+
+    <th:block th:replace="~{common/message}"></th:block>
+
+</body>
+</html>
