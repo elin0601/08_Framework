@@ -32,7 +32,7 @@ public class BookController {
 	public String insertBook(Book bookInput,
 			RedirectAttributes ra) {
 		
-		int price = bookInput.getBookPrice();
+		//int price = bookInput.getBookPrice();
 		
 		int result = service.insertBook(bookInput);
 		 
