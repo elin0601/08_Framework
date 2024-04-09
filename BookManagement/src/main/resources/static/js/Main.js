@@ -36,24 +36,24 @@ const insertBook = document.querySelector("#insertBook"); // 등록하기 버튼
 
 insertBook.addEventListener("click", e => {
 
-    if(bookTitle.value.trim() == 0) {
+    if(bookTitle.value.trim().length == 0) {
         alert("책 제목을 입력해 주세요.");
         e.preventDefault();
-        focus();
+        bookTitle.focus();
         return;
     }
 
-    if(bookWriter.value.trim() == 0) {
+    if(bookWriter.value.trim().length == 0) {
         alert("글쓴이를 입력해 주세요.");
         e.preventDefault();
-        focus();
+        bookWriter.focus();
         return;
     }
 
-    if(bookPrice.value ==  null) {
+    if(bookPrice.value.trim().length == 0) {
         alert("책 가격을 입력해 주세요.");
         e.preventDefault();
-        focus();
+        bookPrice.focus();
         return;
     }
 

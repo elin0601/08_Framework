@@ -12,7 +12,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@Builder // 혹시 모르니까
 public class Book {
 	
 	private int bookNo; // 책 번호
