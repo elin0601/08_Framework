@@ -1,6 +1,8 @@
 package com.ljs.book.main.book.model.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,9 +21,14 @@ public class BookServiceImpl implements BookService{
 	
 	// 책 등록
 	@Override
-	public int insertBook(Book bookInput) {
+	public int insertBook(Book bookInput, int price) {
 		
-		return mapper.insertBook(bookInput);
+		Map<String, Object> map = new HashMap<>();
+		
+		map.put("bookInput", bookInput);
+		map.put("price", price);
+		
+		return mapper.insertBook(map);
 	}
 
 	@Override
@@ -33,8 +40,8 @@ public class BookServiceImpl implements BookService{
 	
 	// 제목 검색
 	@Override
-	public String searchBook(String bookTitle) {
+	public List<Book> searchBook() {
 		
-		return mapper.searchBook(bookTitle);
+		return mapper.searchBook();
 	}
 }

@@ -3,6 +3,7 @@ package com.ljs.book.main.book.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,9 +33,9 @@ public class BookController {
 	public String insertBook(Book bookInput,
 			RedirectAttributes ra) {
 		
-		//int price = bookInput.getBookPrice();
+		int price = bookInput.getBookPrice();
 		
-		int result = service.insertBook(bookInput);
+		int result = service.insertBook(bookInput, price);
 		 
 		String message;
 		String path;
@@ -54,7 +55,7 @@ public class BookController {
 		return "redirect:" + path;
 	}
 	
-	
+
 	// 전체 조회
 	@ResponseBody
 	@GetMapping("selectList")
@@ -73,14 +74,17 @@ public class BookController {
 
 	
 	// 제목 검색
-	@ResponseBody
 	@PostMapping("updateBook")
 	public String searchBook(
 			@RequestParam("bookTitle") String bookTitle,
-			RedirectAttributes ra) {
+			RedirectAttributes ra,
+			Model model) {
 		
+		List<Book> bookList = service.searchBook();
 		
-		return service.searchBook(bookTitle);
+		model.addAttribute("bookList", bookList);
+			
+		return "redirect:/";
 	}
 	
 }

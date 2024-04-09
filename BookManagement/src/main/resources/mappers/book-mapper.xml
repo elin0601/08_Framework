@@ -16,7 +16,7 @@
 	 <select id="searchBook">
 	 	SELECT BOOK_NO , BOOK_TITLE , BOOK_WRITER , BOOK_PRICE, TO_CHAR(REG_DATE, 'YYYY-MM-DD') REG_DATE 
 		FROM "BOOK"
-		WEHRE BOOK_TITLE LIKE '%'|| #{bookTitle} ||'%'
+		WHERE BOOK_TITLE LIKE '%' || #{bookTitle} || '%'
 	 </select>
 
 </mapper>

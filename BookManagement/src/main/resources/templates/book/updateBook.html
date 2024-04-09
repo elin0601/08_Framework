@@ -9,31 +9,50 @@
 
     <h1>책 검색, 수정, 삭제</h1>
 
-    <div id="title">
-        제목 : <input type="text" name="bookTitle" id="bookTitle">
-        <button id="searchBook">검색</button>
-    </div>
 
+        <form action="/book/updateBook" id="searchForm" method="POST">
+        
+            <div id="title">
+                제목 : <input type="text" name="bookTitle" id="bookTitle" placeholder="검색어를 입력해 주세요.">
+                <button id="searchBook">검색</button> 
+            </div>
+            
+        
+        
+        <br>
+        <br>
     
-    <br>
-    <br>
+        <table border="1" style="border-collapse: collapse;">
+    
+            <thead>
+                <th>책 번호</th>
+                <th>책 제목</th>
+                <th>글쓴이</th>
+                <th>가격</th>
+                <th>등록일</th>
+                <th>수정버튼</th>
+                <th>삭제버튼</th>
+            </thead>
+    
+            <tbody id="bookList">
+                <tr th:each="book : ${bookList}" th:object="${book}">
+                    <td th:text="*{bookNo}"></td>
+                    <td th:text="*{bookTitle}"></td>
+                    <td th:text="*{bookWriter}"></td>
+                    <td th:text="*{bookPrice}"></td>
+                    <td th:text="*{regDate}"></td>
+                    <td>
+                        <button id="updateBtn">수정</button>
+                    </td>
+                    <td>
+                        <button id="deleteBtn">삭제</button>
+                    </td>
+                </tr>
+    
+            </tbody>
+        </table>
+    </form>
 
-    <table border="1" style="border-collapse: collapse;">
-
-        <thead>
-            <th>책 번호</th>
-            <th>책 제목</th>
-            <th>글쓴이</th>
-            <th>가격</th>
-            <th>등록일</th>
-            <th>수정버튼</th>
-            <th>삭제버튼</th>
-        </thead>
-
-        <tbody id="bookList">
-
-        </tbody>
-    </table>
 
     <th:block th:replace="~{common/message}"></th:block>
 

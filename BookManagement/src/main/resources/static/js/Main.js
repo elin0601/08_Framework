@@ -50,7 +50,7 @@ insertBook.addEventListener("click", e => {
         return;
     }
 
-    if(parseInt(bookPrice.value) == null || parseInt(bookPrice.value) == 0) {
+    if(bookPrice.value.trim().length === 0 || bookPrice == null) { //????????????
         alert("책 가격을 입력해 주세요.");
         e.preventDefault();
         bookPrice.focus();
@@ -66,15 +66,15 @@ insertBook.addEventListener("click", e => {
  // -------------------- 책 검색, 수정, 삭제 --------------------
 
 // const bookTitle = document.querySelector("#bookTitle");
-const searchBook = document.querySelector("#searchBook");
+// const searchBook = document.querySelector("#searchBook");
 
-searchBook.addEventListener("click", e => {
+// searchBook.addEventListener("click", e => {
 
-    fetch("/book/searchBook", {
-        method : "POST",
-        headers :  {"Content-Type" : "application/json"},
-        body : bookTitle
-    })
-    .then(resp => resp.text())
-    .then ()
-});
+//     fetch("/book/searchBook", {
+//         method : "POST",
+//         headers :  {"Content-Type" : "application/json"},
+//         body : bookTitle
+//     })
+//     .then(resp => resp.text())
+//     .then ()
+// });

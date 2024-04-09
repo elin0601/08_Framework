@@ -10,7 +10,7 @@ public interface BookService {
 	 * @param bookInput
 	 * @return
 	 */
-	int insertBook(Book bookInput);
+	int insertBook(Book bookInput, int price);
 
 	/** 책 조회
 	 * @return
@@ -21,6 +21,6 @@ public interface BookService {
 	 * @param bookTitle
 	 * @return
 	 */
-	String searchBook(String bookTitle);
+	List<Book> searchBook();
 
 }
