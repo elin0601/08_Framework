@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -15,10 +16,12 @@ import com.ljs.book.main.book.model.dto.Book;
 import com.ljs.book.main.book.model.service.BookService;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @RequestMapping("book")
 @RequiredArgsConstructor
+@Slf4j
 public class BookController {
 
 	private final BookService service;
@@ -33,9 +36,7 @@ public class BookController {
 	public String insertBook(Book bookInput,
 			RedirectAttributes ra) {
 		
-		int price = bookInput.getBookPrice();
-		
-		int result = service.insertBook(bookInput, price);
+		int result = service.insertBook(bookInput);
 		 
 		String message;
 		String path;
@@ -71,20 +72,18 @@ public class BookController {
 		return "book/updateBook";
 	}
 	
-
 	
 	// 제목 검색
+	@ResponseBody
 	@PostMapping("updateBook")
-	public String searchBook(
-			@RequestParam("bookTitle") String bookTitle,
-			RedirectAttributes ra,
-			Model model) {
+	public List<Book> searchBook(
+			@RequestBody String bookTitle) {
 		
-		List<Book> bookList = service.searchBook();
+		List<Book> bookList = service.searchBook(bookTitle);
 		
-		model.addAttribute("bookList", bookList);
+		/* model.addAttribute("bookList", bookList); */
 			
-		return "redirect:/";
+		return bookList;
 	}
 	
 }

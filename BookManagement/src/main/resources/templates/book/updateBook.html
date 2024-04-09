@@ -8,17 +8,12 @@
 <body>
 
     <h1>책 검색, 수정, 삭제</h1>
-
-
-        <form action="/book/updateBook" id="searchForm" method="POST">
-        
+    
             <div id="title">
                 제목 : <input type="text" name="bookTitle" id="bookTitle" placeholder="검색어를 입력해 주세요.">
                 <button id="searchBook">검색</button> 
             </div>
-            
-        
-        
+
         <br>
         <br>
     
@@ -34,8 +29,8 @@
                 <th>삭제버튼</th>
             </thead>
     
-            <tbody id="bookList">
-                <tr th:each="book : ${bookList}" th:object="${book}">
+            <tbody id="bookSelect">
+              <!--   <tr th:each="book : ${bookList}" th:object="${book}">
                     <td th:text="*{bookNo}"></td>
                     <td th:text="*{bookTitle}"></td>
                     <td th:text="*{bookWriter}"></td>
@@ -47,12 +42,10 @@
                     <td>
                         <button id="deleteBtn">삭제</button>
                     </td>
-                </tr>
+                </tr> -->
     
             </tbody>
         </table>
-    </form>
-
 
     <th:block th:replace="~{common/message}"></th:block>
 

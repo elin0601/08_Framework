@@ -11,11 +11,11 @@ import com.ljs.book.main.book.model.dto.Book;
 public interface BookMapper {
 
 	/** 책 등록
-	 * @param map 
+	 * @param bookInput 
 	 * @param bookInput
 	 * @return
 	 */
-	int insertBook(Map<String, Object> map);
+	int insertBook(Book bookInput);
 
 	/** 책 조회
 	 * @return
@@ -26,6 +26,6 @@ public interface BookMapper {
 	 * @param bookTitle
 	 * @return
 	 */
-	List<Book> searchBook();
+	List<Book> searchBook(String bookTitle);
 
 }

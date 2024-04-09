@@ -21,14 +21,9 @@ public class BookServiceImpl implements BookService{
 	
 	// 책 등록
 	@Override
-	public int insertBook(Book bookInput, int price) {
+	public int insertBook(Book bookInput) {
 		
-		Map<String, Object> map = new HashMap<>();
-		
-		map.put("bookInput", bookInput);
-		map.put("price", price);
-		
-		return mapper.insertBook(map);
+		return mapper.insertBook(bookInput);
 	}
 
 	@Override
@@ -40,8 +35,8 @@ public class BookServiceImpl implements BookService{
 	
 	// 제목 검색
 	@Override
-	public List<Book> searchBook() {
+	public List<Book> searchBook(String bookTitle) {
 		
-		return mapper.searchBook();
+		return mapper.searchBook(bookTitle);
 	}
 }
