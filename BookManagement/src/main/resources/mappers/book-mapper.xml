@@ -19,4 +19,17 @@
 		WHERE BOOK_TITLE LIKE '%' || #{bookTitle} || '%'
 	 </select>
 
+	 <!-- 삭제 -->
+	 <delete id="delete">
+		DELETE FROM "BOOK"
+		WHERE BOOK_NO = #{bookNo}
+	 </delete>
+	 
+	 
+	 <!-- 가격 수정 -->
+	 <update id="update">
+	 	UPDATE "BOOK" SET BOOK_PRICE = #{bookPrice}
+	 	WHERE BOOK_NO = #{bookNo}
+	 </update>
+
 </mapper>

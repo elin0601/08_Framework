@@ -39,4 +39,19 @@ public class BookServiceImpl implements BookService{
 		
 		return mapper.searchBook(bookTitle);
 	}
+	
+	// 삭제
+	@Override
+	public int delete(int bookNo) {
+		
+		return mapper.delete(bookNo);
+	}
+	
+	
+	// 가격 수정
+	@Override
+	public int update(Book book) {
+		
+		return mapper.update(book);
+	}
 }

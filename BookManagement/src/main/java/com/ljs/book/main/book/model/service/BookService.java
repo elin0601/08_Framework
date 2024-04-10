@@ -24,4 +24,16 @@ public interface BookService {
 	 */
 	List<Book> searchBook(String bookTitle);
 
+	/** 삭제
+	 * @param bookNo
+	 * @return
+	 */
+	int delete(int bookNo);
+
+	/** 가격 수정
+	 * @param book
+	 * @return
+	 */
+	int update(Book book);
+
 }

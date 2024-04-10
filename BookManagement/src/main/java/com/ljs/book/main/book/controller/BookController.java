@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -72,7 +74,6 @@ public class BookController {
 		return "book/updateBook";
 	}
 	
-	
 	// 제목 검색
 	@ResponseBody
 	@PostMapping("updateBook")
@@ -87,8 +88,22 @@ public class BookController {
 	}
 	
 	
+	// 가격 수정
+	@ResponseBody
+	@PutMapping("update")
+	public int update(@RequestBody Book book) {
+		
+		return service.update(book);
+	}
 	
 	
+	// 삭제
+	@ResponseBody
+	@DeleteMapping("delete")
+	public int delete(@RequestBody int bookNo) {
+		
+		return service.delete(bookNo);
+	}
 }
 
 

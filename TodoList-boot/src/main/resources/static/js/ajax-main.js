@@ -339,7 +339,7 @@ changeCompleteBtn.addEventListener("click", ()=> {
     // 비동기로 완료 여부 변경
     fetch("/ajax/changeComplete", {
         method : "PUT",
-        headers : {"Content-type" : "application/json"},
+        headers : {"Content-Type" : "application/json"},
         body : JSON.stringify(obj) // obj를 JSON으로 변경
     })
 
