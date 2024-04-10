@@ -114,17 +114,14 @@ if(searchBook != null) {
                     deleteBtn.id = "deleteBtn"; // 버튼의 id 설정
                     
                     td.append(updateBtn);
-                    
                     td.append(deleteBtn);
 
-                    tr.append(td);
-
+                    tr.append(td); 
                 }
                 bookSelect.append(tr);
             }
         })
-    });
-    
+    });   
 }
 
 /*  const updateBtn = document.createElement("button");
