@@ -19,6 +19,7 @@ import com.ljs.book.main.book.model.service.BookService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @RequestMapping("book")
@@ -90,7 +91,7 @@ public class BookController {
 	
 	// 가격 수정
 	@ResponseBody
-	@PutMapping("update")
+	@PostMapping("update")
 	public int update(@RequestBody Book book) {
 		
 		return service.update(book);
@@ -99,7 +100,7 @@ public class BookController {
 	
 	// 삭제
 	@ResponseBody
-	@DeleteMapping("delete")
+	@PostMapping("delete")
 	public int delete(@RequestBody int bookNo) {
 		
 		return service.delete(bookNo);

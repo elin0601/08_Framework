@@ -75,6 +75,7 @@ if(insert != null) {
 //const bookTitle = document.querySelector("#bookTitle"); 요소 겹침
 
 const searchBook = document.querySelector("#searchBook");
+const bookNo = document.querySelector("#bookNo");
 const bookSelect = document.querySelector("#bookSelect"); // tbody
 
 if(searchBook != null) {
@@ -100,82 +101,75 @@ if(searchBook != null) {
                 const arr = ['bookNo', 'bookTitle', 'bookWriter', 'bookPrice', 'regDate'];
                 
                 for(let key of arr) {
-
                     const td = document.createElement("td");
-
                     td.innerText = book[key];
-
-                    const updateBtn = document.createElement("button");
-                    updateBtn.innerText = "수정";
-                    updateBtn.id = "updateBtn";
-
-                    const deleteBtn = document.createElement("button");
-                    deleteBtn.innerText = "삭제"
-                    deleteBtn.id = "deleteBtn"; // 버튼의 id 설정
-                    
-                    td.append(updateBtn);
-                    td.append(deleteBtn);
-
                     tr.append(td); 
                 }
+
+                const td1 = document.createElement("td");
+                const updateBtn = document.createElement("button");
+                updateBtn.innerText = "수정";
+                updateBtn.id = "updateBtn";
+
+                updateBtn.addEventListener("click", ()=>{
+
+                    let price = prompt("수정할 책 가격을 입력해 주세요.");
+
+                    const obj = {"bookNo" : book.bookNo, "bookPrice" : price};
+
+
+                    if(price !=null && price.trim() != ''){
+                        
+                        fetch("/book/update",{
+                            method : "POST",
+                            headers : {"Content-Type" : "application/json"},
+                            body : JSON.stringify(obj)
+                        })
+                    
+                        .then(resp => resp.text())
+                        .then(result => {
+
+                            if(result > 0) alert("수정되었습니다.");
+                            else alert("다시 입력해 주세요.");
+                        })
+                    }
+
+                });
+
+
+                const td2 = document.createElement("td");
+                const deleteBtn = document.createElement("button");
+                deleteBtn.innerText = "삭제"
+                deleteBtn.id = "deleteBtn"; // 버튼의 id 설정
+
+                // 삭제
+                deleteBtn.addEventListener("click", ()=>{
+
+                    if(!confirm("정말 삭제 하시겠습니까?")) return;
+
+                    fetch("/book/delete", {
+                        method : "POST",
+                        headers : {"Content-Type" : "application/json"},
+                        body : book.bookNo // PK
+                    })
+                    .then(resp => resp.text())
+                    .then(result => {
+                        if(result > 0) alert("삭제 되었습니다.");
+                        else {"삭제 실패"};
+                    })
+
+                });
+
+                td1.append(updateBtn);
+                td2.append(deleteBtn);
+
+                tr.append(td1, td2);
+
                 bookSelect.append(tr);
             }
         })
     });   
 }
-
-
-// 가격 수정
-const bookNo = document.querySelector("#bookNo");
-
-const updateBtn = document.querySelector("#updateBtn");
-const deleteBtn = document.querySelector("#deleteBtn");
-
-
-updateBtn.addEventListener("click", ()=>{
-
-    const obj = {"bookNo" : bookNo, "bookPrice" : bookPrice};
-
-    let price = prompt("수정할 책 가격을 입력해 주세요.");
-
-    if(price !=null && price.trim() != ''){
-        
-        fetch("/book/update",{
-            method : "PUT",
-            headers : {"Content-Type" : "application/json"},
-            body : JSON.stringify(obj)
-        })
-    
-        .then(resp => resp.text())
-        .then(result => {
-
-            if(result > 0) alert("수정되었습니다.");
-            else alert("다시 입력해 주세요.");
-        })
-    }
-
-
-});
-
-
-// 삭제
-deleteBtn.addEventListener("click", ()=>{
-
-    if(!confirm("정말 삭제 하시겠습니까?")) return;
-
-    fetch("/book/delete", {
-        method : "DELETE",
-        headers : {"Content-Type" : "application/json"},
-        body : bookNo // PK
-    })
-    .then(resp => resp.text())
-    .then(result => {
-        if(result > 0) alert("삭제 되었습니다.");
-        else {"삭제 실패"};
-    })
-
-});
-
 
 
 
