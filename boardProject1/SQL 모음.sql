@@ -591,6 +591,7 @@ BEGIN
 	END LOOP;
 END;
 
+COMMIT;
 
 -- 게시판 종류별 샘플 데이터 삽입 확인
 SELECT BOARD_CODE , COUNT(*) 
@@ -689,6 +690,7 @@ SELECT BOARD_NO , BOARD_TITLE , MEMBER_NICKNAME , READ_COUNT ,
 FROM "BOARD" B
 JOIN "MEMBER" USING (MEMBER_NO)
 WHERE BOARD_DEL_FL = 'N'
+AND BOARD_CODE =1
 ORDER BY BOARD_NO DESC;
 
 --------------------------------------------------------------------------
@@ -703,7 +705,11 @@ SELECT (SYSDATE - TO_DATE('2024-04-10 12:14:30', 'YYYY-MM-DD HH24:MI:SS')) * 60 
 FROM DUAL;
 
 
-
+-- 지정된 게시판(boardCode)에서 삭제되지 않은 게시글 수를 조회
+SELECT COUNT(*)
+FROM "BOARD"
+WHERE BOARD_DEL_FL = 'N'
+AND BOARD_CODE = 3;
 
 
 
