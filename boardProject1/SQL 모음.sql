@@ -544,12 +544,24 @@ COMMIT;
 SELECT * FROM CUSTOMER;
 
 
+---------------------------------------------------------------
 
+/* 게시판 종류(BOARD_TYPE) 추가 */
 
+CREATE SEQUENCE SEQ_BOARD_CODE NOCACHE;
 
+INSERT INTO "BOARD_TYPE" VALUES (SEQ_BOARD_CODE.NEXTVAL, '공지 게시판');
+INSERT INTO "BOARD_TYPE" VALUES (SEQ_BOARD_CODE.NEXTVAL, '정보 게시판');
+INSERT INTO "BOARD_TYPE" VALUES (SEQ_BOARD_CODE.NEXTVAL, '자유 게시판');
 
+COMMIT;
 
+SELECT * FROM "BOARD_TYPE";
 
+----- 게시판 종류 조회(표기법 변경) ------
+SELECT BOARD_CODE "boardCode", BOARD_NAME "boardName" 
+FROM "BOARD_TYPE"
+ORDER BY BOARD_CODE;
 
 
 
