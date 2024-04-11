@@ -331,6 +331,7 @@ COMMENT ON COLUMN "COMMENT"."MEMBER_NO" IS '회원 번호(PK)';
 
 COMMENT ON COLUMN "COMMENT"."PARENT_COMMENT_NO" IS '부모 댓글 번호';
 
+
 ---------------------------------
 
 ------------------------ PK ------------------------
@@ -431,7 +432,6 @@ REFERENCES "COMMENT" (
 	"COMMENT_NO"
 );
 
-
 ------------------------ CHECK ------------------------
 
 -- 게시글 삭제 여부
@@ -439,7 +439,7 @@ ALTER TABLE "BOARD" ADD
 CONSTRAINT "BOARD_DEL_CHECK"
 CHECK("BOARD_DEL_FL" IN ('Y', 'N'));
 
--- 댓글 삭제 여ㅁ부
+-- 댓글 삭제 여부
 ALTER TABLE "COMMENT"  ADD
 CONSTRAINT "COMMENT_DEL_CHECK"
 CHECK("COMMENT_DEL_FL" IN ('Y', 'N'));
@@ -566,7 +566,7 @@ ORDER BY BOARD_CODE;
 
 
 ---------------------------------------------------------
-/* 게시글 번호 시뭔스 생성 */
+/* 게시글 번호 시퀀스 생성 */
 CREATE SEQUENCE SEQ_BOARD_NO NOCACHE;
 
 
@@ -585,12 +585,19 @@ BEGIN
 						SEQ_BOARD_NO.CURRVAL || '번째 게시글 내용 입니다',
 						DEFAULT, DEFAULT, DEFAULT, DEFAULT,
 						CEIL( DBMS_RANDOM.VALUE(0, 3) ), 
-						6
+						2
 		);
 	END LOOP;
 END;
 
+DELETE FROM "BOARD"
+WHERE BOARD_NO BETWEEN 2001 AND 4000;
+
+DELETE FROM "BOARD"
+WHERE BOARD_NO = 4002;
+
 COMMIT;
+ROLLBACK;
 
 -- 게시판 종류별 샘플 데이터 삽입 확인
 SELECT BOARD_CODE , COUNT(*) 
@@ -608,6 +615,8 @@ MODIFY PARENT_COMMENT_NO NUMBER NULL;
 /* 댓글 번호 시퀀스 생성 */
 CREATE SEQUENCE SEQ_COMMENT_NO NOCACHE;
 
+DROP SEQUENCE SEQ_COMMENT_NO;
+
 /* 댓글 ("COMMENT") 테이블에 샘플 데이터 추가 */
 BEGIN
 	FOR I IN 1..2000 LOOP
@@ -617,14 +626,17 @@ BEGIN
 						SEQ_COMMENT_NO.CURRVAL || '번째 댓글 입니다',
 						DEFAULT, DEFAULT,
 						CEIL ( DBMS_RANDOM.VALUE(0, 2000) ),
-						9,
+						5,
 						NULL -- 부모 댓글 번호
 		);
 	END LOOP;
 END;
 
+SELECT * FROM "COMMENT";
 
 COMMIT;
+
+DROP TABLE "COMMENT";
 
 -- 게시글 번호 최소값, 최대값
 SELECT MIN(BOARD_NO), MAX(BOARD_NO)  
@@ -638,6 +650,8 @@ ORDER BY BOARD_NO;
 
 SELECT MIN(BOARD_NO), MAX(BOARD_NO)  
 FROM "COMMENT";
+
+DELETE FROM "COMMENT";
 
 
 ---------------------------------------------------------
