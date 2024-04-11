@@ -484,7 +484,6 @@ SELECT * FROM "BOOK";
 
 COMMIT;
 
-
 SELECT BOOK_NO "책 번호", BOOK_TITLE "책 제목", BOOK_WRITER "글쓴이" , BOOK_PRICE "가격", TO_CHAR(REG_DATE, 'YYYY-MM-DD')"등록일" 
 FROM "BOOK";
 
@@ -690,7 +689,7 @@ SELECT BOARD_NO , BOARD_TITLE , MEMBER_NICKNAME , READ_COUNT ,
 FROM "BOARD" B
 JOIN "MEMBER" USING (MEMBER_NO)
 WHERE BOARD_DEL_FL = 'N'
-AND BOARD_CODE =1
+AND BOARD_CODE = 1
 ORDER BY BOARD_NO DESC;
 
 --------------------------------------------------------------------------
