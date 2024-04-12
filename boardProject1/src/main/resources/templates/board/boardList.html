@@ -75,7 +75,7 @@
                                 <td> 
                                    <!-- 썸네일 추가 예정 -->
 
-                                   <!-- 상세 조회 주소에 cp가 포함된 아유 : 상세 -> 목록 돌아올 때 사용 -->
+                                   <!-- 상세 조회 주소에 cp가 포함된 이유 : 상세 -> 목록 돌아올 때 사용 -->
     
                                    <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}" 
                                       th:text="*{boardTitle}">게시글 제목</a>

@@ -763,6 +763,19 @@ ROLLBACK;
 
 DELETE FROM "BOARD_IMG";
 
+UPDATE "BOARD_IMG" SET IMG_RENAME = 'test2.png'
+WHERE IMG_RENAME = 'test2.jpg';
+
+UPDATE "BOARD_IMG" SET IMG_RENAME = 'test3.gif'
+WHERE IMG_RENAME = 'test3.jpg';
+
+UPDATE "BOARD_IMG" SET IMG_ORIGINAL_NAME  = '원본2.png'
+WHERE IMG_ORIGINAL_NAME = '원본2.jpg';
+
+UPDATE "BOARD_IMG" SET IMG_ORIGINAL_NAME  = '원본3.gif'
+WHERE IMG_ORIGINAL_NAME = '원본2.gif';
+
+
 
 -----------------------------------------------------------------------------
 
@@ -801,7 +814,10 @@ ORDER BY IMG_ORDER;
 
 /* 상세조회 되는 게시글의 모든 댓글 조회 */
 
--- 계층형 쿼리
+/* 계층형 쿼리
+ * 
+ * 
+ * */
 
 SELECT LEVEL, C.* FROM
 		(SELECT COMMENT_NO, COMMENT_CONTENT,

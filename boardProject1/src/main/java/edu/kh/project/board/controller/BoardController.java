@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.board.model.dto.Board;
+import edu.kh.project.board.model.dto.BoardImg;
 import edu.kh.project.board.model.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -67,7 +68,7 @@ public class BoardController {
 	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}")
 	public String boardDetail(
 			@PathVariable("boardCode") int boardCode, 
-			@PathVariable("boardCNo") int boardNo,
+			@PathVariable("boardNo") int boardNo,
 			Model model,
 			RedirectAttributes ra) {
 		
@@ -82,10 +83,47 @@ public class BoardController {
 		// 2) 서비스 호출
 		Board board = service.selectOne(map);
 		
+		String path = null;
 		
-		return "board/boardDetail";
+		// 조회 결과가 없는 경우
+		if(board == null) {
+			path = "redirect:/board/" + boardCode; // 목록 재요청
+			ra.addFlashAttribute("message", "게시글이 존재하지 않습니다.");
+		} 
+		
+		// 조회 결과가 있을 경우
+		else {
+			path = "board/boardDetail";
+			
+			// board - 게시글 상세 조회 + imageList + commentList
+			model.addAttribute("board", board);
+			
+			
+			// 조회된 이미지 목록(imageList)가 있을 경우
+			if(!board.getImageList().isEmpty()) {
+				
+				BoardImg thumbnail = null;
+				
+				// imageList의 0번 인덱스 == 가장 빠른 순서(imageOrder)
+				
+				// 이미지 목록의 첫번째 행이 순서가 0 == 썸네일인 경우
+				if(board.getImageList().get(0).getImgOrder() == 0) {
+					
+					thumbnail = board.getImageList().get(0);
+				}
+				
+				// 썸네일이 있을 때 / 없을 때 
+				// 출력되는 이미지 시작 인덱스 지정하는 코드
+				// (썸네일 제외하고 인덱스 계산)
+				model.addAttribute("thumbnail", thumbnail);
+				model.addAttribute("start", thumbnail != null ? 1 : 0);
+				
+			}
+			
+		}
+		
+		return path;
 	}
-	
 }
 
 
