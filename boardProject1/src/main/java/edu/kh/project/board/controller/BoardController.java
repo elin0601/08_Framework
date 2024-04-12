@@ -1,5 +1,6 @@
 package edu.kh.project.board.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -8,7 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import edu.kh.project.board.model.dto.Board;
 import edu.kh.project.board.model.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -53,6 +56,34 @@ public class BoardController {
 		model.addAttribute("boardList", map.get("boardList") );
 		
 		return "board/boardList"; // boardList.html로 forward
+	}
+	
+	
+	
+	// 상세 조회 요청 주소
+	// /board/1/1998?cp=1
+	// /board/2/2000?cp=2
+	
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}")
+	public String boardDetail(
+			@PathVariable("boardCode") int boardCode, 
+			@PathVariable("boardCNo") int boardNo,
+			Model model,
+			RedirectAttributes ra) {
+		
+		 // 게시글 상세 조회 서비스 호출
+		
+		// 1) Map으로 전달할 파라미터 묶기
+		Map<String, Integer> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+		
+		
+		// 2) 서비스 호출
+		Board board = service.selectOne(map);
+		
+		
+		return "board/boardDetail";
 	}
 	
 }

@@ -33,12 +33,19 @@ public class FileConfig implements WebMvcConfigurer{
 	@Value("${spring.servlet.multipart.location}")
 	private String location; // 임계값 초과 시 임시 저장 폴더 경로
 	
+	
 	@Value("${my.profile.resource-handler}")
 	private String profileResourceHandler; // 프로필 이미지 요청 주소
 	
 	@Value("${my.profile.resouce-location}")
 	private String profileResourceLocation; // 프로필 이미지 요청 시 연결할 서버
 	
+	
+	@Value("${my.board.resource-handler}")
+	private String boardResourceHandler; // 게시글 이미지 요청 주소
+	
+	@Value("${my.board.resource-location}")
+	private String boardResourceLocation; // 게시글 이미지 요청 시 연결할 서버 폴더 경로
 	
 	
 	// 요청 주소에 따라 
@@ -53,6 +60,11 @@ public class FileConfig implements WebMvcConfigurer{
 		// 프로필 이미지 요청 - 서버 폴더 연결 추가
 		registry.addResourceHandler(profileResourceHandler) // /myPage/profile
 		.addResourceLocations(profileResourceLocation); 
+		
+		
+		// 게시글 이미지 요청 - 서버 폴더 연결 추가
+		registry.addResourceHandler(boardResourceHandler)
+		.addResourceLocations(boardResourceLocation);
 	}
 	
 	
@@ -81,6 +93,8 @@ public class FileConfig implements WebMvcConfigurer{
 		return multipartResolver;
 		
 	}
+	
+	
 	
 	
 }

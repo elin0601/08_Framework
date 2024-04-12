@@ -74,8 +74,11 @@
                                 <td th:text="*{boardNo}">게시글 번호</td>
                                 <td> 
                                    <!-- 썸네일 추가 예정 -->
+
+                                   <!-- 상세 조회 주소에 cp가 포함된 아유 : 상세 -> 목록 돌아올 때 사용 -->
     
-                                   <a href="#" th:text="*{boardTitle}">게시글 제목</a>
+                                   <a th:href="@{/board/{boardCode}/{boardNo}(boardCode=${boardCode}, boardNo=*{boardNo}, cp=${pagination.currentPage})}" 
+                                      th:text="*{boardTitle}">게시글 제목</a>
                                    <th:block th:text="|[*{commentCount}]|">댓글 수</th:block>
                                 </td>
     
@@ -127,7 +130,7 @@
 
                         <!-- 현재 보고있는 페이지 -->
                         <!-- <li th:if="${i == pagination.currentPage}">  -->
-                        <li th:if="${i} == *{currentPage}"> >
+                        <li th:if="${i} == *{currentPage}">
                             <a class="current" th:text="${i}">현재 페이지</a>
                         </li>
     
