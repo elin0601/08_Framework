@@ -41,7 +41,7 @@ public class BoardController {
 			@PathVariable("boardCode") int boardCode,
 			@RequestParam(value="cp", required=false, defaultValue="1") int cp,
 			Model model){ 
-		// @PathVariable : 주소에 적힌 변수명과 일치하는 값을 가져와 변수에 담아서 사용
+		// @PathVariable : 주소에 특정한 부분에 적힌 값과 일치하는 값을 가져와 변수에 담아서 사용
 		
 		log.debug("boardCode : " + boardCode);
 		
