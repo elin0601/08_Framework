@@ -44,9 +44,11 @@ public class Board {
 	
 	// 특정 게시글 이미지 목록
 	private List<BoardImg> imageList;
+	// BoardImg DTO를 List 형식으로 담아 필드에 저장..??
 	
 	// 특정 게시글에 작성된 댓글 목록
 	private List<Comment> commentList;
+	// Comment DTO를 List 형식으로 담아 필드에 저장..??
 }
 
 

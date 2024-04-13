@@ -1,4 +1,4 @@
-package edu.kh.project.common.interceptor;
+ package edu.kh.project.common.interceptor;
 
 import java.util.List;
 import java.util.Map;
@@ -23,10 +23,21 @@ import lombok.extern.slf4j.Slf4j;
  * 
  * - preHandle (전처리) : Dispatcher Servlet -> Controller 사이 수행
  * 
- * - postHandle (후처리) : Controller -> dispatcher Servlet 사이 수행
+ * - postHandle (후처리) : Controller -> Dispatcher Servlet 사이 수행
  * 
  * - afterCompletion (뷰 완성(forward 코드 해석) 후) :  View Resolver -> Dispatcher Servlet 사이
  * 
+ * */
+
+/* ServletContext
+ * 
+ * 1) 서블릿 환경에 관한 정보를 검색
+ * 
+ * 2) 동일한 웹 애플리케이션 내의 다른 서블릿과 상호 작용
+ * 
+ * 3) 웹 애플리케이션에서 접근 가능한 파일이나 데이터베이스 연결과 같은 리소스를 얻음
+ * 
+ * -> 블릿과 웹 컨테이너 간의 통신 채널 역할을 하며, 컨테이너의 기능과 리소스에 액세스하는 메서드를 제공
  * */
 
 @Slf4j
@@ -60,6 +71,10 @@ public class BoardTypeInterceptor implements HandlerInterceptor{
 			
 			// boardTypeList 조회 서비스 호출
 			List<Map<String, Object>> boardTypeList = service.selectBoardTypeList();
+			
+			// boardCode, boardName이 [ {"boardCoed" : boardName} ... ]
+			// 모양으로 Map을 이용해서 묶음
+			// Map을 이용해서 묶은 걸 List로 다시 타입 제한해서 List 타입으로 얻어옴
 			
 			// 조회 결과를 application scope에 추가
 			application.setAttribute("boardTypeList", boardTypeList);
