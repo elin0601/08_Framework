@@ -90,7 +90,7 @@ public class BoardServiceImpl implements BoardService{
 		//	    나중에 수행되는 SQL 조건으로 삼을 때
 		
 		// --> MyBatis의 <resultMap>, <collection> 태그를 이용해
-		//	  Mapper 메서드 1회 호출로 여러 SELECT 한 번에 수행 가능
+		//	   Mapper 메서드 1회 호출로 여러 SELECT 한 번에 수행 가능
 		
 		return mapper.selectOne(map);
 	}

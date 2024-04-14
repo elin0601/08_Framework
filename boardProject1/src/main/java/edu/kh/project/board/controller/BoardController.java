@@ -32,7 +32,7 @@ public class BoardController {
 	 * 
 	 * 
 	 * - /board/000
-	 *  /board 이하 레벨 자리에 숫자로된 요청주소가 
+	 *  /board 이하 레벨 자리에 숫자로된 요청 주소가 
 	 *  작성되어 있을 때만 동작 -> 정규 표현식 이용
 	 *  
 	 *  [0-9] : 한 칸에 0~9사이 숫자 입력 가능
@@ -72,7 +72,7 @@ public class BoardController {
 			Model model,
 			RedirectAttributes ra) {
 		
-		 // 게시글 상세 조회 서비스 호출
+		// 게시글 상세 조회 서비스 호출
 		
 		// 1) Map으로 전달할 파라미터 묶기
 		Map<String, Integer> map = new HashMap<>();
