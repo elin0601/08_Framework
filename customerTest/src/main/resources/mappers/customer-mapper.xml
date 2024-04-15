@@ -7,4 +7,20 @@
 		VALUES (SEQ_CUSTOMER_NO.NEXTVAL, #{customerName}, #{customerTel}, #{customerAddress})
 	</insert>
 
+	<update id="update">
+		UPDATE "CUSTOMER" 
+		SET CUSTOMER_NO = #{customerNo},
+			CUSTOMER_NAME = #{customerName},
+			CUSTOMER_TEL = #{customerTel},
+			CUSTOMER_ADDRESS = #{customerAddress}
+		
+		WHERE CUSTOMER_NO = #{customerNo}
+	</update>
+	
+	<select id="select">
+		SELECT * 
+		FROM CUSTOMER
+		WHERE CUSTOMER_NO = #{memberNo}
+	</select>
+
 </mapper>

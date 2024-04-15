@@ -1,5 +1,7 @@
 package com.kh.test.customer.controller;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -46,4 +48,40 @@ public class CustomerController {
 		
 		return "result";
 	}
-}
+	
+	
+	// -------------------------------------------------
+	
+	
+	@GetMapping("update")
+	public String update() {
+		return "/";
+	}
+	
+	
+	@PostMapping("update")
+	public String  update(
+			Customer ct,
+			Model model,
+			RedirectAttributes ra) {
+		
+		int customerNo = ct.getCustomerNo();
+		
+		int result = service.update(ct);
+		
+		String message=null;
+		
+		if(result > 0) message = "수정 성공!";
+		else message = "회원 번호가 일치하는 회원이 없습니다.";
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "result2";
+		
+	}
+	
+
+	}
+	
+	
+

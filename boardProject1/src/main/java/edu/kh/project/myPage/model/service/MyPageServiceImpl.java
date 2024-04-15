@@ -273,7 +273,7 @@ public class MyPageServiceImpl implements MyPageService {
 			// updatePath 조합
 			
 			// 파일명 변경
-			 rename = Utility.fileRename(profileImg.getOriginalFilename());
+			rename = Utility.fileRename(profileImg.getOriginalFilename());
 			
 			// /myPage/profile/변경된 파일명.jpg
 			updatePath = profileWebPath + rename;

@@ -20,4 +20,15 @@ public class CustomerServiceImpl implements CustomerService{
 		return mapper.insert(ct);
 	}
 
+	@Override
+	public Customer select(Customer ct) {
+		return mapper.select(ct);
+	}
+	
+	@Override
+	public int update(Customer ct) {
+		return mapper.update(ct);
+	}
+	
 }
+
