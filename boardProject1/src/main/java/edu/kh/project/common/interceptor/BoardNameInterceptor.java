@@ -27,7 +27,7 @@ public class BoardNameInterceptor implements HandlerInterceptor{
 		// log.debug(boardTypeList.toString());
 
 		
-		// Uniform Resurce Identifier : 통합 자원 식별자
+		// Uniform Resource Identifier : 통합 자원 식별자
 		// - 자원 이름(주소)만 봐도 무엇인지 구별할 수 있는 문자열
 		
 		// uri : /board/1
@@ -36,25 +36,31 @@ public class BoardNameInterceptor implements HandlerInterceptor{
 		String uri = request.getRequestURI();
 		// log.debug("uri : " + uri);
 		
-										// ["", "board", "1"] -- 2번 인덱스를 가져와 숫자로 형변환
-		int boardCode = Integer.parseInt(uri.split("/")[2]);
-		
-		
-		// boardTypeList 에서 boardCode를 하나씩 꺼내서 비교
-		for( Map<String, Object> boardType : boardTypeList ) {
-			
-			// object -> String -> int 순서로 자료형 변환
-			
-			// String.valueOf(값) : String으로 변환
-			int temp = Integer.parseInt( String.valueOf(boardType.get("boardCode")) );
+	
+		try {
+											// ["", "board", "1"] -- 2번 인덱스를 가져와 숫자로 형변환
+			int boardCode = Integer.parseInt(uri.split("/")[2]);
 			
 			
-			// 비교 결과가 같다면
-			// request scope 에 boardName을 추가
-			if( temp == boardCode) {
-				request.setAttribute("boardName", boardType.get("boardName"));
-				break;
+			// boardTypeList 에서 boardCode를 하나씩 꺼내서 비교
+			for( Map<String, Object> boardType : boardTypeList ) {
+				
+				// object -> String -> int 순서로 자료형 변환
+				
+				// String.valueOf(값) : String으로 변환
+				int temp = Integer.parseInt( String.valueOf(boardType.get("boardCode")) );
+				
+				
+				// 비교 결과가 같다면
+				// request scope 에 boardName을 추가
+				if( temp == boardCode) {
+					request.setAttribute("boardName", boardType.get("boardName"));
+					break;
+				}
 			}
+			
+		} catch(Exception e) {
+			
 		}
 		
 		

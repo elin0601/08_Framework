@@ -25,9 +25,9 @@
             <th:block th:each="boardType : ${application.boardTypeList}">
 
             <!-- application scpoe에 있는 boarTypeList를 boardType으로 꺼내와 request scope에 있는 boardCode와 같으면 boardName으로 출력  -->
-            <h1 class="board-name" th:if="${boardType.boardCode} == ${boardCode}" th:text="${boardType.boardName}">
+           <!--  <h1 class="board-name" th:if="${boardType.boardCode} == ${boardCode}" th:text="${boardType.boardName}">
                 게시판 이름
-            </h1>
+            </h1> -->
 
             </th:block>
 

@@ -821,7 +821,12 @@ SELECT BOARD_NO, BOARD_TITLE , BOARD_CONTENT , BOARD_CODE , READ_COUNT,
 			(SELECT IMG_PATH || IMG_RENAME 
 			 FROM "BOARD_IMG"
 			 WHERE BOARD_NO = 1998
-			 AND IMG_ORDER = 0) THUMBNAIL
+			 AND IMG_ORDER = 0) THUMBNAIL,
+			 
+			(SELECT COUNT(*) 
+			 FROM "BOARD_LIKE"
+			 WHERE MEMBER_NO = 6
+			 AND BOARD_NO = 1998) LIKE_CHECK
 			
 FROM "BOARD" 
 JOIN "MEMBER" USING(MEMBER_NO)
@@ -842,10 +847,7 @@ ORDER BY IMG_ORDER;
 
 /* 상세조회 되는 게시글의 모든 댓글 조회 */
 
-/* 계층형 쿼리
- * 
- * 
- * */
+/* 계층형 쿼리 */
 
 SELECT LEVEL, C.* FROM
 		(SELECT COMMENT_NO, COMMENT_CONTENT,
@@ -863,12 +865,35 @@ SELECT LEVEL, C.* FROM
 	 ORDER SIBLINGS BY COMMENT_NO;
 
 
-
+-------- 노트북 --------
 SELECT * FROM "MEMBER";
 UPDATE "MEMBER" SET MEMBER_ADDRESS = NULL 
 WHERE MEMBER_ADDRESS = '서울시^^^^^^';
+----------------------
 
 COMMIT;
+
+------------------------------------------------------------------------------
+
+/* 좋아요 테이블 (BOARD_LIKE) 샘플 데이터 추가 */
+INSERT INTO "BOARD_LIKE" VALUES(6, 1998); -- 6번 회원 1998번 글에 좋아요를 클릭함
+
+COMMIT;
+
+--- 좋아요 여부 확인 ( 1:O / 2:X )
+SELECT COUNT(*) 
+FROM "BOARD_LIKE"
+WHERE MEMBER_NO = 6
+AND BOARD_NO = 1998;
+
+SELECT *
+FROM "BOARD_LIKE";
+
+
+
+
+
+
 
 
 

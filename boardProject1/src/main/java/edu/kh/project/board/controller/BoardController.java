@@ -7,13 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.board.model.dto.Board;
 import edu.kh.project.board.model.dto.BoardImg;
 import edu.kh.project.board.model.service.BoardService;
+import edu.kh.project.member.model.dto.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -70,7 +76,15 @@ public class BoardController {
 			@PathVariable("boardCode") int boardCode, 
 			@PathVariable("boardNo") int boardNo,
 			Model model,
-			RedirectAttributes ra) {
+			RedirectAttributes ra,
+			@SessionAttribute(value="loginMember", required=false) Member loginMember) {
+		
+		// @SessionAttribute(value="loginMember", required=false)
+		// - @SessionAttribute : Session에서 속성 값 얻어오기
+		// - value="loginMember" :  속성의 Key 값 loginMember
+		// - required = false : 필수 X (없어도 오류X)
+		//	-> 해당 속성 값이 없으면 null 반환
+		
 		
 		// 게시글 상세 조회 서비스 호출
 		
@@ -78,6 +92,13 @@ public class BoardController {
 		Map<String, Integer> map = new HashMap<>();
 		map.put("boardCode", boardCode);
 		map.put("boardNo", boardNo);
+		
+		
+		// 로그인 상태인 경우에만 memberNo 추가
+		if(loginMember != null) {
+			map.put("memberNo", loginMember.getMemberNo());
+		}
+
 		
 		
 		// 2) 서비스 호출
@@ -123,6 +144,18 @@ public class BoardController {
 		}
 		
 		return path;
+	}
+	
+	
+	/** 게시글 좋아요 체크 / 해제
+	 * @return result
+	 */
+	@ResponseBody
+	@PostMapping("like")
+	public int boardLike(
+			@RequestBody Map<String, Integer> map) {
+		
+		return service.boardLike(map);
 	}
 }
 
