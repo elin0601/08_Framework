@@ -53,6 +53,18 @@ public interface BoardMapper {
 	 */
 	int selectLikeCount(int temp);
 
+	/** 조회 수 1 증가
+	 * @param boardNo
+	 * @return
+	 */
+	int updateReadCount(int boardNo);
+
+	/** 현재 조회 수 조회
+	 * @param boardNo
+	 * @return
+	 */
+	int selectReadCounr(int boardNo);
+
 }
 
 
