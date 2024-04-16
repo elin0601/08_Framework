@@ -74,6 +74,13 @@
 	</insert>
 	
 	
+	<update id="boardDelete" parameterType="_int">
+		UPDATE "BOARD" SET BOARD_DEL_FL = 'Y'
+		WHERE BOARD_CODE = #{boardCode}
+		AND BOARD_NO = #{boardNo}
+	</update>
+	
+	
 </mapper>
 
 

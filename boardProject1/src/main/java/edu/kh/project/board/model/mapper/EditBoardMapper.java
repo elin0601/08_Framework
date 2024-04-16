@@ -22,4 +22,10 @@ public interface EditBoardMapper {
 	 */
 	int insertUploadList(List<BoardImg> uploadList);
 
+	/** 게시글 삭제
+	 * @param board
+	 * @return
+	 */
+	int boardDelete(Board board);
+
 }

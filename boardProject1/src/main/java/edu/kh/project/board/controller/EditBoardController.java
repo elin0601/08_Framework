@@ -1,7 +1,9 @@
 package edu.kh.project.board.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -114,6 +116,34 @@ public class EditBoardController {
 		
 		// 게시글 작성(INSERT) 성공 시 -> 작성된 글 상세 조회로 redirect
 		return "redirect:" +  path;
+	}
+	
+	
+	
+	/** 게시글 삭제
+	 * @param boardCode
+	 * @param boardNo
+	 * @return
+	 */
+	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
+	public String boardDelete(
+			@PathVariable("boardCode") int boardCode,
+			@PathVariable("boardNo") int boardNo,
+			Board board
+			) {
+		
+		board.setBoardCode(boardCode);
+		board.setBoardNo(boardNo);
+		
+		int result = service.boardDelete(board);
+		
+		String path = null;
+		
+		if(result > 0) path = "/board/" + boardCode ;
+		else path = "delete";
+
+		
+		return "redirect:" + path;
 	}
 }
 

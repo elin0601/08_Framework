@@ -136,6 +136,13 @@ public class EditBoardServiceImpl implements EditBoardService {
 		return boardNo;
 	}
 	
+	
+	// 게시글 삭제
+	@Override
+	public int boardDelete(Board board) {
+		return mapper.boardDelete(board);
+	}
+	
 }
 
 

@@ -65,4 +65,23 @@ boardLike.addEventListener("click", e=>{
 
     });
 
-});
+})
+
+
+// --------------------- 삭제하기 ---------------------
+const deleteBtn = document.querySelector("#deleteBtn");
+
+if(deleteBtn != null) {
+    deleteBtn.addEventListener("click", e => {
+
+        if( !confirm("삭제 하시겠습니까?") ){
+            alert("취소 됨");
+            e.preventDefault();
+            return;
+        }
+
+        location.href=`/editBoard/${boardCode}/${boardNo}/delete`;
+
+        
+    });
+}
