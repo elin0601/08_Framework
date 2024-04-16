@@ -28,10 +28,10 @@ public class EditBoardServiceImpl implements EditBoardService {
 	
 	
 	// config.propeties 값을 얻어와 필드에 저장
-	@Value("{my.board.web-path}")
+	@Value("${my.board.web-path}")
 	private String webPath;
 	
-	@Value("{my.board.folder-path}")
+	@Value("${my.board.folder-path}")
 	private String folderPath;
 	
 	
