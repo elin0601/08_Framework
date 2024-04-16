@@ -132,9 +132,6 @@ public class EditBoardController {
 			Board board
 			) {
 		
-		board.setBoardCode(boardCode);
-		board.setBoardNo(boardNo);
-		
 		int result = service.boardDelete(board);
 		
 		String path = null;
