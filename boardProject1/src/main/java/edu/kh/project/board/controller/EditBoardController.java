@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -112,7 +113,7 @@ public class EditBoardController {
 		ra.addFlashAttribute("message", message);
 		
 		// 게시글 작성(INSERT) 성공 시 -> 작성된 글 상세 조회로 redirect
-		return "redierct:" +  path;
+		return "redirect:" +  path;
 	}
 }
 
