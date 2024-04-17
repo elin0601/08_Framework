@@ -111,8 +111,14 @@ for(let i=0; i<inputImageList.length; i++){
         // img , input, backup의 인덱스가 모두 일치한다는 특징을 이용
 
         // 삭제된 이미지 순서를 deleteOrder에 기록
+
+        // 미리보기 이미지가 있을 때만
         if(previewList[i].getAttribute("src") != null && previewList[i].getAttribute("src") != "") {
-            deleteOrder.add(i);
+
+            // 기존에 이미지가 존재하고 있을 경우에만
+            if(orderList.includes(i)){
+                deleteOrder.add(i);
+            }
         } 
 
         previewList[i].src = ""; // 미리보기 이미지 제거
