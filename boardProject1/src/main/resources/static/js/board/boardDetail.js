@@ -81,10 +81,16 @@ if(deleteBtn != null) {
         }
 
         location.href=`/editBoard/${boardCode}/${boardNo}/delete`;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 47bc018 (240417)
     });
 }
 
 
+<<<<<<< HEAD
 /* 삭제(POST) */
 const deleteBtn2 = document.querySelector("#deleteBtn2");
 
@@ -121,6 +127,8 @@ if(deleteBtn2 != null){
   });
 }
 
+=======
+>>>>>>> 47bc018 (240417)
 /* -------- 게시글 수정 버튼 --------- */
 const updateBtn = document.querySelector("#updateBtn");
 
@@ -130,6 +138,10 @@ if(updateBtn != null) {
         // 현재 : /board/1/2010?cp=1
         // 목표 : /editBoard/1/2010/update?cp=1
         location.href = location.pathname.replace('board', 'editBoard') + "/update" + location.search;
+<<<<<<< HEAD
+=======
+>>>>>>> parent of 34db97a (240416_게시글 삭제(강사님 풀이(js만)))
+>>>>>>> 47bc018 (240417)
 
     });
 }

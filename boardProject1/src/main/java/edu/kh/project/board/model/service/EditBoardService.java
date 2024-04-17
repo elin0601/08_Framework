@@ -23,6 +23,11 @@ public interface EditBoardService {
 	 */
 	int boardDelete(Board board);
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> 47bc018 (240417)
 	/** 게시글 수정
 	 * @param inputBoard
 	 * @param images
@@ -31,5 +36,9 @@ public interface EditBoardService {
 	 */
 	int boardUpdate(Board inputBoard, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException ;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 34db97a (240416_게시글 삭제(강사님 풀이(js만)))
+>>>>>>> 47bc018 (240417)
 }
