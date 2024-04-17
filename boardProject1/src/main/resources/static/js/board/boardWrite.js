@@ -35,7 +35,7 @@ const changeImageFn = (inputImage, order) =>{
 
         // 같은 순서(order)번 째 backupInputList 요소를 얻어와 대체하기
         
-        /* !!! 한 번 사용된(추가된) 요소는 재사용 불가능 !!! */
+        /* !!! 한 번 사용된(추가된) 요소는 재사용(다른 곳에 또 추가) 불가능 !!! */
         
         // 백업의 백업본
         const temp = backupInputList[order].cloneNode(true);
@@ -46,7 +46,7 @@ const changeImageFn = (inputImage, order) =>{
 
         // 백업본에 없는 이벤트 리스너를 다시 추가
         inputImage.addEventListener("change", e => {
-            changeImageFn(e.target, order);
+            changeImageFn(e.target, order); // 재귀호출(함수 내부에서 자기를 호출)
         })
 
         return;
@@ -119,7 +119,7 @@ for(let i=0; i<inputImageList.length; i++){
 }
 
 
-// 박성 폼 유효성 검사
+// 작성 폼 유효성 검사
 document.querySelector("#boardWriteFrm").addEventListener("submit", e=>{
     const boardTitle = document.querySelector("[name = 'boardTitle']");
     const boardContent = document.querySelector("[name = 'boardContent']");
