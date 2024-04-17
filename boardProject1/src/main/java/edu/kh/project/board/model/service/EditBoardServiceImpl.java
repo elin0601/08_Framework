@@ -238,12 +238,14 @@ public class EditBoardServiceImpl implements EditBoardService {
 		
 		// 수정/삭제된 이미지 파일을 서버에 저장
 		
+			
 			// 서버에 파일 저장
 			
 			for(BoardImg img : uploadList) {
 				
 				img.getUploadFile().transferTo(new File(folderPath + img.getImgRename()));
 			}
+		
 		
 		
 		return result;
