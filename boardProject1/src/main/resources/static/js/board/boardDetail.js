@@ -81,67 +81,19 @@ if(deleteBtn != null) {
         }
 
         location.href=`/editBoard/${boardCode}/${boardNo}/delete`;
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 47bc018 (240417)
+
     });
-}
 
+    /* -------- 게시글 수정 버튼 --------- */
+    const updateBtn = document.querySelector("#updateBtn");
 
-<<<<<<< HEAD
-/* 삭제(POST) */
-const deleteBtn2 = document.querySelector("#deleteBtn2");
+    if (updateBtn != null) {
+        updateBtn.addEventListener("click", () => {
 
-if(deleteBtn2 != null){
-  deleteBtn2.addEventListener("click", () => {
+            // 현재 : /board/1/2010?cp=1
+            // 목표 : /editBoard/1/2010/update?cp=1
+            location.href = location.pathname.replace('board', 'editBoard') + "/update" + location.search;
 
-    if( !confirm("삭제 하시겠습니까?") ) {
-      alert("취소됨")
-      return;
+        });
     }
-
-    const url = location.pathname.replace("board","editBoard")  + "/delete"; 
-
-    // form태그 생성
-    const form = document.querySelector("form");
-    form.action = url;
-    form.method = "POST";
-
-    // cp값을 저장할 input 생성
-    const input = document.querySelector("input");
-    input.type = "hidden";
-    input.name = "cp";
-
-    // 쿼리스트링에서 원하는 파라미터 얻어오기
-    const params = new URLSearchParams(location.search)
-    const cp = params.get("cp");
-    input.value = cp;
-
-    form.append(input);
-
-    // 화면에 form태그를 추가한 후 제출하기
-    document.querySelector("body").append(form);
-    form.submit();
-  });
-}
-
-=======
->>>>>>> 47bc018 (240417)
-/* -------- 게시글 수정 버튼 --------- */
-const updateBtn = document.querySelector("#updateBtn");
-
-if(updateBtn != null) {
-    updateBtn.addEventListener("click", () => {
-
-        // 현재 : /board/1/2010?cp=1
-        // 목표 : /editBoard/1/2010/update?cp=1
-        location.href = location.pathname.replace('board', 'editBoard') + "/update" + location.search;
-<<<<<<< HEAD
-=======
->>>>>>> parent of 34db97a (240416_게시글 삭제(강사님 풀이(js만)))
->>>>>>> 47bc018 (240417)
-
-    });
 }

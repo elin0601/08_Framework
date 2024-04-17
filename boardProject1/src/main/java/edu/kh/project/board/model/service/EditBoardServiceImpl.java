@@ -146,12 +146,7 @@ public class EditBoardServiceImpl implements EditBoardService {
 	public int boardDelete(Board board) {
 		return mapper.boardDelete(board);
 	}
-	
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 47bc018 (240417)
+
 	
 	// 게시글 수정
 	@Override
@@ -242,11 +237,7 @@ public class EditBoardServiceImpl implements EditBoardService {
 		
 		
 		// 수정/삭제된 이미지 파일을 서버에 저장
-		
-<<<<<<< HEAD
-			
-=======
->>>>>>> 47bc018 (240417)
+
 			// 서버에 파일 저장
 			
 			for(BoardImg img : uploadList) {
@@ -254,18 +245,9 @@ public class EditBoardServiceImpl implements EditBoardService {
 				img.getUploadFile().transferTo(new File(folderPath + img.getImgRename()));
 			}
 		
-		
-<<<<<<< HEAD
-		
 		return result;
 	}
-	
-=======
-		return result;
-	}
-	
->>>>>>> parent of 34db97a (240416_게시글 삭제(강사님 풀이(js만)))
->>>>>>> 47bc018 (240417)
+
 }
 
 

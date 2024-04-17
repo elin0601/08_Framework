@@ -42,22 +42,12 @@ import lombok.extern.slf4j.Slf4j;
 public class EditBoardController {
 
 	private final EditBoardService service;
-<<<<<<< HEAD
 
 	private final BoardService boardService;
 
 	/**
 	 * 게시글 작성 화면 전환
 	 * 
-=======
-	
-<<<<<<< HEAD
-=======
-	private final BoardService boardService;
-	
->>>>>>> parent of 34db97a (240416_게시글 삭제(강사님 풀이(js만)))
-	/** 게시글 작성 화면 전환
->>>>>>> 47bc018 (240417)
 	 * @return board/boardWrite
 	 */
 	@GetMapping("{boardCode:[0-9]+}/insert")
@@ -138,8 +128,9 @@ public class EditBoardController {
 	 * @return
 	 */
 	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
-<<<<<<< HEAD
-	public String boardDelete(@PathVariable("boardCode") int boardCode, @PathVariable("boardNo") int boardNo,
+	public String boardDelete(
+			@PathVariable("boardCode") int boardCode, 
+			@PathVariable("boardNo") int boardNo,
 			Board board) {
 
 		int result = service.boardDelete(board);
@@ -154,43 +145,6 @@ public class EditBoardController {
 		return "redirect:" + path;
 	}
 
-	/*
-	 * 게시글 삭제
-	 * 
-	 * // @GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
-	 * // @PostMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
-	 * 
-	 * 
-	 * // 하나의 요청 주소로 GET, POST 주소를 모두 처리하는 방법
-	 * 
-	 * @RequestMapping(value="{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete", method =
-	 * {RequestMethod.GET, RequestMethod.POST}) public String boardDelete(
-	 * 
-	 * @PathVariable("boardCode") int boardCode,
-	 * 
-	 * @PathVariable("boardNo") int boardNo,
-	 * 
-	 * @RequestParam(value="cp", required = false, defaultValue = "1") int cp,
-	 * 
-	 * @SessionAttribute("loginMember") Member loginMember, RedirectAttributes ra )
-	 * {
-	 * 
-	 * Map<String, Integer> map = new HashMap<>(); map.put("boardCode", boardCode);
-	 * map.put("boardNo", boardNo); map.put("memberNo", loginMember.getMemberNo());
-	 * 
-	 * 
-	 * int result = service.boardDelete(map);
-	 * 
-	 * String path = null; String message = null;
-	 * 
-	 * if(result > 0) { path = String.format("/board/%d", boardCode); message =
-	 * "삭제 되었습니다"; }else { path = String.format("/board/%d/%d?cp=%d", boardCode,
-	 * boardNo, cp); message = "삭제 실패"; }
-	 * 
-	 * ra.addFlashAttribute("message", message);
-	 * 
-	 * return "redirect:" + path; }
-	 */
 
 	/* 게시글 수정 화면 전환 */
 
@@ -203,8 +157,12 @@ public class EditBoardController {
 	 * @return
 	 */
 	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
-	public String boardUpdate(@PathVariable("boardCode") int boardCode, @PathVariable("boardNo") int boardNo,
-			@SessionAttribute("loginMember") Member loginMember, Model model, RedirectAttributes ra) {
+	public String boardUpdate(
+			@PathVariable("boardCode") int boardCode, 
+			@PathVariable("boardNo") int boardNo,
+			@SessionAttribute("loginMember") Member loginMember, 
+			Model model, 
+			RedirectAttributes ra) {
 
 		// 수정 화면에 출력할 제목 / 내용 / 이미지 조회
 		// -> 게시글 상세 조회
@@ -258,9 +216,13 @@ public class EditBoardController {
 	 * @throws IllegalStateException
 	 */
 	@PostMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
-	public String boardUpdate(@PathVariable("boardCode") int boardCode, @PathVariable("boardNo") int boardNo,
-			@ModelAttribute Board inputBoard, @SessionAttribute("loginMember") Member loginMember,
-			@RequestParam("images") List<MultipartFile> images, RedirectAttributes ra,
+	public String boardUpdate(
+			@PathVariable("boardCode") int boardCode, 
+			@PathVariable("boardNo") int boardNo,
+			@ModelAttribute Board inputBoard, 
+			@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("images") List<MultipartFile> images,
+			RedirectAttributes ra,
 			@RequestParam(value = "deleteOrder", required = false) String deleteOrder,
 			@RequestParam(value = "queryStirng", required = false, defaultValue = "") String queryString)
 			throws IllegalStateException, IOException {
@@ -289,171 +251,6 @@ public class EditBoardController {
 		}
 
 		ra.addFlashAttribute("message", message);
-=======
-	public String boardDelete(
-			@PathVariable("boardCode") int boardCode,
-			@PathVariable("boardNo") int boardNo,
-			Board board
-			) {
-		
-		int result = service.boardDelete(board);
-		
-		String path = null;
-		
-<<<<<<< HEAD
-		if(result > 0) path = "/board/" + boardCode ;
-		else path = "delete";
->>>>>>> 47bc018 (240417)
-
-		return "redirect:" + path;
-=======
-		if(result > 0) path = "/board/" + boardCode;
-		else path = "delete";
-		
-		return "redirect:" + path;
-	}
-	
-	
-	
-	/* 게시글 수정 화면 전환 */
-	
-	/**
-	 * @param boardCode : 게시판 종류
-	 * @param boardNo : 게시글 번호
-	 * @param loginMember : 로그인한 회원이 작성한 글이 맞는지 검사하는 용도
-	 * @param model : 포워드 시 request scope로 값 전달
-	 * @param ra : 리다이렉트 시 request scope로 값 전달
-	 * @return
-	 */
-	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
-	public String boardUpdate(
-			@PathVariable("boardCode") int boardCode,
-			@PathVariable("boardNo") int boardNo,
-			@SessionAttribute("loginMember") Member loginMember,
-			Model model,
-			RedirectAttributes ra
-			) {
-		
-		// 수정 화면에 출력할 제목 / 내용 / 이미지 조회
-		// -> 게시글 상세 조회
-		
-		Map<String, Integer> map = new HashMap<>();
-		map.put("boardCode", boardCode);
-		map.put("boardNo", boardNo);
-		
-		// BoardService.selecOne(map) 호출
-		Board board = boardService.selectOne(map);
-		
-		String message = null;
-		String path = null;
-		
-		if(board == null) {
-			path = "redirect:/"; // 메인 페이지
-			message = "해당 게시글이 존재하지 않습니다.";
-			
-			ra.addFlashAttribute("message", message);
-			
-		} else if(board.getMemberNo() != loginMember.getMemberNo()) {
-			
-			// 해당 글 상세 조회
-			path = String.format("redirect:/board/%d/%d", boardCode, boardNo);
-			message = "자신이 작성한 글만 수정할 수 있습니다.";
-			
-			ra.addFlashAttribute("message", message);
-			
-		} else {
-			
-			path = "board/boardUpdate";
-			model.addAttribute("board", board);
-		}
-		
 		return path;
 	}
-	
-	
-
-	/** 게시글 수정
-	 * @param boardCode : 게시판 종류
-	 * @param boardNo : 수정할 게시글 번호
-	 * @param inputBoard : 커맨드 객체(제목, 내용)
-	 * @param loginMember : 로그인한 회원 번호 이용(로그인 == 작성자)
-	 * @param images : 제출된 input type="file" 모든 요소 
-	 * @param ra : 리다이렉트 시 request scope 로 값 전달
-	 * @param deleteOrder : 삭제된 이미지 순서가 기록된 문자열(1,2,3)
-	 * @param queryStirng : 수정 성공 시 이전 파라미터 유지(cp, 검색어)
-	 * @return
-	 * @throws IOException 
-	 * @throws IllegalStateException 
-	 */
-	@PostMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/update")
-	public String boardUpdate(
-			@PathVariable("boardCode") int boardCode,
-			@PathVariable("boardNo") int boardNo,
-			@ModelAttribute Board inputBoard,
-			@SessionAttribute("loginMember") Member loginMember,
-			@RequestParam("images") List<MultipartFile> images,
-			RedirectAttributes ra,
-			@RequestParam(value="deleteOrder", required=false) String deleteOrder,
-			@RequestParam(value="queryStirng", required=false, defaultValue="") String queryString
-			) throws IllegalStateException, IOException{
-		
-		
-		// 1. 커맨드 객체(inputBoard)에 boardCode, boardNo, memberNo 세팅
-		inputBoard.setBoardCode(boardCode);
-		inputBoard.setBoardNo(boardNo);
-		inputBoard.setMemberNo(loginMember.getMemberNo());
-		
-		// -> inputBoard (제목, 내용, boardCode, boardNo, memberNo)
-		
-		
-		// 2. 게시글 수정 서비스 호출 후 결과 반환 받기
-		int result = service.boardUpdate(inputBoard, images, deleteOrder);
-		
-		
-		// 서비스 결과에 따라 응답 제어
-		String message = null;
-		String path = null;
-		
-		if(result > 0) {
-			message = "게시글이 수정 되었습니다.";
-			path = String.format("/board/%d/%d%s", boardCode, boardNo, queryString);
-			
-		} else {
-			message = "수정 실패";
-			path = "update"; // 수정 화면 전환 상대 경로
-		}
-		
-		ra.addFlashAttribute("message", message);
-		
-		return "redirect:" +  path;
->>>>>>> parent of 34db97a (240416_게시글 삭제(강사님 풀이(js만)))
-	}
 }
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> parent of 34db97a (240416_게시글 삭제(강사님 풀이(js만)))
->>>>>>> 47bc018 (240417)
