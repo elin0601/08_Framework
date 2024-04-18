@@ -82,18 +82,17 @@ if(deleteBtn != null) {
 
         location.href=`/editBoard/${boardCode}/${boardNo}/delete`;
 
-    });
-
-    /* -------- 게시글 수정 버튼 --------- */
-    const updateBtn = document.querySelector("#updateBtn");
-
-    if (updateBtn != null) {
-        updateBtn.addEventListener("click", () => {
-
-            // 현재 : /board/1/2010?cp=1
-            // 목표 : /editBoard/1/2010/update?cp=1
-            location.href = location.pathname.replace('board', 'editBoard') + "/update" + location.search;
-
         });
-    }
+   }
+/* -------- 게시글 수정 버튼 --------- */
+const updateBtn = document.querySelector("#updateBtn");
+
+if (updateBtn != null) {
+    updateBtn.addEventListener("click", () => {
+
+        // 현재 : /board/1/2010?cp=1
+        // 목표 : /editBoard/1/2010/update?cp=1
+        location.href = location.pathname.replace('board', 'editBoard') + "/update" + location.search;
+
+    });
 }

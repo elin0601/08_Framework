@@ -930,6 +930,123 @@ SELECT *
 FROM "BOARD"
 WHERE BOARD_DEL_FL = 'Y';
 
+-----------------------------------------------------
+
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 댓글 1',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			NULL
+);
+
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 댓글 2',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			NULL
+);
+
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 댓글 3',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			NULL
+);
+
+-- 부모 댓글 1의 자식 댓글
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 1의 자식 1',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			4003
+);
+
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 1의 자식 2',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			4003
+);
+
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 2의 자식 1',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			4004
+);
+
+ROLLBACK;
+
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 댓글 2의 자식 1 자식',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			4010
+);
+
+INSERT INTO "COMMENT"	VALUES(
+			SEQ_COMMENT_NO.NEXTVAL,
+			'부모 댓글 2의 자식 2',
+			DEFAULT, DEFAULT,
+			2017,
+			18,
+			4003
+);
+
+COMMIT;
+
+SELECT * FROM "COMMENT";
+
+/*DELETE FROM "COMMENT"
+WHERE COMMENT_NO = 4007;*/
+
+SELECT  LEVEL, COMMENT_NO , PARENT_COMMENT_NO ,  COMMENT_CONTENT  FROM "COMMENT"
+WHERE BOARD_NO = 2017
+
+/* 계층형 쿼리 */
+
+--PARENT_COMMENT_NO 값이 NULL인 행의 부모(LV.1)
+START WITH PARENT_COMMENT_NO IS NULL 
+
+-- 부모의 COMMENT_NO 와 같은 PARENT_COMMENT_NO 가진 행을 자식으로 지정
+CONNECT BY PRIOR COMMENT_NO = PARENT_COMMENT_NO
+
+-- 형제(같은 레벨 부모, 자식)들 간의 정렬 순서를 COMMENT_NO 오름 차순
+ORDER SIBLINGS BY COMMENT_NO;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
