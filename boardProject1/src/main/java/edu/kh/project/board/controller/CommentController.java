@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -33,6 +34,10 @@ public class CommentController {
 	
 	private final CommentService service;
 	
+	/** 댓글 조회
+	 * @param boardNo
+	 * @return commentList
+	 */
 	// value 속성 : 매핑할 주소
 	// produces 속성 : 응답할 데이터를 형식을 지정
 	@GetMapping(value="",produces = "application/json" )
@@ -45,9 +50,20 @@ public class CommentController {
 	}
 	
 	
+	/** 댓글 등록
+	 * @return 
+	 */
+	@ResponseBody
 	@PostMapping("")
-	public int insert() {
-		return 0;
+	public int insert(@RequestBody Comment comment) {
+		
+		// 요청 데이터가 JSON으로 명시됨
+		// headers : {"Content-Type" : "application/json"}
+		
+		// -> Arguments Resolver 가 JSON을 DTO(Comment) 로 자동 변경
+		//	 (JACKSON 라이브러리 기능)
+		
+		return service.insert(comment);
 	}
 	
 	

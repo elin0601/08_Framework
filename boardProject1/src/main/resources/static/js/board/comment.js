@@ -148,3 +148,57 @@ const selectCommentList = () => {
     });
 
 }
+
+
+// ---------------------------------------------------------------------------------------------------------
+
+/* ****** 댓글 등록(ajax) ****** */
+
+const addContent = document.querySelector("#addComment"); // button
+const commentContent = document.querySelector("#commentContent"); // textarea
+
+// 댓글 등록 버튼 클릭 시
+addContent.addEventListener("click", e => {
+
+    // 로그인이 되어있지 않은 경우
+    if(loginMemberNo == null){
+        alert("로그인 후 이용해 주세요.");
+        return; // early return;
+    }
+
+    // 댓글 내용이 작성되지 않은 경우
+    if(commentContent.value.trim().length == 0){
+        alert("내용 작성 후 등록 버튼을 클릭해 주세요.");
+        commentContent.focus();
+        return;
+    }
+
+    // ajax를 이용해 댓글 등록 요청
+    const data = {
+        "commentContent" : commentContent.value,
+        "boardNo" : boardNo,
+        "memberNo" : loginMemberNo // 또는 Session 회원 번호 이용도 가능
+    };
+
+    fetch("/comment", {
+        method : "POST",
+        headers : {"Content-Type" : "application/json"},
+        body : JSON.stringify(data) // data 객체를 JSON 문자열로 변환
+    })
+    .then(resp => resp.text())
+    .then(result => {
+
+        if( result > 0 ){
+            alert("댓글이 등록 되었습니다.");
+            commentContent.value = ""; // 작성한 댓글 내용 지우기
+            selectCommentList(); // 댓글 목록 다시 조회해서 화면에 출력
+
+        } else {
+            alert("댓글 등록 실패");
+        }
+
+    })
+    .catch(err => console.log(err));
+
+
+})
