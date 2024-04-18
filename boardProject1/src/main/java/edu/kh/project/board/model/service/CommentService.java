@@ -18,4 +18,10 @@ public interface CommentService {
 	 */
 	int insert(Comment comment);
 
+	/** 댓글 삭제
+	 * @param commentNo
+	 * @return result
+	 */
+	int delete(int commentNo);
+
 }

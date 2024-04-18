@@ -308,3 +308,34 @@ const insertChildComment = (parentCommentNo, btn) => {
     })
     .catch(err => console.log(err));
 };
+
+
+// --------------------------------------------------------------------
+
+/* ***** 댓글 삭제 ***** */
+
+/* 
+ * @param {*} commentNo
+ */
+const deleteComment = (commentNo) =>{
+
+    if(!confirm("삭제 하시겠습니끼?")) return;
+
+    fetch("/comment", {
+        method : "DELETE",
+        headers : {"Content-Type" : "application/json"},
+        body : commentNo
+    })
+
+    .then(resp => resp.text())
+    .then(result => {
+
+        if(result > 0) {
+            alert("삭제 되었습니다.");
+            selectCommentList(); // 다시 조회해서 화면 다시 만들기
+
+        } else  alert("삭제 실패");
+        
+    })
+    .catch(err => console.log(err));
+};

@@ -53,7 +53,6 @@ public class CommentController {
 	/** 댓글 등록
 	 * @return 
 	 */
-	@ResponseBody
 	@PostMapping("")
 	public int insert(@RequestBody Comment comment) {
 		
@@ -73,9 +72,13 @@ public class CommentController {
 	}
 	
 	
+	/** 댓글 삭제
+	 * @param commnetNo
+	 * @return result
+	 */
 	@DeleteMapping("")
-	public int delete() {
-		return 0;
+	public int delete(@RequestBody int commentNo) {
+		return service.delete(commentNo);
 	}
 	
 
