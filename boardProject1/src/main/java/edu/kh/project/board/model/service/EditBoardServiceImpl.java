@@ -142,11 +142,11 @@ public class EditBoardServiceImpl implements EditBoardService {
 	
 	
 	// 게시글 삭제
-	@Override
-	public int boardDelete(Board board) {
-		return mapper.boardDelete(board);
-	}
-
+	/*
+	 * @Override public int boardDelete(Board board) { return
+	 * mapper.boardDelete(board); }
+	 */
+	
 	
 	// 게시글 수정
 	@Override
@@ -246,6 +246,13 @@ public class EditBoardServiceImpl implements EditBoardService {
 			}
 		
 		return result;
+	}
+	
+	
+	// 게시글 삭제(get, post 둘 다 매핑)
+	@Override
+	public int boardDelete(Map<String, Integer> map) {
+		return mapper.boardDelete(map);
 	}
 
 }

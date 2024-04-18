@@ -69,7 +69,9 @@ boardLike.addEventListener("click", e=>{
 
 
 // --------------------- 삭제하기 ---------------------
-const deleteBtn = document.querySelector("#deleteBtn");
+
+ /* ******** 내 풀이 ******** */
+/* const deleteBtn = document.querySelector("#deleteBtn");
 
 if(deleteBtn != null) {
     deleteBtn.addEventListener("click", e => {
@@ -84,6 +86,68 @@ if(deleteBtn != null) {
 
         });
    }
+ */
+
+
+
+/* ********* 강사님 풀이 *********  */
+
+/* 삭제(GET) */
+/* const deleteBtn = document.querySelector("#deleteBtn");
+
+if(deleteBtn != null){
+  deleteBtn.addEventListener("click", () => {
+    if( !confirm("삭제 하시겠습니까?") ) {
+      alert("취소됨")
+      return;
+    }
+
+    const url = location.pathname.replace("board","editBoard") + "/delete"; // /editBoard/1/2000/delete
+    const queryString = location.search; // ? cp=1
+    location.href = url + queryString;
+  });
+}
+ */
+
+/* 삭제(POST) */
+const deleteBtn2 = document.querySelector("#deleteBtn2");
+
+if(deleteBtn2 != null) {
+    deleteBtn2.addEventListener("click", ()=>{
+
+        if(!confirm("삭제 하시겠습니까?")) {
+            alert("취소됨");
+            returnl
+        }
+
+        const url = location.pathname.replace("board","editBoard")  + "/delete"; 
+
+
+        // form 태그 생성
+        const form = document.createElement("form");
+        form.action = url;
+        form.method = "POST";
+
+        // cp 값을 저장할 input 생성
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = "cp";
+
+        form.append(input);
+        
+        // 쿼리 스트링에서 원하는 파라미터 얻어오기
+        const params = new URLSearchParams(location.search);
+        const cp = params.get("cp");
+        input.value = cp;
+
+        form.append(input);
+
+        // 화면에 form 태그를 추가한 후 제출하기
+        document.querySelector("body").append(form);
+        form.submit();
+    });
+}
+
 /* -------- 게시글 수정 버튼 --------- */
 const updateBtn = document.querySelector("#updateBtn");
 
@@ -114,4 +178,5 @@ goToListBtn.addEventListener("click", () => {
     location.href = url + location.search;
                         // 쿼리 스트링
 });
+
 

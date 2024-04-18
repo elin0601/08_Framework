@@ -17,11 +17,13 @@ public interface EditBoardService {
 	 */
 	int boardInsert(Board inputBoard, List<MultipartFile> images) throws IllegalStateException, IOException;
 
+
 	/** 게시글 삭제
 	 * @param board
 	 * @return
 	 */
-	int boardDelete(Board board);
+	/* int boardDelete(Board board); */
+
 
 	/** 게시글 수정
 	 * @param inputBoard
@@ -30,4 +32,11 @@ public interface EditBoardService {
 	 * @return
 	 */
 	int boardUpdate(Board inputBoard, List<MultipartFile> images, String deleteOrder) throws IllegalStateException, IOException ;
+
+
+	/** 게시글 삭제(get, post 둘 다 매핑)
+	 * @param map
+	 * @return
+	 */
+	int boardDelete(Map<String, Integer> map);
 }

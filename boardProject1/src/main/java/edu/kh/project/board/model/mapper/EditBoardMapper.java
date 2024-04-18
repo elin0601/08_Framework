@@ -27,7 +27,7 @@ public interface EditBoardMapper {
 	 * @param board
 	 * @return
 	 */
-	int boardDelete(Board board);
+	/* int boardDelete(Board board); */
 
 	/** 게시글 수정
 	 * @param inputBoard
@@ -52,5 +52,11 @@ public interface EditBoardMapper {
 	 * @return
 	 */
 	int insertImage(BoardImg img);
+
+	/** 게시글 삭제(get, post 둘 다 매핑)
+	 * @param map
+	 * @return
+	 */
+	int boardDelete(Map<String, Integer> map);
 
 }

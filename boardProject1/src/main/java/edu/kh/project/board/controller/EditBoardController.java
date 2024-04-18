@@ -119,6 +119,14 @@ public class EditBoardController {
 		// 게시글 작성(INSERT) 성공 시 -> 작성된 글 상세 조회로 redirect
 		return "redirect:" + path;
 	}
+	
+	
+	
+	/* 게시글 삭제 */
+	
+//	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
+//	@PostMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
+	
 
 	/**
 	 * 게시글 삭제
@@ -127,7 +135,7 @@ public class EditBoardController {
 	 * @param boardNo
 	 * @return
 	 */
-	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
+/*	@GetMapping("{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete")
 	public String boardDelete(
 			@PathVariable("boardCode") int boardCode, 
 			@PathVariable("boardNo") int boardNo,
@@ -144,6 +152,46 @@ public class EditBoardController {
 
 		return "redirect:" + path;
 	}
+*/ // =====> 내 풀이
+	
+	
+	
+	/**
+	 * ******** 강사님 풀이 ********
+	 */
+	@RequestMapping(value="{boardCode:[0-9]+}/{boardNo:[0-9]+}/delete", method= {RequestMethod.GET, RequestMethod.POST})
+	public String boardDelete(
+			@PathVariable("boardCode") int boardCode,
+			@PathVariable("boardNo") int boardNo,
+			@RequestParam(value="cp", required = false, defaultValue = "1") int cp,
+			@SessionAttribute("loginMember") Member loginMemebr,
+			RedirectAttributes ra
+			) {
+		
+		Map<String, Integer> map = new HashMap<>();
+		map.put("boardCode", boardCode);
+		map.put("boardNo", boardNo);
+		map.put("memberNo", loginMemebr.getMemberNo());
+		
+		int result = service.boardDelete(map);
+		
+		String path = null;
+		String message = null;
+		
+		if(result > 0) {
+			path = String.format("/board/%d", boardCode);
+			message = "삭제 되었습니다.";
+			
+		} else {
+			path = String.format("/board/%d/%d?cp=%d", boardCode, boardNo, cp);
+			message = "삭제 실패";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:" + path;
+	}
+	
 
 
 	/* 게시글 수정 화면 전환 */
