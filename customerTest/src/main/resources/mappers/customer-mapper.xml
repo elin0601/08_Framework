@@ -20,7 +20,7 @@
 	<select id="select">
 		SELECT * 
 		FROM CUSTOMER
-		WHERE CUSTOMER_NO = #{memberNo}
+		WHERE CUSTOMER_NO = #{customerNo}
 	</select>
 
 </mapper>

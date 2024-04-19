@@ -1,5 +1,6 @@
 package com.kh.test.customer.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.stereotype.Controller;
@@ -7,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.kh.test.customer.model.dto.Customer;
@@ -62,10 +65,8 @@ public class CustomerController {
 	@PostMapping("update")
 	public String  update(
 			Customer ct,
-			Model model,
-			RedirectAttributes ra) {
-		
-		int customerNo = ct.getCustomerNo();
+			Model model
+			) {
 		
 		int result = service.update(ct);
 		
@@ -74,14 +75,12 @@ public class CustomerController {
 		if(result > 0) message = "수정 성공!";
 		else message = "회원 번호가 일치하는 회원이 없습니다.";
 		
-		ra.addFlashAttribute("message", message);
+		model.addAttribute("message", message);
 		
 		return "result2";
 		
 	}
-	
-
-	}
+}
 	
 	
 
