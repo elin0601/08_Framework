@@ -59,7 +59,7 @@
                         <!-- ${#lists.isEmpty(boardList) == 0} -->
 
                         <!-- #lists : 타임리프에서 list 관련 기능을 제공하는 객체 -->
-                        <th:block th:if="${#lists.isEmpty(boardList) == 0}">
+                        <th:block th:if="${#lists.isEmpty(boardList)}">
                             <tr>
                                 <th colspan="6">게시글이 존재하지 않습니다.</th>
                             </tr>
