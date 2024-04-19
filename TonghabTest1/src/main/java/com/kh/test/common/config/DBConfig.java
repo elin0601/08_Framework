@@ -115,7 +115,7 @@ public class DBConfig {
 		//   클래스 파일명이 별칭으로 등록
 		
 		// ex) (원본) edu.kh.todo.model.dto.Todo   -->  Todo (별칭 등록)
-		sessionFactoryBean.setTypeAliasesPackage("com.bdh.book");
+		sessionFactoryBean.setTypeAliasesPackage("com.ljs.book");
 		
 		
 		// 마이바티스 설정 파일 경로 지정
