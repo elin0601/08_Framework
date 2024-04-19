@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>세미프로젝트</title>
+
+    <!-- 나중에 common.html로 변경해서 연결 예정 -->
+    <script src="https://kit.fontawesome.com/ba8133b2cb.js" crossorigin="anonymous"></script> 
+    <link rel="stylesheet" href="../css/header-style.css">
+    <!-- 나중에 common.html로 변경해서 연결 예정 -->
+</head>
+
+<body>
+    <header>
+        <section>
+            <a href="#">
+                <img src="#" alt="메인 로고" id="homeLogo">
+            </a>
+        </section>
+        
+        <section>
+            <article class="search-area">
+                <form action="#" method="POST">
+                    <fieldset>
+                        
+                        <input type="search" id="search" name="search" placeholder="검색어를 입력해 주세요." autocomplete="off">
+                        
+                        <input type="hidden" name="hidden" value="t">
+                        
+                        <button id="searchBtn" class="fa-solid fa-magnifying-glass"></button>
+
+                    </fieldset>
+                </form>
+            </article>
+        </section>
+
+        <!-- 구분용 -->
+        <section></section>
+
+        <!-- 마이 페이지, 로그인 드롭다운 -->
+
+        <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정)-->
+        <a href="#" class="fa-solid fa-user"></a>
+
+        <!-- 로그인 O (아이콘 클릭시 마이 페이지/로그아웃으로 이동 예정) -->
+        <label for="menuToggle">
+            <i class="fa-solid fa-user"></i>
+        </label>
+
+        <input type="checkbox" id="menuToggle">
+
+        <div class="header-menu">
+            <a href="#">MYPAGE</a>
+            <a href="#">LOGOUT</a>
+        </div>
+        
+        <!-- navigator(게시판 종류 나열) -->
+        <nav>
+            <ul>
+                <li>
+                    <a href="#">국외</a>
+                </li>
+                
+                <li>
+                    <a href="#">국내</a>
+                </li>
+
+                <li>
+                    <a href="#">자유</a>
+                </li>
+
+                <li>
+                    <a href="#">공지</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+</body>
+</html>
