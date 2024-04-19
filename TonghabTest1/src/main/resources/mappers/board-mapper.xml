@@ -3,7 +3,7 @@
 <mapper namespace="com.kh.test.board.model.mapper.BoardMapper">
 	
 	<select id="search">
-		SELECT BOARD_NO , BOARD_TITLE , USER_NAME, BOARD_CONTENT , BOARD_READCOUNT , 
+		SELECT BOARD_NO , BOARD_TITLE , USER_ID, BOARD_CONTENT , BOARD_READCOUNT , 
 			TO_CHAR(BOARD_DATE, 'YYYY-MM-DD') BOARD_DATE  
 		FROM TB_BOARD B
 		JOIN TB_USER U ON (B.USER_NO = U.USER_NO)

@@ -19,6 +19,6 @@ public class Board {
 	private String boardDate;
 	private int boardReadcount;
 	private int userNo;
-	private String userName;
+	private String userId;
 
 }
