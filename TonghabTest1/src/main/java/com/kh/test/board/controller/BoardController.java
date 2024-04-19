@@ -20,11 +20,6 @@ public class BoardController {
 
 	private final BoardService service;
 
-	@GetMapping("search")
-	public String search() {
-		return "/";
-	}
-
 	@PostMapping("search")
 	public String search(Board board, Model model) {
 
