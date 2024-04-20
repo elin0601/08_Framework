@@ -1,12 +1,8 @@
-/* :root{
-    --main-color : black;
-}
- */
 *{
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid rgb(174, 174, 174);
 }
 
 header {
@@ -15,6 +11,95 @@ header {
     flex-direction: row;
 }
 
-header>section:nth-child(1) {width: 20%;}
-header>section:nth-child(2) {width: 60%;}
-header>section:nth-child(3) {width: 20%;}
+#firstSection{width: 20%;}
+#secondSection{width: 60%;}
+#thirdSection{width: 20%;}
+
+/* 로고 */
+#firstSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+/* 사진 넣고 다시 확인 */
+#homeLogo {
+    margin-left: 30px;
+    width: 120px;
+}
+
+#secondSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-area{
+    width: 500px;
+}
+
+.search-area fieldset {
+    border: none;
+    padding: 20px;
+    border-radius: 3px;
+    display: flex;
+    height: 40px;
+}
+ 
+/* 검색창(input) */
+#search{
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+#searchBtn {
+    width: 8%;
+    cursor: pointer;
+    border: none;
+    font-size: 1.1em;
+    background-color: white;
+}
+
+/*  */
+
+/* ** navigator(게시판 종류 나열) ** */
+nav {
+    height: 40px;
+    border-bottom: 1px solid black;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+nav>ul {
+    display: flex;
+    list-style: none;
+    height: 40px;
+}
+
+/* 게시판 */
+nav li {
+    flex: 0 1 150px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 20px 0;
+    display: block;
+    text-align: center;
+    border-radius: 3px;
+    transition-duration: 0.1s; 
+    height: 100%;
+}
+
+nav a:hover {
+    color: white;
+    background-color: black;
+}
+

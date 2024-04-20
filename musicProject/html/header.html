@@ -13,18 +13,19 @@
 
 <body>
     <header>
-        <section>
+        <section id="firstSection">
             <a href="#">
                 <img src="#" alt="메인 로고" id="homeLogo">
             </a>
         </section>
         
-        <section>
+        <section id="secondSection">
             <article class="search-area">
                 <form action="#" method="POST">
                     <fieldset>
                         
-                        <input type="search" id="search" name="search" placeholder="검색어를 입력해 주세요." autocomplete="off">
+                        <input type="search" id="search" name="search" autocomplete="off">
+                        <!-- placeholder="검색어를 입력해 주세요." -->
                         
                         <input type="hidden" name="hidden" value="t">
                         
@@ -36,46 +37,48 @@
         </section>
 
         <!-- 구분용 -->
-        <section></section>
+        <section id="thirdSection"></section>
 
         <!-- 마이 페이지, 로그인 드롭다운 -->
 
-        <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정)-->
-        <a href="#" class="fa-solid fa-user"></a>
-
-        <!-- 로그인 O (아이콘 클릭시 마이 페이지/로그아웃으로 이동 예정) -->
-        <label for="menuToggle">
-            <i class="fa-solid fa-user"></i>
-        </label>
-
-        <input type="checkbox" id="menuToggle">
-
-        <div class="header-menu">
-            <a href="#">MYPAGE</a>
-            <a href="#">LOGOUT</a>
+        <div class="top-menu">
+            <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정)-->
+            <a href="#" class="fa-solid fa-user"></a>
+    
+            <!-- 로그인 O (아이콘 클릭시 마이 페이지/로그아웃으로 이동 예정) -->
+            <label for="menuToggle">
+                <i class="fa-solid fa-user"></i>
+            </label>
+    
+            <input type="checkbox" id="menuToggle">
+    
+            <div class="header-menu">
+                <a href="#">MYPAGE</a>
+                <a href="#">LOGOUT</a>
+            </div>
         </div>
         
-        <!-- navigator(게시판 종류 나열) -->
-        <nav>
-            <ul>
-                <li>
-                    <a href="#">국외</a>
-                </li>
-                
-                <li>
-                    <a href="#">국내</a>
-                </li>
-
-                <li>
-                    <a href="#">자유</a>
-                </li>
-
-                <li>
-                    <a href="#">공지</a>
-                </li>
-            </ul>
-        </nav>
     </header>
+    <!-- navigator(게시판 종류 나열) -->
+    <nav>
+        <ul>
+            <li>
+                <a href="#">국외</a>
+            </li>
+            
+            <li>
+                <a href="#">국내</a>
+            </li>
+
+            <li>
+                <a href="#">자유</a>
+            </li>
+
+            <li>
+                <a href="#">공지</a>
+            </li>
+        </ul>
+    </nav>
 
 </body>
 </html>
