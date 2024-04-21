@@ -64,6 +64,7 @@ header {
     border: none;
     font-size: 1.1em;
     background-color: white;
+    color: rgb(41, 41, 41);
 }
 
 /*  */
@@ -136,6 +137,7 @@ label[for="menuToggle"]:hover {
     MYPAGE/LOGOUT 일단 안보이게
     로그인 하면 보이게
 */
+/*
 #menuToggle + div {
     display: none;
 }
@@ -158,5 +160,6 @@ label[for="menuToggle"]:hover {
     justify-content: center;
     align-items: center;
 }
+*/
 
 
