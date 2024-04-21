@@ -2,7 +2,7 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    border: 1px solid rgb(174, 174, 174);
+    /* border: 1px solid rgb(174, 174, 174); */
 }
 
 header {
@@ -40,8 +40,8 @@ header {
 }
 
 .search-area fieldset {
-    border: none;
-    padding: 20px;
+    border: 1px solid rgba(190, 190, 190, 0.192);
+    padding: 2px;
     border-radius: 3px;
     display: flex;
     height: 40px;
@@ -53,6 +53,9 @@ header {
     outline: none;
     font-size: 15px;
     font-weight: bold;
+    padding-left: 10px;
+    width: 450px; /* 검색 버튼 오른쪽으로 보냄 */
+    
 }
 
 #searchBtn {
@@ -79,19 +82,22 @@ nav>ul {
     display: flex;
     list-style: none;
     height: 40px;
+    padding-left: 100px;
 }
 
 /* 게시판 */
 nav li {
-    flex: 0 1 150px;
+    flex: 0 1 100px;
 }
 
 nav a {
+    width: 80px;
     text-decoration: none;
     color: black;
     font-weight: bold;
-    padding: 20px 0;
+    padding: 10px;
     display: block;
+    justify-content: center;
     text-align: center;
     border-radius: 3px;
     transition-duration: 0.1s; 
@@ -102,4 +108,55 @@ nav a:hover {
     color: white;
     background-color: black;
 }
+
+header {
+    position: relative;
+}
+
+.header-menu {
+    position: absolute;
+    right: 100px;
+    top: 20px;
+}
+
+#menuToggle {
+    display: none;
+}
+
+label[for="menuToggle"] {
+    cursor: pointer;
+    user-select: none;
+}
+
+label[for="menuToggle"]:hover {
+    text-decoration: underline;  /* 밑줄 */
+}
+
+/* 
+    MYPAGE/LOGOUT 일단 안보이게
+    로그인 하면 보이게
+*/
+#menuToggle + div {
+    display: none;
+}
+
+#menuToggle + div {
+    display: block;
+}
+
+.header-menu{
+    position: absolute;
+    width: 100px;
+    height: 80px;
+    margin-top: 5px;
+    border: 1px solid black;
+}
+
+.header-menu > a{
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+}
+
 
