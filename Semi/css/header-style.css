@@ -11,9 +11,9 @@ header {
     flex-direction: row;
 }
 
-#firstSection{width: 20%;}
-#secondSection{width: 60%;}
-#thirdSection{width: 20%;}
+#firstSection{width: 30%;}
+#secondSection{width: 40%;}
+#thirdSection{width: 30%;}
 
 /* 로고 */
 #firstSection {
@@ -290,3 +290,14 @@ label>input {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
 } */
+
+.top-menu > a {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40px;
+    color: #404040;
+    width: 40px;
+    height: 40px;
+
+}

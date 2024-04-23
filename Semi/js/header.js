@@ -1,5 +1,5 @@
-const popupClose = document.querySelector(".popupClose");
-const popupLayer = document.querySelector(".popupLayer");
+const popupClose = document.querySelector("#popupClose");
+const popupLayer = document.querySelector("#popupLayer");
 const loginForm = document.querySelector("#loginForm")
 
 if(loginForm != null) {
