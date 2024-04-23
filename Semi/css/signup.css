@@ -2,27 +2,34 @@
     box-sizing: border-box;
     padding: 0px;
     margin: 0px;
+    user-select: none;
 }
 
 .signup-content {
     display: flex;
     justify-content: center;
-
     width: 700px;
     margin: auto;
+    
+    border: 1px solid #cecece;
+    border-radius: 10px;
 }
 
 p {
     display: flex;
     justify-content: center;
+    margin: 20px;
+    margin-right: 500px;
     font-size: 30px;
     font-weight: bold;
+    color: #404040;
 }
 
 .signup-info-title>label {
     display: flex;
     font-size: 16px;
     font-weight: bold;
+    margin: 20px 0px 0px;
 }
 
 .required {
@@ -34,22 +41,23 @@ p {
 
 .secession-terms {
     width: 500px;
-    height: 300px;
-    border: 1px solid #444444;
+    height: 250px;
+    border: 1px solid #b1b1b1;
 
     overflow: auto;
     /* 내용이 요소를 벗어나는 경우 방향에 맞춰서 자동으로 스크롤 추가 */
 
     font-family: sans-serif;
     /* 돋움체 */
-    font-size: 14px;
+    font-size: 13px;
     padding: 10px;
+    margin-bottom: 5px;
 }
 
 
 #signupForm > label {
     display: block;
-    margin-top: 40px;
+    margin-top: 20px;
     font-size: 14px;
     font-weight: bold;
 }
@@ -104,6 +112,7 @@ p {
     align-items: center;
     margin: auto;
     margin-top: 20px;
+    margin-bottom: 20px;
 
     width: 50%;
     height: 40px;
@@ -116,12 +125,13 @@ p {
     cursor: pointer;
 }
 
-#addBtn:hover {
+#signupBtn:hover {
     background-color: #404040;
     color: white;
+    font-weight: bold;
 }
 
-#addBtn:active {
+#signupBtn:active {
     transform: scale(0.95);
 }
 
