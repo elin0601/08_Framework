@@ -184,7 +184,7 @@ memberPw.addEventListener("input", e => {
     pwMessage.classList.add('confirm');
     checkObj.memberPw = true;
     
-    // 7) 비밀번호 입력 시에도 확인이랑 비교 코드 추가
+    // 7) 비밀번호 입력 시에도 확인이랑 비교 코드 추가  
 
     // 비밀번호 확인에 값이 작성되어 있을 때
     if(memberPwConfirm.value.length > 0) {

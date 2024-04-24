@@ -268,10 +268,40 @@ INSERT INTO "MEMBER" VALUES (
 
 SELECT * FROM "MEMBER";
 
+/* 이메일, 인증 키 저장 테이블 생성 */
+CREATE TABLE "AUTH_KEY" (
+	"KEY_NO" NUMBER PRIMARY KEY,
+	"EMAIL" NVARCHAR2(50) NOT NULL,
+	"AUTH_KEY" CHAR(6) NOT NULL,
+	"CREATE_TIME" DATE DEFAULT SYSDATE NOT NULL
+);
+
+COMMENT ON COLUMN "AUTH_KEY"."KEY_NO" IS '인증키 구분 번호(시퀀스)';
+COMMENT ON COLUMN "AUTH_KEY"."EMAIL" IS '인증 이메일';
+COMMENT ON COLUMN "AUTH_KEY"."AUTH_KEY" IS '인증 번호';
+COMMENT ON COLUMN "AUTH_KEY"."CREATE_TIME" IS '인증 번호 생성 시간';
+
+CREATE SEQUENCE SEQ_KEY_NO NOCACHE; -- 인증키 구분 번호 시퀀스
+
 --------------------------------------------------------------------------------------
 
+-- 회원가입 
+INSERT INTO "MEMBER" 
+VALUES (
+	SEQ_MEMBER_NO.NEXTVAL, 'test01@naver.com', '$2a$10$vmMu5ZJ/qMaavveCP7TzFOLcQLn9ETUR5dNJrb23xPFUI2tm8Xemm', '회원가입샘플1', '01013441233', '서울시 중구 남대문로 120', NULL, SYSDATE, DEFAULT, DEFAULT);
 
+-- 이메일 중복 검사
+SELECT COUNT(*)
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL='N'
+AND AUTHORITY = 'N'
+AND MEMBER_EMAIL = 'test01@naver.com';
 
-
+-- 닉네임 중복 검사
+SELECT COUNT(*)
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL='N'
+AND AUTHORITY = 'N'
+AND MEMBER_NICKNAME = '회원가입샘플1';
 
 
