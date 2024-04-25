@@ -261,6 +261,7 @@ COMMENT ON COLUMN "AUTH_KEY"."CREATE_TIME" IS '인증 번호 생성 시간';
 
 CREATE SEQUENCE SEQ_KEY_NO NOCACHE; -- 인증키 구분 번호 시퀀스
 
+SELECT * FROM AUTH_KEY;
 --------------------------------------------------------------------------------------
 
 -- 회원가입 
@@ -281,5 +282,30 @@ FROM "MEMBER"
 WHERE MEMBER_DEL_FL='N'
 AND AUTHORITY = 'N'
 AND MEMBER_NICKNAME = '회원가입샘플1';
+
+
+-- ID 찾기
+SELECT MEMBER_EMAIL 
+FROM "MEMBER"
+WHERE MEMBER_NICKNAME ='샘플1'
+AND MEMBER_TEL = '01012341234'
+AND MEMBER_DEL_FL = 'N'
+AND AUTHORITY = 'N';
+
+
+-- PW 찾기
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
