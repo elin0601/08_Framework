@@ -2,17 +2,17 @@
 const updateInfo = document.querySelector("#updateInfo"); // form 태그
 
 // #updateInfo 요소가 존재 할 때만 수행
-if( updateInfo != null ) {
+if (updateInfo != null) {
 
     // form 제출 시
     updateInfo.addEventListener("submit", e => {
 
         const memberNickname = document.querySelector("#memberNickname");
         const memberTel = document.querySelector("#memberTel");
-        const memberAddress= document.querySelectorAll("[name='memberAddress']");
+        const memberAddress = document.querySelectorAll("[name='memberAddress']");
 
         // 닉네임 유효성 검사
-        if( memberNickname.value.trim().length == 0 ) {
+        if (memberNickname.value.trim().length == 0) {
             alert("닉네임을 입력해 주세요.");
             e.preventDefault(); // 제출 막기
             return;
@@ -20,19 +20,19 @@ if( updateInfo != null ) {
 
         // 정규식에 맞지 않으면
         let regExp = /^[a-zA-Z0-9가-힣]{2,10}$/;
-        if( !regExp.test(memberNickname.value) ){
+        if (!regExp.test(memberNickname.value)) {
             alert("닉네임이 유효하지 않습니다.");
             e.preventDefault(); // 제출 막기
             return;
         }
-        
+
         // *************************************************************
         // 중복 검사는 나중에 추가 예정...
         // (테스트 시 닉네임 중복 안되게 조심!!!)
         // *************************************************************
 
         // 전화번호 유효성 검사
-        if(memberTel.value.trim().length == 0){
+        if (memberTel.value.trim().length == 0) {
             alert("전화번호를 입력해 주세요.");
             e.preventDefault();
             return;
@@ -40,7 +40,7 @@ if( updateInfo != null ) {
 
         // 정규식에 맞지 않으면
         regExp = /^01[0-9]{1}[0-9]{3,4}[0-9]{4}$/;
-        if( !regExp.test(memberTel.value) ){
+        if (!regExp.test(memberTel.value)) {
             alert("전화번호가 유효하지 않습니다.");
             e.preventDefault(); // 제출 막기
             return;
@@ -61,11 +61,11 @@ if( updateInfo != null ) {
         const result2 = !(addr0 || addr1 || addr2); // 모두 입력 O
 
         // 모두 입력 또는 모두 미입력이 아니면
-        if( !(result1 || result2) ) {
+        if (!(result1 || result2)) {
             alert("주소를 모두 작성 또는 미작성 해주세요.");
             e.preventDefault();
         }
-        
+
 
         e.preventDefault(); // 제출 막기
     });
@@ -197,14 +197,14 @@ let statusCheck = -1;
 let backupInput;
 
 
-if(profile != null) {
+if (profile != null) {
 
     // img 태그(프로필 이미지가 보여지는 요소)
     const profileImg = document.querySelector("#profileImg");
-    
+
     // input type="file" 태그 (실제 업로드할 프로필 이미지를 선택하는 요소)
     let imageInput = document.querySelector("#imageInput");
-    
+
     // x 버튼 (프로필 이미지를 제거하고 기본 이미지로 변경하는 요소)
     const deleteImage = document.querySelector("#deleteImage");
 
@@ -214,7 +214,7 @@ if(profile != null) {
 
         // 업로드 가능한 파일 최대 크기 지정하여 필터링
 
-        const maxSize =  1024*1204*5;
+        const maxSize = 1024 * 1204 * 5;
         // 5MB == 1024KB*5 == 1204B * 1024 * 5
 
         console.log("e.target", e.target); // input
@@ -222,18 +222,18 @@ if(profile != null) {
 
         // 선택한 파일에 대한 정보가 담긴 배열 반환
         // 왜 배열? multiple 옵션에 대한 대비
-        console.log("e.target.files", e.target.files); 
+        console.log("e.target.files", e.target.files);
 
         // 업로드된 파일이 1개 있으면 files[0]에 저장됨
 
         // 업로드된 파일이 없으면 files[0] == undefined
-        console.log("e.target.files[0]", e.target.files[0]); 
+        console.log("e.target.files[0]", e.target.files[0]);
 
         const file = e.target.files[0];
 
         // ------------------ 업로드 된 파일이 없다면(취소한 경우) ------------------
 
-        if(file == undefined) {
+        if (file == undefined) {
             console.log("파일 선택 후 취소됨");
 
             // [코드 추가 예정 ...]
@@ -268,21 +268,21 @@ if(profile != null) {
 
 
         // ------------------ 선택한 파일이 최대 크기를 초과한 경우 ------------------
-        if(file.size>maxSize) {
+        if (file.size > maxSize) {
             alert("5MB 이하의 이미지 파일을 선택해 주세요.");
 
             // [코드 추가 예정 ...]
 
             // 선택한 이미지가 없는데 5MB 초과하는 이미지를 선택한 경우
-            if(statusCheck == -1) {
+            if (statusCheck == -1) {
                 imageInput.value = '';
 
             } else { // 기존 선택한 이미지가 있는데
-                     // 다음 선택한 이미지가 최대 크기를 초과한 경우
-                
+                // 다음 선택한 이미지가 최대 크기를 초과한 경우
+
                 // 백업의 백업본
                 const temp = backupInput.cloneNode(true);
-                                        // 깊은 복사(자식 노드도 복사함)
+                // 깊은 복사(자식 노드도 복사함)
 
                 // input 요소 다음에 백업 요소 추가
                 imageInput.after(backupInput);
@@ -308,7 +308,7 @@ if(profile != null) {
 
 
         // ------------------ 선택한 이미지 미리 보기 ------------------
-        
+
         // JS에서 파일을 읽을 때 사용하는 객체
         // - 파일을 읽고 클라이언트 컴퓨터에 저장할 수 있음
         const reader = new FileReader();
@@ -346,11 +346,11 @@ if(profile != null) {
     deleteImage.addEventListener("click", () => {
 
         // 프로필 이미지 (img)를 기본 이미지로 변경
-        profileImg.src="/images/user.png";
+        profileImg.src = "/images/user.png";
 
         // input에 저장된 값(value)를 ''(빈칸)으로 변경
         // -> input에 저장된 파일 정보가 모두 사라짐 == 데이터 삭제
-        imageInput.value=''; 
+        imageInput.value = '';
 
         backupInput = undefined; // 백업본도 삭제
 
@@ -365,15 +365,15 @@ if(profile != null) {
         let flag = true;
 
         // 기존 프로필 이미지가 없다가 새 이미지가 선택된 경우
-        if(loginMemberProfileImg == null && statusCheck == 1) flag = false;
+        if (loginMemberProfileImg == null && statusCheck == 1) flag = false;
 
         // 기존 프로필 이미지가 있다가 삭제한 경우
-        if(loginMemberProfileImg != null && statusCheck == 0) flag = false;
+        if (loginMemberProfileImg != null && statusCheck == 0) flag = false;
 
         // 기존 프로필 이미지가 있다가 새 이미지가 선택된 경우
-        if(loginMemberProfileImg != null && statusCheck == 1) flag = false;
+        if (loginMemberProfileImg != null && statusCheck == 1) flag = false;
 
-        if(flag) { // flag 값이 true 인 경우 // 이전 if문에 해당되는 게 없는 경우 제출을 막고 경고 메세지를 띄움
+        if (flag) { // flag 값이 true 인 경우 // 이전 if문에 해당되는 게 없는 경우 제출을 막고 경고 메세지를 띄움
             e.preventDefault();
             alert("이미지 변경 후 클릭하세요.");
         }
