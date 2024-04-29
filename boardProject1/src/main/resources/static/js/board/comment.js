@@ -168,7 +168,7 @@ addContent.addEventListener("click", e => {
 
     // 댓글 내용이 작성되지 않은 경우
     if(commentContent.value.trim().length == 0){
-        alert("내용 작성 후 등록 버튼을 클릭해 주세요.");
+        alert("내용 작성을 작성해 주세요.");
         commentContent.focus();
         return;
     }
