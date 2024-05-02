@@ -460,24 +460,25 @@ SELECT COUNT(*)
 		AND CATEGORY_NO = 29
 		AND BOARD_TITLE LIKE '%번째%'
 		AND BOARD_CONTENT LIKE '%번째%'
-		AND MEMBER_NICKNAME LIKE '%수정함%';
+		AND MEMBER_NICKNAME LIKE '%수정%';
 
 
 
 SELECT * FROM "BOARD";
+SELECT * FROM "MEMBER";
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SELECT COUNT(*) FROM "BOARD_LIKE"
+			 WHERE MEMBER_NO = 21
+			 AND BOARD_NO = 2044;
+			 
+			
+			
+			
+			
+DELETE FROM "BOARD" 
+WHERE BOARD_CODE=4;
+			
+			
+			
+			
