@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>비밀번호 변경</title>
+
+    <link rel="stylesheet" href="/css/member/signup.css">
+
+    <th:block th:replace="~{common/common}"></th:block>
+</head>
+<body>
+    <main> 
+        <th:block th:replace="~{common/header}"></th:block>
+
+        <p>비밀번호 변경</p>
+        <section class="signup-content">
+
+
+            <form action="/member/updatePw" method="POST" name="updatePwForm" id="updatePwForm">
+                
+                <label for="newPw">
+                    <span class="required">*</span> 새 비밀번호
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="password" name="newPw" id="newPw" placeholder="새 비밀번호">
+                </div>
+                <span class="signup-message" id="pwMessage">영어,숫자,특수문자(!,@,#,-,_) 6~20글자 사이로 입력해주세요.</span>
+
+                <label for="newPwCheck">
+                    <span class="required">*</span> 새 비밀번호 확인
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="password" name="newPwCheck" id="newPwCheck" placeholder="새 비밀번호 확인">
+                </div>
+
+                
+                <button id="updateBtn">변경하기</button>
+                
+            </form>
+        </section>
+    </main>
+    
+    <th:block th:replace="~{common/footer}"></th:block>
+    <script src="/js/main.js"></script>
+    <script src="/js/member/updatePw.js"></script>
+
+</body>
+</html>

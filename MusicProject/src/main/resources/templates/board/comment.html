@@ -1,0 +1,62 @@
+<div id="commentArea">
+    
+    <div class="comment-list-area">
+        <h1>댓글</h1>
+        
+        <ul id="commentList">
+            
+
+            <li class="comment-row"
+                th:each="comment : ${board.commentList}"
+                th:object="${comment}"
+                th:classappend="${comment.parentCommentNo} != 0 ? child-comment">
+
+                <th:block th:if="*{commentDelFl} == 'Y'">
+                    삭제된 댓글 입니다.
+                </th:block>
+
+                <th:block th:if="*{commentDelFl} == 'N'">
+                    <p class="comment-writer">
+                        
+                        <img th:unless="*{profileImg}" th:src="#{user.default.image}"> 
+    
+                        <img th:if="*{profileImg}" th:src="*{profileImg}">
+                    
+                        <span th:text="*{memberNickname}">닉네임</span>
+                        <span class="comment-date" th:text="*{commentWriteDate}">댓글 작성일</span>
+                    </p> 
+    
+                    <p class="comment-content" th:text="*{commentContent}">댓글 내용</p>
+    
+                    <!-- 버튼  -->
+                    <div class="comment-btn-area">
+                        <button th:onclick="|showInsertComment(*{commentNo},this)|">답글</button>
+    
+                        <!-- 로그인 회원 == 작성자인 경우-->
+                        <th:block th:if="${session.loginMember != null
+                                           and session.loginMember.memberNo == comment.memberNo}">
+    
+                        <button th:onclick="|showUpdateComment(*{commentNo},this)|">수정</button> 
+                        <button th:onclick="|deleteComment(*{commentNo},this)|">삭제</button>
+    
+                        </th:block>
+    
+                    </div>
+    
+                </th:block>
+
+            </li>
+        </ul>
+
+    </div>
+
+</div>
+
+<!-- 댓글 작성 -->
+<div class="comment-write-area">
+    <textarea id="commentContent"></textarea>
+    <button id="addComment">
+        댓글 <br>
+        등록
+    </button>
+</div>

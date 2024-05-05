@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MMP</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/main.css">
+    <th:block th:replace="~{common/common}"></th:block>
+
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+
+        <!-- banner swiper -->
+        <div class="swiper-container">
+
+            <div class="swiper-wrapper">
+
+                <div class="swiper-slide">
+                    <a href="http://localhost/board/1/1996?cp=1">
+                    
+                        <div class="swiper-text">
+                            <span class="swiper-title">자유</span>
+                            <span class="swiper-content">오랜만에 대량 인증 갑니다</span>
+                        </div>
+                        <img src="/images/main1-2.jpg">
+                    </a>
+                </div>
+
+                <div class="swiper-slide">
+                   <a href="http://localhost/board/1/2035">
+                        <div class="swiper-text">
+                            <span class="swiper-title">국내 힙합</span>
+                            <span class="swiper-content">한국 힙합의 대표적인 곡이 뭐가 있을까요?</span>
+                        </div>
+                        <img src="/images/main2.jpg">
+                   </a>
+                </div>
+
+                <div class="swiper-slide">
+                    <a href="https://www.youtube.com/watch?v=nfWI7h7h7Nc">
+                        <div class="swiper-text">
+                            <span class="swiper-title">인기</span>
+                            <span class="swiper-content">샤이한 효린과 씨스타 뮤비 많이 본 pH-1</span>
+                        </div>
+                        <img src="/images/main3.jpg">
+                    </a>
+                </div>
+
+               
+                <div class="swiper-slide">
+                    <a href="http://localhost/board/1/2148">
+                        <div class="swiper-text">
+                            <span class="swiper-title">자유</span>
+                            <span class="swiper-content">대한민국 보컬리스트 원탑은 누구라고 생각하나요</span>
+                        </div>
+                        <img src="/images/main4.jpg">
+                    </a>
+                </div>
+
+               
+                <div class="swiper-slide">
+                    <a href="http://localhost/board/2/2034">
+                        <div class="swiper-text">
+                            <span class="swiper-title">국외 힙합</span>
+                            <span class="swiper-content">Concrete Boys - 1. POINT ME TO IT (내게 알려줘)</span>
+                        </div>
+                        <img src="/images/main5.jpg">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+
+        <p id="community">COMMUNITY</p>
+
+            <container class="widget">
+                <!-- 미니 게시판 -->
+                <div class="miniBoard">
+                    <p id="post-list">  
+                        <a class="board-link" data-board="domestic" data-board-code="1">국내</a> |
+                        <a class="board-link" data-board="international" data-board-code="2">국외</a> |
+                        <a class="board-link" data-board="free" data-board-code="3">자유</a> |
+                        <a class="board-link" data-board="notice" data-board-code="4">공지</a>
+                    </p>
+
+                    <div id="board-links"></div>
+
+                    <button id="moreView">더 보기</button>
+
+                </div>
+
+                <div class="hotBoard">
+                    <h3>실시간 인기글</h3>
+                    
+                    <div>
+                        <table id="hotBoardTable">
+                            <thead>
+                                <th>장르</th>    
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th><i class="fa-solid fa-heart"></i></th>
+                            </thead>
+
+                            <tbody id="hotBoardList"></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </container>
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script th:inline="javascript">
+        const boardCode = /*[[${boardCode}]]*/ "게시판 번호";
+        const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="/js/main.js"></script>
+
+    
+</body>
+</html>

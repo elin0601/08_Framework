@@ -1,0 +1,433 @@
+/* 회원 페이지 전체를 감싸고 있는 요소 */
+.myPage-content{
+  display: flex;
+  width: 1300px;
+  min-height: 700px;
+  margin: 50px auto;
+}
+
+/* 사이드메뉴 */
+.left-side{
+  width: 25%;
+  border-right: 2px solid #ddd;
+}
+
+.list-group{
+  width: 100%;
+  list-style: none;
+  padding-right: 20px;
+}
+
+.list-group > li{
+  height: 50px;
+  font-size: 18px;
+}
+
+.list-group > li > a{
+  color:black;
+  text-decoration: none;
+
+  margin-top: 20px;
+
+  display: flex;
+  height: 100%;
+
+  justify-content: center;
+  align-items: center;
+
+  border: 1px solid #ddd;
+  border-radius: 24px;
+}
+
+.list-group > li > a:hover{
+  background-color: #ccc;
+  transition-duration: 0.2s;
+}
+
+.list-group > li > a:active{
+  background-color: black;
+  color: white;
+}
+
+
+/* ********************************* */
+/* 마이페이지 공통 */
+.myPage-main{
+  width: 75%;
+  padding: 0 50px;
+}
+
+/* 마이페이지 제목 */
+.myPage-title{
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+/* 마이페이지 부제 */
+.myPage-subject{
+  display: block;
+  margin-bottom: 30px;
+
+  font-size: 14px;
+  letter-spacing: -1px;
+}
+
+/* 마이페이지 행 단위 스타일 지정 */
+.myPage-row{
+  width: 500px;
+  height: 50px;
+  margin-top: 20px;
+
+  display: flex;
+  align-items: center;
+  border-bottom : 2px solid #ddd;
+}
+
+.myPage-row > * {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.myPage-row > label{
+  width: 32%;
+  margin: 0 10px;
+  color: black;
+}
+
+.myPage-row > span{
+  width: 70%;
+  color: black;
+}
+
+.myPage-row > input{
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  font-weight: bold;
+}
+
+.myPage-submit{
+  width: 90%;
+  padding: 10px;
+  margin: 50px 0;
+  
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+
+  border-radius: 24px;
+
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+form[name='myPageFrm']{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.myPage-row:focus-within{ 
+  border-bottom-color: black;
+}
+
+/* 내 정보 수정 */
+
+.info-title{
+  border: none;
+}
+
+.info-title > span {
+  margin: 0 10px;
+}
+
+.info-address{
+  margin: 0;
+}
+
+.info-address > button{
+  width: 30%;
+  height: 70%;
+
+  font-size: 14px;
+  font-weight: normal;
+
+  border-radius: 24px;
+
+  background-color: white;
+  border : 1px solid gray;
+  cursor: pointer;
+}
+
+.main-section{
+  display: flex;
+}
+
+.info-section{
+  width: 60%;
+}
+
+.profile-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  width: 40%;
+}
+
+.profile-image-area{
+  width: 170px;
+  height: 170px;
+
+  border: 2px solid #ccc;
+  border-radius: 50%;
+
+  position: relative;
+
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+#profileImage{
+  height: 100%;
+}
+
+/* 삭제버튼 */
+
+#deleteImage{
+  position: absolute;
+  top: 270px;
+  right: 435px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+
+#deleteImage:active{
+  user-select: none;
+  color: red;
+}
+
+
+/* 이미지 버튼 영역 */
+.profile-btn-area{
+  width: 230px;
+  margin: 20px 0;
+  padding-left: 26px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-btn-area > *{
+  width: 110px;
+  height: 33px;
+  padding: 5px 10px;
+  margin-right: 24px;
+
+  border: 1px solid black;
+  background-color: white;
+  font-size: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+#imageInput{ display: none;}
+
+.profile-btn-area > label{
+  border-radius: 24px;
+}
+
+/* ***********************비밀번호 변경*************************** */
+.myPage-row > input[type='password']{
+  width: 70%;
+} 
+
+/* **********회원 탈퇴 약관********** */
+.secession-terms{
+  width: 500px;
+  height: 300px;
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: auto;
+  /* 내용이 요소를 벗어나는 경우 방향에 맞춰서 자동으로 스크롤 추가 */
+
+  font-family: sans-serif; /* 돋움체 */
+  font-size: 14px;
+}
+
+/* ***********************내가 쓴 글*************************** */
+.write-btn-area > a{
+  width: 110px;
+  height: 35px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  border: 2px solid black;
+  
+  padding: 0 6px;
+  margin-bottom: 10px;
+
+  background-color: white;
+  color: black;
+  border-radius: 24px;
+}
+
+.write-btn-area > a:active{
+  background-color: black;
+  color: white;
+}
+
+.write-board-list{
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.write-board-list > thead{
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+}
+
+.write-board-list > tbody > tr{
+  height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+
+.write-board-list > tbody > tr > td {
+  text-align: center;
+  border-left: 1px solid #ccc;
+}
+
+.write-board-list > tbody > tr > td:first-child{
+  width: 12%;
+}
+
+.write-board-list > tbody > tr > td:nth-child(2){
+  width: 7%;
+}
+
+.write-board-list > tbody > tr > td:nth-child(4){
+  width: 12%;
+}
+
+.write-board-list > tbody > tr > td:last-child{
+  width: 15%;
+}
+
+
+
+.write-board-list > tbody > tr > td > a {
+  text-decoration: none;
+  color: black;
+}
+
+.write-board-list > tbody > tr > td > a:hover{
+  text-decoration: underline;
+  transition-duration: 0.2s;
+}
+
+#listMain > span{
+  margin: 0 auto;
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  display: block;
+  text-align: center;
+}
+
+/* ***** pagination ****** */
+.pagination{
+  list-style: none;
+  display: flex;
+  margin-top: 15px;
+  justify-content: center;
+  padding: 0;
+}
+
+.pagination li{
+  width: 20px;
+  margin: 0 5px;
+  text-align: center;
+}
+
+.pagination a{
+  display: block;
+  text-decoration: none;
+  color: black;
+  width: 100%;
+  height: 100%;
+}
+
+.current{
+  font-weight: bold;
+  background-color: black;
+  border-radius: 50%;
+  color: white !important;
+  letter-spacing: 0 !important;
+}
+
+.write-comment-list{
+  width: 100%;
+  margin-top: 10px;
+  padding: 20px;
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+}
+
+.write-comment-list > thead{
+  width: 100%;
+  height: 40px;
+  background-color: black;
+  color: white;
+  font-size: 15px;
+}
+
+.write-comment-list > tbody > tr{
+  height: 40px;
+  border-bottom: 1px solid #ccc;
+}
+
+.write-comment-list > tbody > tr > td {
+  text-align: center;
+  border-left: 1px solid #ccc;
+}
+
+.write-comment-list > tbody > tr > td:first-child{
+  width: 12%;
+}
+
+.write-comment-list > tbody > tr > td:nth-child(2){
+  width: 12%;
+}
+
+.write-comment-list > tbody > tr > td:nth-child(3){
+  width: 64%;
+}
+
+
+.write-comment-list > tbody > tr > td:last-child{
+  width: 12%;
+}
+
+.write-comment-list > tbody > tr > td > a {
+  text-decoration: none;
+  color: black;
+}
+
+.write-comment-list > tbody > tr > td > a:hover{
+  text-decoration: underline;
+  transition-duration: 0.2s;
+}

@@ -1,0 +1,620 @@
+/* *** header *** */
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    /* border: 1px solid rgb(174, 174, 174); */
+}
+
+body { 
+    overflow-y: auto !important;
+    overflow-x: hidden;
+}
+
+header {
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+}
+
+#firstSection{width: 20%;}
+#secondSection{width: 60%;}
+#thirdSection{width: 20%;}
+
+/* 로고 */
+#firstSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 20px;
+   
+}
+
+/* 사진 넣고 다시 확인 */
+#homeLogo {
+    margin-left: 30px;
+    width: 120px;
+}
+
+#secondSection{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.search-area{
+    width: 500px;
+}
+
+.search-area fieldset {
+    border: 1px solid rgba(128, 125, 125, 0.192);
+    padding: 2px;
+    border-radius: 3px;
+    display: flex;
+    height: 40px;
+}
+ 
+/* 검색창(input) */
+#search{
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 10px;
+    width: 450px; /* 검색 버튼 오른쪽으로 보냄 */
+    
+}
+
+#searchBtn {
+    width: 8%;
+    cursor: pointer;
+    border: none;
+    font-size: 1.1em;
+    background-color: white;
+    color: rgb(41, 41, 41);
+}
+
+/*  */
+
+/* ** navigator(게시판 종류 나열) ** */
+nav {
+    height: 50px;
+    border-bottom: 1px solid black;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    background-color: white;
+}
+
+nav>ul {
+    display: flex;
+    list-style: none;
+    height: 40px;
+    padding-left: 100px;
+}
+
+/* 게시판 */
+nav li {
+    flex: 0 1 100px;
+}
+
+nav a {
+    display: block;
+    width: 80px;
+    text-decoration: none;
+    color: #1c1c1c;
+    font-weight: bold;
+    padding: 10px;
+    justify-content: center;
+    text-align: center;
+    transition-duration: 0.1s; 
+    height: 100%;
+    font-size: 18px;
+}
+
+nav a:hover {
+    color: red;
+    text-decoration: none;
+    transition-duration: 0.1s; 
+}
+
+header {
+    position: relative;
+}
+
+.header-menu {
+    position: absolute;
+    top: 20px;
+}
+
+.login-area {
+    display: flex;
+    align-items: center;
+    padding: 40px 10px;
+
+}
+
+#memberProfile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+}
+
+#menuToggle {
+    display: none;
+}
+
+
+/* 
+    MYPAGE/LOGOUT 일단 안보이게
+    로그인 하면 보이게 
+*/
+header {
+    position: relative;
+}
+
+#menuToggle + div {
+    display: none;
+}
+
+#menuToggle:checked + div {
+    display: block;
+}
+
+.header-menu{
+    position: absolute;
+    width: 100px;
+    height: 60px;
+    margin-top: 65px;
+    margin-left: 15px;
+    z-index: 1001;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    border: 1px solid #ccc;
+}
+
+
+.header-menu > a{
+    display: flex;
+    flex-direction: row;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    color: #1c1c1c;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.header-menu > a:hover{
+    color: red;
+}
+
+
+/* *** 로그인 팝업 레이어 *** */
+#popupLayer{
+    width: 400px;
+    height: 300px;
+    border-radius: 8px;
+    background-color: #1c1c1c;
+    position: relative;
+}
+
+#loginPw {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    outline: none;
+}
+
+
+#p {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+    font-weight: bold;
+    
+    font-size: 17px;
+    margin: 0;
+}
+
+/* ID/PW input 태그 */
+#loginPw > input {
+    outline: none;
+    border: none;
+    width: 243px;
+    height: 35px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+/* x 버튼 */
+#popupClose {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    padding-top: 4px; /* x 중앙에 위치 */
+    top: 25px;
+    right: 25px;
+    font-size: 20px;
+    user-select: none;
+    cursor: pointer;
+
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    background-color: #5E5E5E;
+    color: white;
+    border-radius: 3px;
+}
+
+label {
+    margin-top: 5px;
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    padding-left: 10px;
+    cursor: pointer;
+}
+
+.save-id-area {
+    margin: 80px;
+    color: white;
+}
+
+#loginForm {
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100; */
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 1001;
+    background-color: #000c;
+    top: 0px;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    margin-left: 78px;
+
+    width: 243px;
+    height: 35px;
+    border-radius: 5px;
+    border: none;
+
+    font-size: 16px;
+    font-weight: bold;
+    background-color: #7F7F7F;
+    color: white;
+}
+
+.signup-area {
+    display: flex;
+    justify-content:center;
+    
+}
+
+.signup-area > a {
+    color: #de4946;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 0px;
+    text-decoration: none;
+    padding: 10px;
+}
+
+.top-menu > a {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 40px;
+    color: #404040;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.popup-hidden{
+    display: none !important;
+}
+
+
+/* ****** banner swiper ****** */
+:root {
+    --swiper-theme-color: #000
+}
+
+.swiper-container {
+    width: 200%;
+    height: 100%;
+    margin-bottom: 40px;
+    /* overflow: hidden; */
+}
+
+.swiper-pagination {
+    position: relative;
+    left: 0;
+    right: 0;
+}
+
+.swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+.swiper-slide img {
+    display: inline-block;
+    width: 100%;
+    height: 110%;
+    object-fit: cover;
+    max-height: 1290px;
+}
+
+
+/* ****** 미니들 ****** */
+
+#community {
+    margin: 30px;
+    font-size: 20px;
+    text-align: center;
+}
+
+.widget {
+    display: flex;
+    margin-bottom: 130px !important;
+    height: 450px;
+    justify-content: center;
+}
+
+.miniBoard {
+    position: relative;
+    padding: 26px;
+    margin: 30px;
+    width: 600px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+#post-list {
+    font-size: 18px;
+    font-weight: lighter;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 13px;
+    margin: 20px;
+}
+
+#post-list a {
+    text-decoration: none;
+    color: black;
+}
+
+#post-list a:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+
+#board-links {
+    margin: 10px;
+}
+
+/* 미니 카테고리 */
+#board-links tr td {
+    word-wrap: break-word;
+    margin: 0 10px;
+    cursor: default;
+    min-width: 40px;
+}
+
+
+#board-links tr td a {
+    display: grid;
+    cursor: pointer;
+    margin: 8px;
+    color: black;
+    text-decoration: none;
+}
+
+#board-links tr td a:hover {
+    text-decoration: underline;
+}
+
+.widgetContent ul li {
+    list-style: none;
+}
+
+#moreView {
+    position: absolute;
+    display: block;
+    width: 90%;
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid gray;
+    background-color: white;
+    margin-bottom: 0;
+}
+
+#moreView:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.hotBoard {
+    padding: 26px;
+    margin: 30px;
+    width: 600px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.hotBoard h3 {
+    font-size: 18px;
+    font-weight: lighter;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 13px;
+    margin: 20px;
+}
+
+#hotBoardTable{
+    width: 97%;
+    min-height: 360px;
+    margin: 20px;
+}
+
+#hotBoardTable > thead > th{
+    background-color: black;
+    color: white;
+    text-align: center;
+}
+
+#hotBoardList {
+    font-weight: lighter;
+    text-align: center;
+    margin: 10px;
+}
+
+#hotBoardList > tr {
+    margin-top: 10px;
+}
+
+#hotBoardList > tr > td {
+    word-wrap: break-word;
+    margin: 0 10px;
+}
+
+#hotBoardList > tr > td > a {
+    color: black;
+    text-decoration: none;
+}
+
+#hotBoardList > tr > td > a:hover{
+    text-decoration: underline;
+}
+
+
+
+
+/* ****** footer ****** */
+
+footer {
+    box-sizing: border-box;
+    background-color: black;
+    color: white;
+    padding: 3rem 0 0 0;
+    display: flex;
+    justify-content: center; 
+    margin-top: 40px;
+    align-items: center;
+    flex-direction: column;
+}
+
+.footer-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+.footer-smallTitle {
+    font-size: 14px;
+    margin-bottom: 30px;
+    letter-spacing: 7px;
+}
+
+article {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0;
+}
+
+article a {
+    font-weight: 900;
+    text-decoration: none;
+    color: white;
+}
+
+article span {
+    padding: 0 20px;
+}
+
+.footer-info {
+    font-size: 0.8rem;
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-info span {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.swiper-container{
+    width: 100%;
+    padding: 0;
+    max-width: 1920px;
+}
+
+.swiper-text{
+    position: absolute;
+    left: 300px;
+    bottom: 70px;
+}
+
+
+.swiper-title{
+    display: flex;
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
+}
+
+.swiper-content{
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+
+#board-links {
+    padding-left: 10px;
+}

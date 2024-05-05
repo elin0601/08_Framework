@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID/PW 찾기</title>
+
+    <th:block th:replace="~{common/common}"></th:block>
+
+    <link rel="stylesheet" href="/css/member/idpw.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+
+
+        <section class="idpw-content">
+            <section class="side-menu">
+    
+                <ul class="list-group">
+                    <li>
+                        <a href="/member/login">로그인 하기</a>
+                    </li>
+        
+                    <li>
+                        <a href="/member/signup">회원가입 하기</a>
+                    </li>
+        
+                    <li>
+                        <a href="/member/idpw">ID(Email)/PW 찾기</a>
+                    </li>
+                </ul>
+
+            </section>
+    
+            <section class="menu-content">
+    
+                <h3 class="menu-title">아이디(이메일) 찾기</h3>
+    
+                <form action="/member/findId" method="POST" name="idForm" id="idForm">
+    
+                    <div class="menu-content-row">
+                        <label>닉네임</label>
+                        <input type="text" name="memberNickname" id="memberNickname" placeholder="현재 닉네임을 입력해 주세요.">
+                    </div>
+    
+                    <div class="menu-content-row">
+                        <label>전화번호</label>
+                        <input type="text" name="memberTel" id="memberTel" placeholder="전화번호를 입력해 주세요.">
+                    </div>
+    
+                    <button id="idBtn">찾기</button>
+    
+                </form>
+
+    
+
+                <h3 class="menu-title">비밀번호 찾기</h3>
+    
+                <form action="/member/findPw" method="POST" name="pwForm" id="pwForm">
+    
+                    <div class="menu-content-row">
+                        <label>닉네임</label>
+                        <input type="text" class="inputs" name="memberNickname" id="memberNickname" placeholder="현재 닉네임을 입력해 주세요.">
+                    </div>
+    
+                    <div class="menu-content-row">
+                        <label>전화번호</label>
+                        <input type="text" class="inputs" name="memberTel" id="memberTel" placeholder="전화번호를 입력해 주세요.">
+                    </div>
+                    
+                    <div class="menu-content-row">
+                        <label>ID(email)</label>
+                        <input type="text" class="inputs" name="memberEmail" id="memberEmail" placeholder="이메일을 입력해 주세요.">
+
+                        <button id="sendAuthKeyBtn" type="button">인증번호 받기</button>
+                    </div>
+
+                    <div class="menu-content-row">
+                        <label>인증번호</label>
+                        <input type="text" name="authKey" id="authKey" placeholder="인증번호 6글자를 입력해 주세요." disabled>
+
+                        <button id="checkAuthKeyBtn" type="button">인증하기</button>
+                    </div>
+                    <span id="authKeyMessage"></span>
+                    
+                    <button id="pwBtn">찾기</button>
+    
+                </form>
+
+    
+            </section>
+        </section>
+
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block>
+    <script src="/js/member/idpw.js"></script>
+    <script src="/js/main.js"></script>
+    
+</body>
+</html>

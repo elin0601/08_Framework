@@ -1,0 +1,8 @@
+<category>
+    <button class="category-btn"
+        th:each="category : ${categoryList}"
+        th:text="${category.categoryName}"
+        th:data-category-no="${category.categoryNo}">
+    </button>
+</category>
+

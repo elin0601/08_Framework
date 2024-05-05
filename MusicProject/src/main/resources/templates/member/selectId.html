@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ID/PW 찾기</title>
+
+    <th:block th:replace="~{common/common}"></th:block>
+
+    <link rel="stylesheet" href="/css/member/idpw.css">
+</head>
+<body>
+    <main>
+        <th:block th:replace="~{common/header}"></th:block>
+
+       <section class="finId-content">
+
+            <div id="main">
+                <section class="menu-header">
+    
+                    <div class="find-header">
+                        <h1>회원님의 아이디(이메일)을 확인해 주세요.</h1>
+                    </div>
+                    
+                    <div class="find-content">
+                        <th:block th:text="|'${memberNickname}' 님의 아이디(이메일)는|"></th:block>
+                        <th:block th:text="|${id} 입니다.|"></th:block>
+                    </div>
+        
+                </section>
+    
+                <section class="find-footer">
+                    <ul class="lists">
+                        <li>
+                            <a href="/member/login">로그인 하기</a>
+                        </li>
+            
+                        <li>
+                            <a href="/member/idpw">ID(Email)/PW 찾기</a>
+                        </li>
+                    </ul>
+                </section>
+            </div>
+
+        </section>
+
+    </main>
+
+    <th:block th:replace="~{common/footer}"></th:block>
+    <script src="/js/member/idpw.js"></script>
+    <script src="/js/main.js"></script>
+    
+</body>
+</html>

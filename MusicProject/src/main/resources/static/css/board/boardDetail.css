@@ -1,0 +1,100 @@
+.board-detail {
+    width: 1000px;
+    min-height: 700px;
+    border: 1px solid black;
+    margin: 50px auto;
+    padding: 20px;
+}
+
+.category {
+    font-weight: bold;
+    margin: 0 5px;
+}
+
+.board-title {
+    margin: 0;
+    padding-bottom: 20px;
+    font-size: 2em;
+}
+
+.board-writer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.board-writer span {
+    font-size: 14px;
+    color: rgb(60, 60, 60);
+    margin: 0 5px;
+}
+
+.boardImg{
+    width: 60%;
+    float: left;
+    text-align: center;
+}
+
+.boardImg img{
+    max-width: 90%;
+    max-height: 90%;
+}
+
+.boardImg a{
+    display: block;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+
+
+.board-content {
+    clear: both;
+    min-height: 400px;
+    padding: 30px 0;
+    margin: 20px 0 30px;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+    font-size: 16px;
+    white-space: pre-wrap;
+    overflow: hidden;
+}
+
+.board-btn-area {
+    width: 80px;
+    font-weight: bold;
+    border: 0;
+    background-color: rgb(60, 60, 60);
+    color: white;
+    cursor: pointer;
+    text-align: right;
+}
+
+.board-btn-area button {
+    width: 80px;
+    height: 30px;
+    font-weight: bold;
+    border: 0;
+    background-color: rgb(60, 60, 60);
+    color: white;
+    cursor: pointer;
+}
+
+.board-btn-area button:hover {
+    background-color: rgb(192, 190, 190);
+    color: black;
+}
+
+.like-area {
+    margin-left: 30px;
+}
+
+#boardLike {
+    font-size: 1.5em;
+    color: red;
+    cursor: pointer;
+}

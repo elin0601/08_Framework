@@ -1,0 +1,247 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* content 부분 감싸고 있는 요소 */
+.idpw-content {
+    display: flex;
+    width: auto;
+    min-height: 700px;
+    margin: 50px 100px;
+}
+
+/* 사이드 메뉴 */
+.side-menu{
+    width: 30%;
+    border-right: 1px solid #919191;
+}
+
+.list-group {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    list-style: none;
+    width: 100%;
+
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+.list-group>li {
+    height: 50px;
+    font-size: 14px;
+}
+
+.list-group>li>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 200px;
+
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+
+    border: 1px solid #404040;
+    border-radius: 30px;
+}
+
+.list-group>li>a:hover{
+    color: white;
+    background-color: #404040;
+}
+
+/* id/pw 찾기 부분 */
+.menu-content {
+    width: 60%;
+    padding: 0 50px;
+}
+
+#idForm {
+    margin-bottom: 100px;
+    padding: 5px;
+}
+
+#pwForm {
+    padding: 5px;
+}
+
+.menu-title {
+    color: #303030;
+    margin-bottom: 40px;
+}
+
+.menu-content-row {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #727272;
+
+    width: 500px;
+    height: 60px;
+    padding-top: 10px;
+}
+
+.menu-content-row > *{
+    font-size: 14px;
+    font-weight: bold;
+
+}
+
+.menu-content-row >label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    color: #303030;
+}
+
+.menu-content-row>input {
+    width: 100%;
+    height: 100%;
+    
+    border: none;
+    outline: none;
+    user-select: none;
+}
+
+#idBtn, #pwBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 65px;
+    height: 30px;
+    padding: 5px;
+
+    font-weight: bold;
+    border: none;
+
+    background-color: #303030;
+    color: white;
+    cursor: pointer;
+
+    border-radius: 20px;
+
+    margin: 40px;
+    margin-left: 440px;
+}
+
+#idBtn:active {
+    transform: scale(0.95);
+}
+
+#pwBtn:active {
+    transform: scale(0.95);
+}
+
+#checkAuthKeyBtn, #sendAuthKeyBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    font-size: 12px;
+    font-weight: bold;
+
+    width: 140px;
+    height: 30px;
+
+    border: 1px solid #303030;
+    border-radius: 30px;
+    background-color: white;
+    color: #303030;
+    cursor: pointer;
+}
+
+#checkAuthKeyBtn:hover{
+    background-color: #303030;
+    color: white;
+}
+
+#sendAuthKeyBtn:hover{
+    background-color: #303030;
+    color: white;
+}
+
+.confirm {color: green;}
+.error {color: red;}
+
+.finId-content{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+    width: auto;
+    height: 700px;
+    margin: 50px 100px; 
+}
+
+.menu-header{
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.find-header>h1{
+    font-size: 25px;
+    font-weight: bold;
+    color: #303030;
+}
+
+.find-content{
+    font-size: 16px;
+    font-weight: bold;
+    color: #303030;
+    margin: 30px 0;
+}
+
+.find-footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lists{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+.lists>li{
+    height: 50px;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.lists>li>a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 150px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #404040;
+    border-radius: 30px;
+}
+
+.lists>li>a:hover{
+    color: white;
+    background-color: #404040;
+}
+
+#main{
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    flex-direction: column;
+    width: 600px;
+    height: 250px;
+}
+

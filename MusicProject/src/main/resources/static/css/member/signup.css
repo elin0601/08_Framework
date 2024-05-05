@@ -1,0 +1,179 @@
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    user-select: none;
+}
+
+.signup-content {
+    display: flex;
+    justify-content: center;
+    width: 700px;
+    margin: auto;
+
+    border: 1px solid #cecece;
+    border-radius: 10px;
+}
+
+p {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    margin-right: 500px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #404040;
+}
+
+.signup-info-title>label {
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 20px 0px 0px;
+}
+
+.required {
+    color: red;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+.secession-terms {
+    width: 500px;
+    height: 250px;
+    border: 1px solid #b1b1b1;
+
+    overflow: auto;
+    /* 내용이 요소를 벗어나는 경우 방향에 맞춰서 자동으로 스크롤 추가 */
+
+    font-family: sans-serif;
+    /* 돋움체 */
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+
+#signupForm > label {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+#updatePwForm > label {
+    display: block;
+    margin-top: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
+.signup-input-area {
+    width: 500px;
+    height: 50px;
+
+    margin-bottom: 5px;
+    border-bottom: 1px solid #404040;
+
+    display: flex;
+    align-items: center;
+}
+
+.signup-input-area>input {
+    border: none;
+    outline: none;
+
+    width: 60%;
+    height: 100%;
+
+    font-size: 13px;
+    font-weight: bold;
+    padding: 15px 10px 5px;
+}
+
+.signup-input-area>button {
+    width: 25%;
+    height: 60%;
+    background-color: #444444;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition-duration: 0.1s; 
+}
+
+.signup-message{
+    font-size: 13px;
+    letter-spacing: -1px; /* 글자 간격 */
+}
+
+.confirm {color: green;}
+.error {color: red;}
+
+#signupBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 50%;
+    height: 40px;
+
+    background-color: white;
+    border: 1px solid #404040;
+    border-radius: 40px;
+
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#signupBtn:hover {
+    background-color: #404040;
+    color: white;
+}
+
+#signupBtn:active {
+    transform: scale(0.95);
+}
+
+label[for="agree"] {
+    font-size: 14px;
+    font-weight: bold;
+    padding: 3px;
+}
+
+#updateBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 50%;
+    height: 40px;
+
+    background-color: white;
+    border: 1px solid #404040;
+    border-radius: 40px;
+
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#updateBtn:hover {
+    background-color: #404040;
+    color: white;
+}
+
+#updateBtn:active {
+    transform: scale(0.95);
+}

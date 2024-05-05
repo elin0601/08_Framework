@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <th:block th:replace="~{common/common}"></th:block>
+
+  <link rel="stylesheet" href="/css/myPage/myPage.css">
+  <title>MY PAGE</title>
+</head>
+<body>
+  
+  <main>
+    <th:block th:replace="~{common/header}"></th:block>
+
+    <section class="myPage-content">
+
+      <th:block th:replace="~{myPage/side}"></th:block>
+
+      <section class="myPage-main">
+        <h1 class="myPage-title">내 게시글 / 내 댓글</h1>
+
+        <div class="write-btn-area">
+          <a href="/myPage/write/myBoardList"> 내 게시글</a>
+          <a href="/myPage/write/myCommentList"> 내 댓글</a>
+        </div>
+
+        
+        <div id="listMain">
+          <table class="write-board-list">
+            <thead>
+              <tr>
+                <th>번호</th>
+                <th>게시판</th>
+                <th>내용</th>
+                <th>조회수</th>
+                <th>작성일</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <!-- 게시글 존재하지 않을 때 -->
+              <th:block th:if="${#lists.isEmpty(boardList)}">
+                  <tr>
+                      <th colspan="7">작성한 게시글이 존재하지 않습니다</th>
+                  </tr>
+              </th:block> 
+
+              <!-- 게시글 존재할 때 -->
+              <th:block th:unless="${#lists.isEmpty(boardList)}">
+
+                  <tr th:each="board : ${boardList}" th:object="${board}">
+                  
+                    <td th:text="*{boardNo}">게시글 번호</td>
+
+                    <td th:text="*{boardName}">게시판</td>
+                    <td>
+                        <a  th:href="@{/board/{boardCode}/{boardNo}(boardCode=*{boardCode}, boardNo=*{boardNo})}"
+                            th:text="*{boardTitle}">게시글 제목</a>
+                    </td>
+
+                    <td th:text="*{readCount}">조회수</td>
+                    
+                    <td th:text="*{boardWriteDate}">작성일</td>
+                  </tr>
+              </th:block>
+            </tbody>
+            
+          </table>
+        </div>
+        
+        <div class="pagination-area">
+
+          <!-- 목록 조회 -->
+          <ul class="pagination" th:unless="${param.key}" th:object="${pagination}">
+
+            <li><a th:href="@{/myPage/write/myBoardList(cp=1)}">&lt;&lt;</a></li>
+
+            <li><a th:href="@{/myPage/write/myBoardList(cp=*{prevPage})}">&lt;</a></li>
+
+            <th:block th:each="i : *{#numbers.sequence(startPage, endPage)}">
+
+                <li th:if="${i} == *{currentPage}">
+                    <a class="current" th:text="${i}">현재 페이지</a>
+                </li>
+
+                <li th:unless="${i} == *{currentPage}">
+                    <a th:href="@{/myPage/write/myBoardList(cp=${i})}" th:text="${i}">
+                        이동할 페이지
+                    </a>
+                </li>
+            </th:block>
+            
+            <li><a th:href="@{/myPage/write/myBoardList(cp=*{nextPage})}">&gt;</a></li>
+            
+            <li><a th:href="@{/myPage/write/myBoardList(cp=*{maxPage})}">&gt;&gt;</a></li>
+
+          </ul>
+        </div>
+      </section>
+    </section>
+
+  </main>
+
+  <th:block th:replace="~{common/footer}"></th:block>
+
+  <script th:inline="javascript">
+    const loginMemberNo = /*[[${session.loginMember.memberNo}]]*/ "로그인한 회원 번호";
+    const boardCode = /*[[${boardCode}]]*/ "게시글 코드";
+    const boardNo = /*[[${boardNo}]]*/ "게시글 번호";
+  </script>
+
+  <script src="/js/myPage/myPage.js"></script>
+  <script src="/js/main.js"></script>
+</body>
+</html>

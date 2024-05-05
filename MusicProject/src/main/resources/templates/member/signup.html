@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+
+    <link rel="stylesheet" href="/css/member/signup.css">
+
+    <th:block th:replace="~{common/common}"></th:block>
+</head>
+<body>
+    <main> 
+        <th:block th:replace="~{common/header}"></th:block>
+
+        <p>회원가입</p>
+        <section class="signup-content">
+
+
+            <form action="#" method="POST" name="signupForm" id="signupForm">
+
+                <!-- 약관 동의 -->
+                <div class="signup-info-title">
+                    <label>
+                        <span class="required">*</span>
+                        회원 가입 약관(필수)
+                    </label>
+
+                </div>
+
+<pre class="secession-terms">
+제1조
+이 약관은 샘플 약관입니다.
+
+① 약관 내용 1
+
+② 약관 내용 2
+
+③ 약관 내용 3
+
+④ 약관 내용 4
+
+
+제2조
+이 약관은 샘플 약관입니다.
+
+① 약관 내용 1
+
+② 약관 내용 2
+
+③ 약관 내용 3
+
+④ 약관 내용 4
+
+</pre>
+
+                <div>
+                    <input type="checkbox" name="agree" id="agree">
+                    <label for="agree">위 약관에 동의합니다.</label>
+                </div>
+
+                <label>
+                    <span class="required">*</span> : 필수 항목
+                </label>
+
+                <label for="memberEmail">
+                    <span class="required">*</span>아이디(이메일)
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="text" name="memberEmail" id="memberEmail" autocomplete="off" placeholder="아이디(이메일)">
+                    
+                    <button id="sendAuthKeyBtn" type="button">인증번호 받기</button>
+                </div>
+                <span class="signup-message" id="emailMessage">인증번호를 받을 수 있는 이메일을 입력해 주세요.</span>
+
+
+                <label for="emailCheck">
+                    <span class="required">*</span>인증번호
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="text" name="authKey" id="authKey" placeholder="인증번호 입력" disabled>
+
+                    <button id="checkAuthKeyBtn" type="button">인증하기</button>
+                </div>
+                <span class="signup-message" id="authKeyMessage"></span> <!-- 인증 번호 일치 X -->
+
+                
+                <label for="memberPw">
+                    <span class="required">*</span> 비밀번호
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="password" name="memberPw" id="memberPw" placeholder="비밀번호">
+                </div>
+                <span class="signup-message" id="pwMessage">영어,숫자,특수문자(!,@,#,-,_) 6~20글자 사이로 입력해주세요.</span>
+
+                <label for="memberPwCheck">
+                    <span class="required">*</span> 비밀번호 확인
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="password" name="memberPwCheck" id="memberPwCheck" placeholder="비밀번호 확인">
+                </div>
+
+
+                <label for="memberNickname">
+                    <span class="required">*</span> 닉네임
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="text" name="memberNickname" id="memberNickname" placeholder="10글자 이내로 작성해 주세요.">
+                </div>
+                <span class="signup-message" id="nickMessage">한글,영어,숫자로만 2~10글자</span>
+
+                <label for="memberTel">
+                    <span class="required">*</span>전화번호
+                </label>
+
+                <div class="signup-input-area">
+                    <input type="text" name="memberTel" id="memberTel" placeholder="(- 없이 숫자만 입력)" maxlength="11">
+                </div>
+                <span class="signup-message" id="telMessage">전화번호를 입력해주세요.(- 제외)</span>
+
+                <label for="memberAddress">주소</label>
+                <div class="signup-input-area">
+                    <input type="text" name="memberAddress" id="memberAddress" placeholder="주소">
+
+                    <button type="button" id="searchAddress">검색</button>
+                </div>
+                
+                <button id="signupBtn">가입</button>
+                
+            </form>
+        </section>
+    </main>
+    
+    <th:block th:replace="~{common/footer}"></th:block>
+
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="/js/member/signup.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>

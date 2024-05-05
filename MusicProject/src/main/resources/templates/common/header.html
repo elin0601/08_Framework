@@ -1,0 +1,111 @@
+<header>
+    <section id="firstSection">
+        <a href="/">
+            <img src="/images/logo2.jpg" alt="메인 로고" id="homeLogo">
+        </a>
+    </section>
+
+    <section id="secondSection">
+        <article class="search-area">
+            <form th:action="@{/board/search}" method="GET">
+                <!-- {boardCode:[0-9]+}/category/{categoryNo:[0-9]+} -->
+                <fieldset>
+                    
+                    <input type="text" id="search" name="keyword" autocomplete="off" th:value="${keyword}">
+                    <!-- placeholder="검색어를 입력해 주세요." -->
+
+                    <button id="searchBtn" class="fa-solid fa-magnifying-glass"></button>
+                </fieldset>
+            </form>
+        </article>
+    </section>
+
+    <!-- 구분용 -->
+    <section id="thirdSection">
+    
+        <!-- 마이 페이지, 로그인 드롭다운 -->
+
+        <div class="top-menu">
+
+            <!-- <h3>빠른 로그인</h3>
+            <button class="quick-login">ijisu8022@gmail.com</button> -->
+
+            <!-- 로그인 X (아이콘 클릭하면 로그인 페이지로 이동 예정) -->
+    
+            <th:block th:if="${session.loginMember == null}">
+                <a class="fa-solid fa-user" id="loginIcon"></a>
+            </th:block>
+            
+            <!-- 로그인 O (아이콘 클릭시 마이 페이지/로그아웃 드롭박스 예정)  -->
+            <th:block th:if="${session.loginMember != null}">
+            
+                <article class="login-area">
+                    <a href="/myPage/profile">
+                        <img th:with="user=#{user.default.image}" th:src="${session.loginMember.profileImg ?: user }"
+                            id="memberProfile">
+                    </a>
+
+                    <label for="menuToggle" class="member">
+                        <!-- <i class="fa-solid fa-user"></i> -->
+                        [[${session.loginMember?.memberNickname}]]
+                    </label>
+                
+                </article>
+
+                <input type="checkbox" id="menuToggle">
+            
+                <div class="header-menu">
+            
+                    <a href="/myPage/profile">MYPAGE</a>
+            
+                    <a href="/member/logout">LOGOUT</a>
+                </div>
+            </th:block>
+
+        </div>
+    </section>
+
+
+</header>
+
+<!-- 로그인 팝업 -->
+
+<form action="/member/login" method="POST" id="loginForm" class="popup-hidden">
+
+    <section id="popupLayer">
+
+        <p id="p">로그인</p>
+        <span id="popupClose" class="fa-solid fa-xmark"></span> <!-- x버튼 -->
+
+        <section id="loginPw">
+            <input type="text" name="memberEmail" placeholder="아이디(이메일)" id="idInput">
+            <input type="password" name="memberPw" placeholder="비밀번호" id="pwInput">
+        </section>
+
+        <label class="save-id-area">
+            <input type="checkbox" name="saveId" id="saveId"> 아이디 저장
+        </label>
+
+        <section>
+            <button id="loginBtn">로그인</button>
+        </section>
+
+        <article class="signup-area">
+            <a href="/member/idpw">ID/PW 찾기</a>
+            <a href="/member/signup">회원가입하러 가기</a>
+        </article>
+    </section>
+
+</form>
+
+<!-- navigator(게시판 종류 나열) -->
+<nav>
+    <ul>
+        <th:block th:each="boardType : ${application.boardTypeList}">
+            <li>
+                <a th:href="@{/board/{boardCode}(boardCode=${boardType.boardCode})}"
+                   th:text="${boardType.boardName}">게시판이름</a>
+            </li>
+        </th:block>
+    </ul>
+</nav>

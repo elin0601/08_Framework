@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${boardName}">게시판 이름</title>
+
+  <th:block th:replace="~{common/common}"></th:block>
+
+  <link rel="stylesheet" href="/css/board/boardWrite.css">
+</head>
+<body>
+  
+  <th:block th:replace="~{common/header}"></th:block>
+  <main>
+
+    <form th:action="@{insert}" method="POST" class="board-write" id="boardWrite" enctype="multipart/form-data">
+
+      <h1 class="board-title" th:text="${boardName}">게시판</h1>
+
+      <div class="input-area">
+        
+        <th:block th:if="${boardCode == 1}">
+          <select name="categoryNo" id="selectCategory" >
+            <option value="0">카테고리 입력</option>
+            <option value="28">힙합</option>
+            <option value="29">발라드</option>
+            <option value="30">댄스</option>
+            <option value="31">재즈</option>
+            <option value="32">팝</option>
+            <option value="33">록</option>
+            <option value="34">EDM</option>
+            <option value="35">인디</option>
+            <option value="36">R&B</option>
+          </select>
+        </th:block>
+
+        <th:block th:if="${boardCode == 2}">
+          <select name="categoryNo" id="selectCategory">
+            <option value="0">카테고리 입력</option>
+            <option value="21">힙합</option>
+            <option value="22">댄스</option>
+            <option value="23">재즈</option>
+            <option value="24">팝</option>
+            <option value="25">록</option>
+            <option value="26">EDM</option>
+            <option value="27">R&B</option>
+          </select>
+        </th:block>
+
+        <th:block th:if="${boardCode == 3}">
+          <select name="categoryNo" id="selectCategory">
+            <option value="37">자유</option>
+          </select>
+        </th:block>
+
+        <th:block th:if="${boardCode == 4}">
+          <select name="categoryNo" id="selectCategory">
+            <option value="38">공지</option>
+          </select>
+        </th:block>
+
+        <input type="text" name="boardTitle" placeholder="제목을 입력해주세요.">
+      </div>
+
+      <h2 class="content">내용</h2>
+
+      <div class="board-content">
+        <textarea name="boardContent"></textarea>
+      </div>
+
+      <h2 class="image">이미지</h2>
+
+      <div class="img-box">
+
+        <div class="boardImg">
+            <label for="img1">
+                <img class="preview" src="">
+            </label>
+            <input type="file" name="images" class="inputImage" id="img1" accept="image/*">
+            <span class="delete-image">&times;</span>
+        </div>
+
+        <div class="boardImg">
+            <label for="img2">
+                <img class="preview" src="">
+            </label>
+            <input type="file" name="images" class="inputImage" id="img2" accept="image/*">
+            <span class="delete-image">&times;</span>
+        </div>
+
+        <div class="boardImg">
+            <label for="img3">
+                <img class="preview" src="">
+            </label>
+            <input type="file" name="images" class="inputImage" id="img3" accept="image/*">
+            <span class="delete-image">&times;</span>
+        </div>
+
+        <div class="boardImg">
+            <label for="img4">
+                <img class="preview" src="">
+            </label>
+            <input type="file" name="images" class="inputImage" id="img4" accept="image/*">
+            <span class="delete-image">&times;</span>
+        </div>
+    </div>
+      
+
+      <div class="insert-btn-area">
+        <button type="submit" id="insertBoard">등록</button>
+      </div>
+
+    </form>
+
+
+
+
+  </main>
+
+  <th:block th:replace="~{common/footer}"></th:block>
+
+  <script>
+    const boardCode = /*[[${boardCode}]]*/ "게시판 코드 번호";
+  </script>
+
+  <script src="/js/board/boardWrite.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.kh.music.myPage.model.mapper.MyPageMapper">
+
+	<select id="selectPw">
+		SELECT MEMBER_PW
+		FROM "MEMBER"
+		WHERE MEMBER_NO = #{memberNo}
+	</select>
+	
+	<update id="changePw">
+		UPDATE "MEMBER" SET
+		MEMBER_PW = #{newPw}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="secession">
+		UPDATE "MEMBER" SET
+		MEMBER_DEL_FL = 'Y'
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="updateInfo">
+		UPDATE "MEMBER" SET
+		MEMBER_NICKNAME = #{memberNickname},
+		MEMBER_TEL = #{memberTel},
+		MEMBER_ADDRESS = #{memberAddress}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<update id="updateProfile">
+		UPDATE "MEMBER" SET
+		PROFILE_IMG = #{profileImg}
+		WHERE MEMBER_NO = #{memberNo}
+	</update>
+	
+	<select id="getListCount">
+		SELECT COUNT(*)
+		FROM "BOARD"
+		WHERE BOARD_DEL_FL = 'N'
+		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="selectMyBoard">
+		SELECT BOARD_NO, BOARD_NAME, BOARD_TITLE, READ_COUNT, 
+		 	TO_CHAR(BOARD_WRITE_DATE, 'YYYY-MM-DD') BOARD_WRITE_DATE, BOARD_CODE
+		FROM "BOARD"
+		JOIN "BOARD_TYPE" USING (BOARD_CODE)
+		WHERE MEMBER_NO = #{memberNo}
+		AND BOARD_DEL_FL = 'N'
+		ORDER BY BOARD_WRITE_DATE DESC
+	</select>
+	
+	<select id="getCommentCount">
+		SELECT COUNT(*)
+		FROM "COMMENT"
+		WHERE COMMENT_DEL_FL = 'N'
+		AND MEMBER_NO = #{memberNo}
+	</select>
+	
+	<select id="selectMyComment">
+		SELECT COMMENT_NO, BOARD_NO, COMMENT_CONTENT,  
+		 	TO_CHAR(COMMENT_WRITE_DATE, 'YYYY-MM-DD') COMMENT_WRITE_DATE
+		FROM "COMMENT"
+		WHERE MEMBER_NO = #{memberNo}
+		AND COMMENT_DEL_FL = 'N'
+		ORDER BY COMMENT_WRITE_DATE DESC
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+  
+</mapper>
