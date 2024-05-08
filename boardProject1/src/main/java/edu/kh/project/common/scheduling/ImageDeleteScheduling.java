@@ -29,8 +29,8 @@ public class ImageDeleteScheduling {
 	private String boardLocation; // 게시글 이미지 저장 경로
 	
 	
-	@Scheduled(cron="0/10 * * * * *") // 0초 기준, 10초 마다 (테스트)
-//	@Scheduled(cron="0 0 * * * *") // 정시 마다(0분 0초 마다) (실제 운영 시)
+//	@Scheduled(cron="0/10 * * * * *") // 0초 기준, 10초 마다 (테스트)
+	@Scheduled(cron="0 0 * * * *") // 정시 마다(0분 0초 마다) (실제 운영 시)
 	public void imageDelete() {
 		
 		// 1. 서버 폴더 지정 ( java.io.File 이용 )
