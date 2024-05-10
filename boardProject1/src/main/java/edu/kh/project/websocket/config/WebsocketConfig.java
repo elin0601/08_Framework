@@ -6,6 +6,7 @@ import org.springframework.web.socket.config.annotation.WebSocketConfigurer;
 import org.springframework.web.socket.config.annotation.WebSocketHandlerRegistry;
 import org.springframework.web.socket.server.HandshakeInterceptor;
 
+import edu.kh.project.websocket.handler.NotificationWebsocketHandler;
 import edu.kh.project.websocket.handler.TestWebsocketHandler;
 import lombok.RequiredArgsConstructor;
 
@@ -19,6 +20,9 @@ public class WebsocketConfig implements WebSocketConfigurer{
 	
 	// Bean으로 등록된 SessionHandshakeInterceptor가 의존성 주입됨
 	private final HandshakeInterceptor handshakeInterceptor;
+	
+	// 알림 웹소켓 처리 객체 의존성 주입(DI)
+	private final NotificationWebsocketHandler notificationWebsocketHandler;
 
 	
 	// 웹소켓 핸들러를 등록하는 메서드
@@ -31,7 +35,7 @@ public class WebsocketConfig implements WebSocketConfigurer{
 		registry
 			.addHandler(testWebsocketHandler, "/testSock")
 			// websocket://localhost/testSock으로 
-			// 클라이언트가 요청을 하면 
+			// 클라이언트가 요청으로 하면 
 			// testWebsocketHandler가 처리하도록 등록
 			
 			.addInterceptors(handshakeInterceptor)
@@ -43,6 +47,17 @@ public class WebsocketConfig implements WebSocketConfigurer{
 			
 			.withSockJS();
 			// SockJS(websocket 보완) 지원 + 브라우저 호환성 증가
+		
+		
+		// 알림 처리하는 핸들러와 주소 연결
+		registry
+			.addHandler(notificationWebsocketHandler, "/notification/send")
+			.addInterceptors(handshakeInterceptor)
+			.setAllowedOriginPatterns("http://localhost/", 
+					  "http://127.0.0.1/", 
+					  "http://192.168.10.31/")
+			.withSockJS();
+		
 		
 		
 	}

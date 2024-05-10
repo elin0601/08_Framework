@@ -55,7 +55,7 @@ public class TestWebsocketHandler extends TextWebSocketHandler {
 	
 	
 	// 클라이언트로부터 메세지가 도착하면 실행
-	@Override
+	@Override													// websocket_test.js에 작성한 sendMessageFn()이 TextMessage로 전달됨
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		
 		// TextMessage : 웹소켓으로 연결된 클라이언트가 전달한 
