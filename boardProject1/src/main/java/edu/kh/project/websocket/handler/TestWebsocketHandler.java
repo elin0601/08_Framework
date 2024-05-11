@@ -22,7 +22,7 @@ public class TestWebsocketHandler extends TextWebSocketHandler {
 	
 	// WebSocketSession : 
 	// - 클라이언트 - 서버 간 전이중 통신을 담당하는 객체
-	// - SessionHandshakeInterceptot가 가로챈 
+	// - SessionHandshakeInterceptot가 가로챔
 	//	 연결한 클라이언트의 HttpSession을 가지고 있음
 	//	 (attributes에 추가한 값)
 	
@@ -78,7 +78,6 @@ public class TestWebsocketHandler extends TextWebSocketHandler {
 /*
  WebSocketHandler 인터페이스 : 웹소켓을 위한 메소드를 지원하는 인터페이스
    -> WebSocketHandler 인터페이스를 상속받은 클래스를 이용해 웹소켓 기능을 구현
-
 
 
  WebSocketHandler 주요 메소드
