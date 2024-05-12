@@ -60,6 +60,4 @@ public class NotificationController {
 		return service.deleteNotification(notificationNo, loginMember.getMemberNo());
 	}
 
-	
-	
 }
