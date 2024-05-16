@@ -496,7 +496,7 @@ header>section:nth-child(3) {
 }
 
 .not-read {
-    background-color: rgba(176, 208, 238, 0.7)
+    background-color: rgba(176, 208, 238, 0.7);
 }
 
 .notification-text {
