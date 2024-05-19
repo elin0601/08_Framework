@@ -20,7 +20,7 @@ INSERT INTO "STORE" VALUES(
 	NULL,
 	DEFAULT,
 	'/images/profile/20240503154154_00016.jpg',
-	3,
+	2,
 	4.42
 );	
 
