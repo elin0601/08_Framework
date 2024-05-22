@@ -21,7 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 @Controller
+@Slf4j
+@RequiredArgsConstructor
 public class ApiController {
 	
 	/** Ajax로 Open API 요청하는 페이지로 포워드
@@ -223,5 +228,73 @@ public class ApiController {
 	    model.addAttribute("weatherMap", weatherMap);
         
 		return "ex2";
+	}
+	
+	
+	private final String serviceKey = "lIH66KzXaSQkB%2FWf3abVrY7DtIes9ltY0OHT0X%2FUwGgxf4lcNgWvxpwieVKCx%2BO%2FLBsDn1UlSlwvyN5clkML4A%3D%3D";
+
+	/** 에어코리아 대기오염정보 - 시도별 실시간 측정정보 조회
+
+	* @param location : 지역명(시, 도 이름)
+
+	* @throws IOException
+
+	*/
+
+	@GetMapping("air")
+	public String airPollution(@RequestParam(value="location", required = false, defaultValue="서울") String location) throws IOException{
+
+		String requestUrl = "http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth";
+
+	StringBuilder urlBuilder = new StringBuilder(requestUrl);
+	
+
+
+	urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=" + serviceKey); /*Service Key*/
+	urlBuilder.append("&" + URLEncoder.encode("returnType","UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*xml 또는 json*/
+    urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수*/
+    urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
+    urlBuilder.append("&" + URLEncoder.encode("sidoName","UTF-8") + "=" + URLEncoder.encode("서울", "UTF-8")); /*시도 이름(전국, 서울, 부산, 대구, 인천, 광주, 대전, 울산, 경기, 강원, 충북, 충남, 전북, 전남, 경북, 경남, 제주, 세종)*/
+    urlBuilder.append("&" + URLEncoder.encode("ver","UTF-8") + "=" + URLEncoder.encode("1.0", "UTF-8")); /*버전별 상세 결과 참고*/
+	// 공공데이터 요청 및 응답
+
+	URL url = new URL(urlBuilder.toString());
+
+	HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+
+	conn.setRequestMethod("GET");
+
+	conn.setRequestProperty("Content-type", "application/json");
+
+	BufferedReader rd;
+
+	if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+
+	rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+
+	} else {
+
+	rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+
+	}
+
+	StringBuilder sb = new StringBuilder();
+
+	String line;
+
+	while ((line = rd.readLine()) != null) {
+
+	sb.append(line);
+
+	}
+
+	rd.close();
+
+	conn.disconnect();
+
+	System.out.println(sb.toString());
+
+	return "air";
+
 	}
 }

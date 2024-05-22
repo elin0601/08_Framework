@@ -63,7 +63,7 @@ const getUltraSrtFcst = (regionValue) => {
         weatherObj.fcstTime = list[0].fcstTime;
 
         // fcstDate, fcstTime 이 일치하는 정보만 weatherObj에 저장
-        // -> 가장 가까운 시간대의 예보만 저장ㅂ
+        // -> 가장 가까운 시간대의 예보만 저장
         for (let item of list) {
             if (item.fcstDate == weatherObj.fcstDate &&
                 item.fcstTime == weatherObj.fcstTime) {
