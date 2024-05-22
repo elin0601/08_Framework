@@ -3,7 +3,7 @@ const serviceKey ="lIH66KzXaSQkB/Wf3abVrY7DtIes9ltY0OHT0X/UwGgxf4lcNgWvxpwieVKCx
 
 const numOfRows = 1000; // 조회할 데이터 개수
 const pageNo = 1; // 조회할 페이지
-const dataType = "JSON" // 응답 데이터 타입 (JSON/XML)
+const dataType = "JSON"; // 응답 데이터 타입 (JSON/XML)
 
 // 화면 요소 얻어오기
 const region = document.getElementById("region");
@@ -46,8 +46,11 @@ const getUltraSrtFcst = (regionValue) => {
     .then(resp => resp.json()) // 응답 받은 json을 JS Object로 변환
     .then(result => {
 
-
         console.log(result);
+
+        // [위] 공공 데이터 Open API를 이용한 데이터 요청 및 응답
+        // -----------------------------------------------------------------
+        // [아래] 개발자가 응답 받은 데이터 활용
 
         // 요청 데이터 중 item (객체 배열)
         const list = result.response.body.items.item;
