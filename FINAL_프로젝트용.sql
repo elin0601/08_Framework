@@ -41,4 +41,18 @@ WHERE STORE_NO=1;
 
 SELECT * FROM "RESERVATION";
 
+--컬럼 추가 : ALTER TABLE 테이블명 ADD(컬럼명 데이터타입 [DEFAULT '값']);
+
+ALTER TABLE "RESERVATION" ADD (VISIT_NAME NVARCHAR2(15));
+ALTER TABLE "RESERVATION" ADD (VISIT_TEL CHAR(11));
+
+------------------------------------------------------
+
+
+
+
+
+
+
+
  
