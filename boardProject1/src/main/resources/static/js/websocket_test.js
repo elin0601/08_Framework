@@ -19,6 +19,7 @@ const sendMessageFn = (name, str) => {
     };
 
     // 연결된 웹소켓 핸들러로 JSON을 전달
+    // 객체를 문자로 바꿔서 전달
     testSock.send(JSON.stringify(obj));
 }
 
