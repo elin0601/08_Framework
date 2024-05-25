@@ -50,8 +50,7 @@ public class NotificationWebsocketHandler extends TextWebSocketHandler{
         
         // TextMessage로 전달 받은 JSON 데이터를 Notification 객체로 변경
         Notification notification = objectMapper.readValue(message.getPayload(), Notification.class);
-    	
-        
+
         
         // 웹소켓 요청을 보낸 회원 정보 얻어오기
     	HttpSession currentSession =  (HttpSession)session.getAttributes().get("session");
@@ -60,19 +59,13 @@ public class NotificationWebsocketHandler extends TextWebSocketHandler{
     	// 알림 객체(notification)에 필요한 값 세팅
     	setNotification(notification, sendMember);
     	
-    	
-    	
     	log.info("전달 받은 내용 : {}", notification);
-    	
     	
     	// 알림 내용이 없는 경우 == 자신의 게시물
     	if(notification.getNotificationContent() == null) return;
     	
-    	
-    	
     	// DB에 알림 삽입
     	int result = service.insertNotification(notification); // 웹소켓은 실시간 통신이기 때문에 알림이 저장되지 않음
-    														   // -> DB에 저장해서 알림이 저장되게 함
     	
     	if(result == 0) return;
     
